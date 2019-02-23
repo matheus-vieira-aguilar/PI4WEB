@@ -24,6 +24,6 @@ public class CustomizeAuthenticationSuccessHandler implements AuthenticationSucc
 
         logger.info("AT onAuthenticationSuccess(...) function!");
 
-        response.sendRedirect("/admin");
+        response.sendRedirect("/Index");
     }
 }

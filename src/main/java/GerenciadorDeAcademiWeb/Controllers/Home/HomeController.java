@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
-    @RequestMapping(value = {"/", "home"})
+    @RequestMapping(value = {"/Index"})
     public String home() {
-        return "home";
+        return "Home/Index";
     }
 
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = {"/", "home", "/login"})
     public String login() {
-        return "login";
+        return "Home/Login";
     }
 }

@@ -1,0 +1,45 @@
+/* 
+    Created on : 30/12/2018, 04:47:43
+    Author     : Gabriel
+*/
+
+body{
+    background-color: #ebebeb;
+}
+
+.conteudo {
+    position: absolute; 
+    top: 15%; 
+    width: 100%; 
+}
+
+.loginLG{
+    padding: 0;
+}
+
+h1{
+    background-color: #286090;
+    padding-top: 5px;
+    padding-bottom: 20px;
+    margin-bottom: 0;
+    color: #fff;
+}
+
+#formularioLogin{    
+    background-color: #fff;
+    padding-top: 18px;
+}
+
+#login{
+    margin-top: 15px;
+}
+
+.camposDeTexto{
+    margin-bottom: 20px;
+}
+
+#LoginBtn{
+    width: 100%;
+    margin-top: 15px;
+}
+

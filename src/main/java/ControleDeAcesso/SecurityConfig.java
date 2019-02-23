@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
@@ -19,11 +20,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     DataSource dataSource;
 
     @Autowired
-    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {        
+    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource)
-                .usersByUsernameQuery("select login as username,senha as password, true as enable from usuario where login=?")
+                .usersByUsernameQuery("SELECT Username, Password, true AS Enable FROM User WHERE Username=?")
                 .passwordEncoder(new ShaPasswordEncoder(256))
-                .authoritiesByUsernameQuery("select login as username, \"admin\" as user_roles from usuario where login=?");
+                .authoritiesByUsernameQuery("SELECT U.Username, R.Role FROM user_Role AS UR \n" +
+                                                                    "INNER JOIN User AS U ON U.ID_User = UR.ID_user\n" +
+                                                                    "INNER JOIN Role AS R ON R.Role_ID = UR.Role_ID WHERE U.Username=?");
     }
 
     @Override
@@ -41,5 +44,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .permitAll();
         http.exceptionHandling().accessDeniedPage("/403");
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/css/**", "/js/**", "/lib/**");
     }
 }
