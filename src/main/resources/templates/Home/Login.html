@@ -6,40 +6,47 @@
         <title>Login</title>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" type="text/css"/>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+        
+        
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
-        <script type="text/javascript" src="lib/jquery/dist/jquery.js" ></script>
     </head>
-    <body>       
-        <div class="conteudo">            
-            <div class="row">
-                <div class="col-12">
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-4 col-md-offset-4 col-sm-offset-4 text-center">
-                        <div id="divTitle" class="text-center">
-                            <h1>Login</h1>
-                        </div>
+    
+    <style>
+        body{
+            background: URL('https://blog.vindi.com.br/wp-content/uploads/2015/12/background01.jpg');
+        }
+        form{
+            background: white;
+            padding: 20px 15px;
+        }
+    </style>
+    <script>
+        $(function() {
+            $('.container').height($(window).height());
+        });
+        
+    </script>
+    <body >       
+      
+        <div class="container d-flex">
+            <div class="col-md-4 offset-md-4 col-sm-8 offset-sm-2 align-self-center">
+                <h1 class="text-center">Login</h1> 
+                <form id="formLogin" method="POST" role="form" data-toggle="validator" th:action="@{/login}" novalidate="true" style="">
+                    <div class="camposDeTexto">
+                        <label>Login</label>
+                        <input id="username" name="username" type="text" maxlength="100" placeholder="Digite seu login..." class="form-control" data-error="Campo obrigatório" required="true" />   
+                        <div class="help-block with-errors"></div>
                     </div>
-                </div> 
-                <form id="formLogin" class="row" th:action="@{/login}" method="POST" role="form" data-toggle="validator">
-                    <div class="col-12">
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-4 col-md-offset-4 col-sm-offset-4">
-                            <div id="formularioLogin" class="col-lg-12">
-                                <div class="form-group camposDeTexto">
-                                    <label>Login</label>
-                                    <input id="username" name="username" type="text" maxlength="100" placeholder="Digite seu login..." class="form-control" data-error="Campo obrigatÃ³rio" required="true"/>   
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                                <div class="form-group camposDeTexto">
-                                    <label>Senha</label>
-                                    <input id="password" name="password" type="password" class="form-control" placeholder="Digite sua senha..." data-error="Campo obrigatÃ³rio" required="true"/>
-                                        <div class="help-block with-errors"></div>
-                                </div>
-                                <div class="form-group">
-                                    <input id="LoginBtn" type="submit" class="btn btn-primary btn-outline btn-login-submit" value="Entrar" />
-                                </div>
-                            </div>
-                        </div>
+                    <div class="camposDeTexto">
+                        <label>Senha</label>
+                        <input id="password" name="password" type="password" class="form-control" placeholder="Digite sua senha..." data-error="Campo obrigatório" required="true" />
+                            <div class="help-block with-errors"></div>
                     </div>
+                    <input id="LoginBtn" type="submit" class="btn btn-primary btn-outline btn-login-submit" value="Entrar" />
                 </form>
             </div>
         </div>
