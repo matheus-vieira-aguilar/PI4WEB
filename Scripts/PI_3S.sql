@@ -57,7 +57,6 @@ CREATE TABLE Avaliacao
     tricipital DECIMAL(4,2)NOT NULL,
     biciptal DECIMAL(4,2) NOT NULL,
     supra_iliaca DECIMAL(4,2) NOT NULL,
-    abdominal DECIMAL(4,2) NOT NULL,
     coxa DECIMAL(4,2) NOT NULL,
     panturrilha DECIMAL(4,2) NOT NULL,
     
@@ -67,7 +66,7 @@ CREATE TABLE Avaliacao
     braco_esquerdo DECIMAL(4,2) NOT NULL,
     antebraco_direito DECIMAL(4,2) NOT NULL,
     antebraco_esquerdo DECIMAL(4,2) NOT NULL,
-    abdominalUser_Role DECIMAL(4,2) NOT NULL,
+    abdominal DECIMAL(4,2) NOT NULL,
     cintura DECIMAL(4,2) NOT NULL,
     quadril DECIMAL(4,2) NOT NULL,
     coxa_direita DECIMAL(4,2) NOT NULL,
@@ -75,15 +74,6 @@ CREATE TABLE Avaliacao
     perna_direita DECIMAL(4,2) NOT NULL,
     perna_esquerda DECIMAL(4,2) NOT NULL,
     
-    CONSTRAINT avaliacao_dados FOREIGN KEY (avaliado_id)
-		REFERENCES Avaliado(avaliado_id)
-);
-
-CREATE TABLE avaliacao_resultado
-(
-	avaliacao_resultado_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    avaliacao_id INT NOT NULL,
-    avaliado_id INT NOT NULL,
     imc DECIMAL(4,2) NOT NULL,
     pccg DECIMAL(4,2) NOT NULL,
     peso_atual DECIMAL(4,2) NOT NULL,
@@ -92,9 +82,6 @@ CREATE TABLE avaliacao_resultado
     peso_ideal DECIMAL(4,2) NOT NULL,
     peso_em_excesso DECIMAL(4,2) NOT NULL,
     
-    CONSTRAINT resultado_avalicao FOREIGN KEY (avaliacao_id)
-		REFERENCES Avaliacao(avaliacao_id),
-	CONSTRAINT resultado_avaliado FOREIGN KEY (avaliado_id)
+    CONSTRAINT avaliacao_dados FOREIGN KEY (avaliado_id)
 		REFERENCES Avaliado(avaliado_id)
-    
 );
