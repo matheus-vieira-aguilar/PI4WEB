@@ -3,11 +3,121 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
-        <title>TODO supply a title</title>
+        <title>Todos alunos</title>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+
     </head>
-    <body>
-        <div>TODO write content</div>        
-    </body>
+         <body>   
+        <nav class="navbar sticky-top  navbar-expand-md navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="lista_alunos.html">
+                    <img class="rounded" height="60px" src="https://logopond.com/logos/0343ba08a5fd3ca2a92cbd23932a1b14.png"/>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse" id="menu">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Alunos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Perfil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+       <div class="container">
+       <br/>
+            <div class="" id="alunos">
+                <h2>Alunos</h2>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active pb-3" data-toggle="tab" href="#alunos-todos" role="tab">Todos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pb-3" data-toggle="tab" href="#alunos-sem-avaliacao" role="tab">Sem avaliação</a>
+                    </li>
+                    <form class="form-inline  ml-auto">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Nome do aluno" aria-label="Search"/>
+                        <button class="btn btn-outline-success" type="submit">Buscar</button>
+                    </form>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="alunos-todos" role="tabpanel">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>Nome</th>
+                                <th>Data de ínicio</th>
+                                <th>Última avaliação</th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td>Cássio Jarek</td>
+                                <td>04/01/2019</td>
+                                <td>04/01/2019</td>
+                                <td><a class="btn btn-primary" href="Home/ProfVisualizaAluno" role="button">Visualizar</a></td>
+                            </tr>
+                            <tr>
+                                <td>Gabriel do Carmo</td>
+                                <td>15/11/2018</td>
+                                <td>01/02/2019</td>
+                                <td><a class="btn btn-primary" href="ProfVisualizaAluno.html" role="button">Visualizar</a></td>
+                            </tr>
+                            <tr>
+                                <td>Lucas Budnieswki</td>
+                                <td>01/06/2018</td>
+                                <td>15/03/2019</td>
+                                <td><a class="btn btn-primary" href="ProfVisualizaAluno.html" role="button">Visualizar</a></td>
+                            </tr>
+                            <tr>
+                                <td>Matheus Aguilar</td>
+                                <td>04/01/2016</td>
+                                <td>01/03/2019</td>
+                               <td><a class="btn btn-primary" href="ProfVisualizaAluno.html" role="button">Visualizar</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="alunos-sem-avaliacao" role="tabpanel">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>Nome</th>
+                                <th>Data de ínicio</th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td>Cássio Jarek</td>
+                                <td>04/01/2019</td>
+                                <td><a class="btn btn-primary" href="aluno_interna.html" role="button">Avaliar</a></td>
+                            </tr>
+                            <tr>
+                                <td>Gabriel do Carmo</td>
+                                <td>15/11/2018</td>
+                                <td><a class="btn btn-primary" href="aluno_interna.html" role="button">Avaliar</a></td>
+                            </tr>
+                            <tr>
+                                <td>Lucas Budnieswki</td>
+                                <td>01/06/2018</td>
+                                <td><a class="btn btn-primary" href="aluno_interna.html" role="button">Avaliar</a></td>
+                            </tr>
+                            <tr>
+                                <td>Matheus Aguilar</td>
+                                <td>04/01/2016</td>
+                                <td><a class="btn btn-primary" href="aluno_interna.html" role="button">Avaliar</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+        </div>
+     </body>
+
 </html>

@@ -6,53 +6,117 @@
         <title>Login</title>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-        
-        
-        <link rel="stylesheet" href="css/style.css" type="text/css"/>
-    </head>
-    
-    <style>
-        body{
-            background: URL('https://blog.vindi.com.br/wp-content/uploads/2015/12/background01.jpg');
-        }
-        form{
-            background: white;
-            padding: 20px 15px;
-        }
-    </style>
-    <script>
-        $(function() {
-            $('.container').height($(window).height());
-        });
-        
-    </script>
-    <body >       
-      
-        <div class="container d-flex">
-            <div class="col-md-4 offset-md-4 col-sm-8 offset-sm-2 align-self-center">
-                <h1 class="text-center">Login</h1> 
-                <form id="formLogin" method="POST" role="form" data-toggle="validator" th:action="@{/login}" novalidate="true" style="">
-                    <div class="camposDeTexto">
-                        <label>Login</label>
-                        <input id="username" name="username" type="text" maxlength="100" placeholder="Digite seu login..." class="form-control" data-error="Campo obrigat�rio" required="true" />   
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="camposDeTexto">
-                        <label>Senha</label>
-                        <input id="password" name="password" type="password" class="form-control" placeholder="Digite sua senha..." data-error="Campo obrigat�rio" required="true" />
-                            <div class="help-block with-errors"></div>
-                    </div>
-                    <input id="LoginBtn" type="submit" class="btn btn-primary btn-outline btn-login-submit" value="Entrar" />
-                </form>
-            </div>
-        </div>
-
         <script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.js" ></script>         
         <script type="text/javascript" src="lib/bootstrap_validator/dist/validator.js" ></script>
-        <script type="text/javascript" src="js/login.js" ></script>
+        <script type="text/javascript" src="js/jquery.js" ></script>
+        <script type="text/javascript" src="js/bootstrap.js" ></script>
+        <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
+        <link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
+
+    </head>
+    <body>       
+        <div class="container">
+            <div class="row row-principal">
+                <div class="col-md-5 col-lg-5 col-lg-offset-1 row-column__height" id="row-left__img">
+                    <!-- th:style="'background: url(/images/bg1.jpg);height:90vh;background-size:cover;background-position:center'" -->
+                </div>
+                <div class="col-md-5 col-lg-5 row-column__height row_column-right__bgcolor text-center">
+                    <div class="divRight-form__align">
+                        <img src="images/avatar.jpg" class="row-avatar__circle" alt="Avatar login"/>
+                        <p style="font-size:19px;margin-left:-2%;"> 
+                            Bem-vindo novamente,<br/>
+                            <font color="green"> 
+                                Cassio
+                            </font>
+                        </p>
+                        <!-- CAMPOS -->
+                        <form id="formLogin" method="POST" role="form" data-toggle="validator" th:action="@{/login}" novalidate="true" style="">
+                            <div class="camposDeTexto">
+                                <label>Login</label>
+                                <input id="username" name="username" type="text" maxlength="100" placeholder="Digite seu login..." class="form-control" data-error="Campo obrigat�rio" required="true" />   
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="camposDeTexto">
+                                <input id="password" name="password" type="password" class="form-control" placeholder="Digite sua senha..." data-error="Campo obrigat�rio" required="true" />
+                                    <div class="help-block with-errors"></div>
+                            </div>
+                            <input id="LoginBtn" type="submit" class="btn btn-primary btn-outline btn-login-submit" value="Entrar" />
+                        </form>
+
+                        <a href="#" id="forgot" data-toggle="modal" data-target="#exampleModal" style="margin-top: 15% !importants;font-weight: lighter;font-size: 12px;color:blue">Esqueci o login/senha </a>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <table style="margin-left:38%" id="tableModalTitle">
+                                            <tr>
+                                                <td>
+                                                    <h4 class="modal-title" style="white-space: nowrap" id="exampleModalLabel">Recuperar dados</h4>
+                                                </td>
+                                                <td style="margin-left:90%;width:90%">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <form action="sadasdasd.html">
+                                        <div class="modal-body" style="background-color: #f2f7f982">
+                                            <table border="0" align="center" class="retrieve" > 
+                                                <tr>
+                                                    <td> 
+                                                        <p style="margin-bottom: 16px !important; margin-top: 5vh'">Olá, se você esqueceu seus dados,  por favor, preencha as informações abaixo</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="input-group col-xs-2" style="width:77%;margin-left: 9vh">
+                                                            <span class="input-group-addon"><i class="fas fa-address-card fa-fw"></i></span>
+                                                            <input class="form-control" type="cpf" placeholder="Digite seu CPF..." id="inputModal" name="cpf" required="true"/>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="input-group"  style="width:77%;margin-left: 9vh">
+                                                            <span class="input-group-addon"><i class="fas fa-envelope fa-fw"></i></span>
+                                                            <input class="form-control" type="email" placeholder="Digite seu email..." name="email" required="true"/>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="input-group" style="width:77%;margin-left: 9vh">
+                                                            <span class="input-group-addon"><i class="fas fa-envelope fa-fw"></i></span>
+                                                            <input class="form-control" type="email" placeholder="Redigite seu email..." name="reemail" required="true"/>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                            <button type="submit" class="btn btn-primary" >Recuperar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--ROW ROW-PRINCIPAL -->
+        </div><!-- CONTAINER -->
     </body>
 </html>
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })
+</script>
+
+
+
+
