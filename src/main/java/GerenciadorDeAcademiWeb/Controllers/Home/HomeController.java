@@ -70,7 +70,7 @@ public class HomeController {
             Request request = new Request.Builder()
                     .url(baseUrl + urlAluno)
                     .get()
-                    .addHeader("Authorization", "Bearer" + token + "asd")
+                    .addHeader("Authorization", "Bearer" + token)
                     .build();
 
             Response responseApi = client.newCall(request).execute();
