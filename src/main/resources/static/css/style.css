@@ -1,45 +1,108 @@
-/* 
-    Created on : 30/12/2018, 04:47:43
-    Author     : Gabriel
-*/
+body{background-color:#8383a2e6 !important;}
+.row-principal{margin-top:7vh;}
+#row-left__img{
+    background-image: url('../images/bg1.jpg') !important;
+    background-size: cover;
+    background-position: center;
+}
+.row-column__height{height:84vh}
+.row_column-right__bgcolor{background-color: rgb(243, 243, 243) !important}
+.row-avatar__circle{
+    padding: 0px;
+    width: 18vh;
+    height: 18vh;
+    line-height: 50px;
+    border-radius:50%;
+    margin-bottom:30px;
+}
+.divRight-form__align{margin-top:10vh}
+.divright_input_size{width:47vh !important;}
 
-body{
-    background-color: #ebebeb;
+.divright_p {
+    font-weight: lighter;
+    font-size: 14px;
+    color:gray;
+    margin-top:2.4vh;
+    margin-left:-16.5%;
+}
+.divright-input__submit{font-size:17px;margin-top:-4.4%;width:53vh;}
+
+
+
+/* Lembre-se de mim */
+
+
+
+
+.stuff { padding-top:60px; }
+
+/* basic css */
+input[type=checkbox]   { display:none; }
+#check-awesome         { position:relative; }
+
+/* checkbox css */
+label                  { cursor:pointer; }
+label span             { display:block; position:absolute; left:0; 
+  -webkit-transition-duration:0.3s; -moz-transition-duration:0.3s; transition-duration:0.3s;
 }
 
-.conteudo {
-    position: absolute; 
-    top: 15%; 
-    width: 100%; 
+label .box     {
+  left: 64%;
+  border:1px solid gray;
+  height:16px; 
+  top:72.5%;
+  width:16px;
+  z-index:888;
+  -webkit-transition-delay:0.2s; -moz-transition-delay:0.2s; transition-delay:0.2s;
+}
+label .check         {
+  top: 66.5%;
+  left: 65%;
+  width: 12px;
+  height: 24px;
+  border:2px solid #0f9d58;  
+  border-top: none;
+  border-left: none;
+  opacity:0; 
+  z-index:888;
+  -webkit-transform:rotate(180deg); -moz-transform:rotate(180deg); transform:rotate(180deg);
+  -webkit-transition-delay:0.3s; -moz-transition-delay:0.3s; transition-delay:0.3s;
 }
 
-.loginLG{
-    padding: 0;
+/* handling click events */
+
+/* when checkbox is checked */
+label .circle {
+  -webkit-animation   :growCircle 0.3s ease;
+  -moz-animation      :growCircle 0.3s ease;
+  animation           :growCircle 0.3s ease;
+}
+input[type=checkbox]:checked ~ label .box { 
+  opacity:0;
+  -webkit-transform   :scale(0) rotate(-180deg);
+  -moz-transform        :scale(0) rotate(-180deg);
+  transform                 :scale(0) rotate(-180deg);
+}
+input[type=checkbox]:checked ~ label .check {
+  opacity:1; 
+  -webkit-transform   :scale(1) rotate(45deg);
+  -moz-transform      :scale(1) rotate(45deg);
+  transform           :scale(1) rotate(45deg);
 }
 
-h1{
-    background-color: #286090;
-    padding-top: 5px;
-    padding-bottom: 20px;
-    margin-bottom: 0;
-    color: #fff;
+/* bubble animation */
+
+@-webkit-keyframes growCircle {
+  0%, 100%   { -webkit-transform:scale(0); }
+  70%        { background:#DDD; -webkit-transform:scale(1.25); }
+}
+@-moz-keyframes growCircle {
+  0%, 100%   { -moz-transform:scale(0); }
+  70%        { background:#DDD; -moz-transform:scale(1.25); }
+}
+@keyframes growCircle {
+  0%, 100%   { transform:scale(0); }
+  70%        { background:#DDD; transform:scale(1.25); }
 }
 
-#formularioLogin{    
-    background-color: #fff;
-    padding-top: 18px;
-}
-
-#login{
-    margin-top: 15px;
-}
-
-.camposDeTexto{
-    margin-bottom: 20px;
-}
-
-#LoginBtn{
-    width: 100%;
-    margin-top: 15px;
-}
 
