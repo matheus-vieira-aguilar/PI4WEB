@@ -4,11 +4,12 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -21,12 +22,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(dataSource)
-                .usersByUsernameQuery("SELECT Username, Password, true AS Enable FROM User WHERE Username=?")
-                .passwordEncoder(new ShaPasswordEncoder(256))
-                .authoritiesByUsernameQuery("SELECT U.Username, R.Role FROM User_Role AS UR \n" +
-                                                                    "INNER JOIN User AS U ON U.ID_User = UR.ID_user\n" +
-                                                                    "INNER JOIN Role AS R ON R.Role_ID = UR.Role_ID WHERE U.Username=?");
+        auth
+            .eraseCredentials(false)
+            .jdbcAuthentication().dataSource(dataSource)
+            .usersByUsernameQuery("SELECT Username, Password, true AS Enable FROM User WHERE Username=?")
+            .passwordEncoder(new BCryptPasswordEncoder())
+            .authoritiesByUsernameQuery("SELECT U.Username, R.Role FROM User_Role AS UR \n" +
+                                                "INNER JOIN User AS U ON U.ID_User = UR.ID_user\n" +
+                                                "INNER JOIN Role AS R ON R.Role_ID = UR.Role_ID WHERE U.Username=?");
     }
 
     @Override
@@ -41,7 +44,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .permitAll()
                 .and()
-                .logout()
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login")
                 .permitAll();
         http.exceptionHandling().accessDeniedPage("/403");
     }
