@@ -17,6 +17,8 @@ public class Aluno{
 
     private LocalDate dataNascimento;
 
+    private LocalDate ultimaAvaliacao;
+    
     private SexoEnum sexo;
 
     private String email;
@@ -49,6 +51,14 @@ public class Aluno{
 
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public LocalDate getUltimaAvaliacao() {
+        return ultimaAvaliacao;
+    }
+
+    public void setUltimaAvaliacao(LocalDate ultimaAvaliacao) {
+        this.ultimaAvaliacao = ultimaAvaliacao;
     }
 
     public SexoEnum getSexo() {
