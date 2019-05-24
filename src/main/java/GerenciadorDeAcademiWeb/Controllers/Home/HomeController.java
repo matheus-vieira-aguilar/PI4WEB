@@ -23,7 +23,9 @@ import com.google.gson.reflect.TypeToken;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
-
+import javax.validation.Valid;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class HomeController {
@@ -59,10 +61,31 @@ public class HomeController {
         return "Home/Login";
     }
 
+    @RequestMapping(value = {"/cadastro"})
+    public ModelAndView cadastro() {
+        ModelAndView modelAndView = new ModelAndView("Home/FormALuno");
+        LoginApi loginApi = new LoginApi();
+
+        try {
+            String token = loginApi.logar();
+
+            if (token == null) {
+                return new ModelAndView("redirect:/logout");
+            }
+            
+            return modelAndView;
+            
+        }catch(Exception ex){
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ModelAndView("Home/Index");
+        }
+    
+    }
+    
     private ApiRetorno<List<Aluno>> getAlunos(String token) {
         Gson gson = GsonHelper.getGson();
         String urlAluno = "Api/Aluno";
-        
+
         try {
 
             OkHttpClient client = new OkHttpClient();
@@ -76,16 +99,31 @@ public class HomeController {
             Response responseApi = client.newCall(request).execute();
             String retornoJson = responseApi.body().string();
 
-            ApiRetorno<List<Aluno>> response = gson.fromJson(retornoJson, new TypeToken<ApiRetorno<List<Aluno>>>(){}.getType());
+            ApiRetorno<List<Aluno>> response = gson.fromJson(retornoJson, new TypeToken<ApiRetorno<List<Aluno>>>() {
+            }.getType());
             return response;
         } catch (Exception ex) {
             ApiRetorno<List<Aluno>> retorno = new ApiRetorno<List<Aluno>>();
-            
+
             List<String> erros = new ArrayList<String>();
             erros.add(ex.getMessage());
             retorno.setErrorMessages(erros);
-            retorno.setSucess(false);            
+            retorno.setSucess(false);
             return retorno;
         }
-    }   
+    }
+
+    @RequestMapping(value = {"/salva_aluno"}, method = RequestMethod.POST)
+    public ApiRetorno<Boolean> salvaAluno(@RequestBody @Valid @ModelAttribute("aluno") Aluno aluno) {
+        Gson gson = GsonHelper.getGson();
+        String urlAluno = "Api/Aluno";
+        
+        try{
+            OkHttpClient client = new OkHttpClient();
+            
+            Request request = new Request.Builder()
+                    .url(baseUrl + urlAluno)
+                    
+        }cat
+    }
 }

@@ -2,19 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-        <title>Todos alunos</title>
-        <meta charset="utf-8"/>
-        <link rel="stylesheet" href="/css/style_listar.css" type="text/css"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
-        <link rel="stylesheet" href="css/Bootstrap/bootstrap.css" type="text/css"/>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <!-- validador de CPF -->
-        <script type="text/javascript" src="js/jquery-1.2.6.pack.js"></script>
-        <script type="text/javascript" src="js/jquery.maskedinput-1.1.4.pack.js"></script>
+      
+    <head th:replace="Fragments/header :: header">
     </head>
+    
     <body>   
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
@@ -51,7 +42,7 @@
                         <a class="nav-link pb-3" data-toggle="tab" href="#alunos-sem-avaliacao" role="tab">Sem avaliação</a>
                     </li>
                     <li class="nav-item"  style="margin-left:49vh;margin-right: 1vh">
-                        <button data-toggle="modal" data-target="#myModal" type="button" class="btn btn-success" style="min-width:10vh"><i class="fa fa-plus" aria-hidden="true"></i> Novo aluno</button>
+                        <a th:href='@{/cadastro}' type="button" class="btn btn-success" style="min-width:10vh"><i class="fa fa-plus" aria-hidden="true"></i> Novo aluno</a>
                     </li>
                     <li>
                         <form class="form-inline  ml-auto">
@@ -63,6 +54,7 @@
                 <!-- MODAL INSERIR ALUNO ############################## -->
                 <div class="modal fade" id="myModal">
                     <div class="modal-dialog">
+                            
                         <div class="modal-content">
 
                             <!-- Modal Header -->
@@ -72,7 +64,8 @@
                             </div>
 
                             <!-- Modal body -->
-                            <div class="modal-body table-responsive">
+                            <form class="form-salva-aluno" th:action="@{/salva_aluno}" th:object="${aluno}" method="POST" >
+                            <div id="form-aluno" class="modal-body table-responsive">
                                 <!--<p  align="center" class="modal-p__color modal-p__size">Para cadastrar um novo aluno na academia, por favor, preencha
                                     os campos abaixo e clique em Adicionar.</p> -->
                                 <table class="table-hover">
@@ -94,7 +87,7 @@
                                     </tr>
                                     <tr>
                                         <td class="modal-table-td__width">
-                                            Idade aluno
+                                            Data de Nascimento
                                         </td>
                                         <td class="modal-table-td-input__width">
                                             <input type="date" class="form-control modal-input__size modal-placeholder-size" name="nome"  min="1920-01-01" max="2019-01-01" value="1985-01-01" placeholder="Digite o nome do aluno.."/>
@@ -102,40 +95,37 @@
                                     </tr>
                                     <tr>
                                         <td class="modal-table-td__width">
-                                            Plano
+                                            Email
                                         </td>
                                         <td class="modal-table-td-input__width">
-                                            <select class="form-control modal-input__size modal-placeholder-size" name="plano">
-                                                <option value="basico">Básico (R$60,00 - Musculação)</option>
-                                                <option value="pro">Pró    (R$80,00 - Musculação + 2 Op)</option>
-                                                <option value="pro">Premium    (R$140,00 - Tudo)</option>
-                                            </select>
+                                            <input type="email" class="form-control modal-input__size modal-placeholder-size" name="email" placeholder="Digite o email do aluno..."/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="modal-table-td__width">
-                                            Mensalidade
+                                            Sexo
                                         </td>
                                         <td class="modal-table-td-input__width">
-                                            <select class="form-control modal-input__size modal-placeholder-size" name="mensalidade">
-                                                <option value="basico">Mensal </option>
-                                                <option value="pro">Semestral (4% desconto)</option>
-                                                <option value="pro">Anual (7% desconto)</option>
-                                            </select>
+                                            <INPUT TYPE="RADIO" class="form-control" NAME="masculino" VALUE="1"/> Masculino 
+                                            <INPUT TYPE="RADIO" class="form-control" NAME="feminino" VALUE="2"/> Feminino
                                         </td>
                                     </tr>
                                 </table>
                             </div>
-
                             <!-- Modal footer -->
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal">Cadastrar</button>
+                                <button id="submit_aluno" type="submit" class="btn btn-success" data-dismiss="modal">Cadastrar</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
                             </div>
-
+                        </form>
                         </div>
                     </div>
                 </div>
+
+
+        
+
+
                 <!-- fim do modal de inserir aluno #################### -->
                 <div class="tab-content">
                     <div class="tab-pane active" id="alunos-todos" role="tabpanel">
@@ -146,10 +136,27 @@
                                 <th>Última avaliação</th>
                                 <th></th>
                             </tr>
-                            <tr th:each="alunos:${alunos}">
+                            <tr th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao != null}">
                                 <td class="ola"><span th:text="${alunos.nome}"> </span></td>
                                 <td><span th:text="${alunos.dataNascimento}"> </span></td>
+                                <td><span th:text="${alunos.ultimaAvaliacao}"> </span></td>
+                                <td><a class="btn btn-primary" href="ProfVisualizaAluno.html" role="button">Visualizar</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="alunos-sem-avaliacao" role="tabpanel">
+                        <table class="table table2 table-hover">
+                            <tr>
+                                <th class="ola">Nome</th>
+                                <th>Data de ínicio</th>
+                                <th>Última avaliação</th>
+                                <th></th>
+                            </tr>
+                            <tr th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao == null}" >
+
+                                <td class="ola"><span th:text="${alunos.nome}"> </span></td>
                                 <td><span th:text="${alunos.dataNascimento}"> </span></td>
+                                <td><span th:text="${alunos.ultimaAvaliacao}"> </span></td>
                                 <td><a class="btn btn-primary" href="ProfVisualizaAluno.html" role="button">Visualizar</a></td>
                             </tr>
                         </table>
@@ -159,10 +166,7 @@
             <br />
             <br />
         </div>
+
     </body>
 </html>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $("#cpf").mask("999.999.999-99");
-    });
-</script>
+
