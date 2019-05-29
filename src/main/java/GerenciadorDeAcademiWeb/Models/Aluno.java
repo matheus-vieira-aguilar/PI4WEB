@@ -4,21 +4,25 @@ import java.time.LocalDate;
 import java.util.List;
 
 import GerenciadorDeAcademiWeb.Enums.SexoEnum;
+import java.time.format.DateTimeFormatter;
+import java.util.UUID;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 /**
  *
  * @author Gabriel
  */
-public class Aluno{
+public class Aluno {
 
-    private int id;
+    private UUID id;
 
     private String nome;
 
     private LocalDate dataNascimento;
 
     private LocalDate ultimaAvaliacao;
-    
+
     private SexoEnum sexo;
 
     private String email;
@@ -29,14 +33,13 @@ public class Aluno{
 
     private List<Avaliacao> historicoDeAvaliacao;
 
-    public int getId() {
+    public UUID getId() {
         return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
-
     public String getNome() {
         return this.nome;
     }
@@ -49,8 +52,9 @@ public class Aluno{
         return this.dataNascimento;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setDataNascimento(String dataNascimento) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        this.dataNascimento = LocalDate.parse(dataNascimento, formatter);
     }
 
     public LocalDate getUltimaAvaliacao() {
@@ -73,8 +77,19 @@ public class Aluno{
         switch (sexo) {
             case 1:
                 this.sexo = SexoEnum.MASCULINO;
-                break;        
+                break;
             case 2:
+                this.sexo = SexoEnum.FEMININO;
+                break;
+        }
+    }
+
+    public void setSexoEnum(String sexo) {
+        switch (sexo) {
+            case "MASCULINO":
+                this.sexo = SexoEnum.MASCULINO;
+                break;
+            case "FEMININO":
                 this.sexo = SexoEnum.FEMININO;
                 break;
         }

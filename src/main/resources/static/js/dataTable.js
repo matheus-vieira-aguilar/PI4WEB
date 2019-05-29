@@ -1,11 +1,14 @@
-$(document).ready( function () {
-    $('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
-        $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
-    } );
+(function($) {
+    
 
-    $('.table').DataTable({
+
+
+    $('table.table').DataTable({
         scrollY:        200,
         scrollCollapse: true,
     });
 
-});
+    $('#table2').DataTable({
+    })
+
+})(jQuery);

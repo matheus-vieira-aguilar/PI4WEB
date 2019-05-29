@@ -11,7 +11,12 @@ public enum SexoEnum{
         valorSexo = valor;
     }
 
+    SexoEnum(String valor){
+        valorSexo = Integer.parseInt(valor);
+    }
     public int getInt(){
         return valorSexo;
     }
+    
+
 }

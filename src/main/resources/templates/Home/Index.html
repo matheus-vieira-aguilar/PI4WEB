@@ -31,18 +31,25 @@
             </div>
         </nav>
         <div class="container">
+
             <br/>
             <div class="" id="alunos">
+                    <div th:if="${success == true}" class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Aluno</strong> cadastrado com sucesso.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
                 <h2>Alunos</h2>
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active pb-3" data-toggle="tab" href="#alunos-todos" role="tab">Todos</a>
+                        <a class="nav-link active pb-3" data-toggle="tab" href="#alunos-todos" role="tab">Avaliados</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link pb-3" data-toggle="tab" href="#alunos-sem-avaliacao" role="tab">Sem avaliação</a>
                     </li>
                     <li class="nav-item"  style="margin-left:49vh;margin-right: 1vh">
-                        <a th:href='@{/cadastro}' type="button" class="btn btn-success" style="min-width:10vh"><i class="fa fa-plus" aria-hidden="true"></i> Novo aluno</a>
+                        <button onclick="location.href='/cadastro'" type="button" class="btn btn-success" style="min-width:10vh">Novo aluno</button>
                     </li>
                     <li>
                         <form class="form-inline  ml-auto">
@@ -128,45 +135,83 @@
 
                 <!-- fim do modal de inserir aluno #################### -->
                 <div class="tab-content">
-                    <div class="tab-pane active" id="alunos-todos" role="tabpanel">
-                        <table class="table table-hover">
-                            <tr>
-                                <th class="ola">Nome</th>
-                                <th>Data de ínicio</th>
-                                <th>Última avaliação</th>
-                                <th></th>
-                            </tr>
-                            <tr th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao != null}">
-                                <td class="ola"><span th:text="${alunos.nome}"> </span></td>
-                                <td><span th:text="${alunos.dataNascimento}"> </span></td>
-                                <td><span th:text="${alunos.ultimaAvaliacao}"> </span></td>
-                                <td><a class="btn btn-primary" href="ProfVisualizaAluno.html" role="button">Visualizar</a></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="tab-pane" id="alunos-sem-avaliacao" role="tabpanel">
-                        <table class="table table2 table-hover">
-                            <tr>
-                                <th class="ola">Nome</th>
-                                <th>Data de ínicio</th>
-                                <th>Última avaliação</th>
-                                <th></th>
-                            </tr>
-                            <tr th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao == null}" >
-
-                                <td class="ola"><span th:text="${alunos.nome}"> </span></td>
-                                <td><span th:text="${alunos.dataNascimento}"> </span></td>
-                                <td><span th:text="${alunos.ultimaAvaliacao}"> </span></td>
-                                <td><a class="btn btn-primary" href="ProfVisualizaAluno.html" role="button">Visualizar</a></td>
-                            </tr>
-                        </table>
+                <div class="tab-pane active table100 ver4 m-b-110" id="alunos-todos" role="tabpanel">
+                        <div class="table100-head">
+                            <table>
+                                <thead>
+                                    <tr class="row100 head">
+                                        <th>Nome</th>
+                                        <th>Data de ínicio</th>
+                                        <th>Última avaliação</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+    
+                        <div class="table100-body js-pscroll">
+                            <table>
+                                <tbody>
+                                    <tr class="row100 body" th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao != null}">
+                                        <td class="ola"><span th:text="${alunos.nome}"> </span></td>
+                                        <td><span th:text="${alunos.dataNascimento}"> </span></td>
+                                        <td><span th:text="${alunos.ultimaAvaliacao}"> </span></td>
+                                        <td><a class="btn btn-primary" href="ProfVisualizaAluno.html" role="button">Visualizar</a></td>
+                                        <td><button class="btn fa-pencil-square-o"></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
+                <div class="tab-pane table100 ver4 m-b-110" id="alunos-sem-avaliacao" role="tabpanel">
+                        <div class="table100-head">
+                            <table>
+                                <thead>
+                                    <tr class="row100 head">
+                                        <th class="column1">Nome</th>
+                                        <th class="column2">Data de Nascimento</th>
+                                        <th class="column3">Sexo</th>
+                                        <th class="column4">Email</th>
+                                        <th class="column5">CPF</th>       
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="table100-body js-pscroll">
+                            <table>
+                                <tbody>
+                                    <tr class="row100 body" th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao == null}">
+                                        <td cclass="cell100 column1"><span th:text="${alunos.nome}"> </span></td>
+                                        <td class="cell100 column2"><span th:text="${alunos.dataNascimento}"> </span></td>
+                                        <td class="cell100 column3"><span th:text="${alunos.sexo}"> </span></td>
+                                        <td class="cell100 column4"><span th:text="${alunos.email}"> </span></td>
+                                        <td class="cell100 column5"><span th:text="${alunos.cpf}"> </span></td>
+                                        <td ><button class="btn btn-outline-primary fas fa-eye" href="ProfVisualizaAluno.html" role="button"></button>
+                                            <a class="btn btn-outline-secondary fas fa-edit" th:href="@{|/edita/${alunos.id}|}"></a>
+                                            <button class="btn btn-outline-danger delete Button fas fa-trash-alt" th:attr="value=${alunos.id}" ></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
             <br />
-            <br />
-        </div>
-
+            <br />            
+        </div>                
     </body>
+    <footer th:replace="Fragments/footer :: footer">
+    </footer>
+    <script th:src="@{/js/functions.js}"></script>
+    <script>
+            $('.js-pscroll').each(function(){
+                var ps = new PerfectScrollbar(this);
+    
+                $(window).on('resize', function(){
+                    ps.update();
+                })
+            });
+    </script>
+    <script th:src="@{/js/main.js}"></script>
 </html>
-

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<title>Cadastro</title>
+<head th:replace="Fragments/header :: header">
+</head>
+
+<body>
+        <nav th:replace="Fragments/topnav :: topnav"></nav>
+
+        <div class="container">
+            <br/>
+                <div th:if="${error == true}" class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Erro</strong> ao cadastrar aluno.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+            <form class="form-salva-aluno" th:action="@{/salva_aluno}" th:object="${aluno}" method="POST" >
+                <div>
+                    <label for="nome_aluno">Nome</label>
+                    <input type="text" class="form-control" name="nome" id="nome_aluno" th:field="*{nome}" th:attr="value=${aluno.nome}"/>
+                </div>
+                <div>
+                    <label for="email_aluno">Email</label>
+                    <input type="email" class="form-control" id="email_aluno" name="email" th:field="*{email}" placeholder="Digite o email do Aluno..."/>
+                </div>
+                <div>
+                    <label for="nascimento_aluno">Data de nascimento</label>
+                    <input type="date" class="form-control" id="nascimento_aluno" name="dataNascimento" th:field="*{dataNascimento}" min="1920-01-01" max="2019-01-01" value="1985-01-01"/>
+                </div>
+                <div>
+                    <label for="cpf_aluno">CPF</label>
+                    <input type="text" onchange="validaCPF(this.cpf)" th:field="*{cpf}" class="form-control modal-input__size modal-placeholder-size" name="cpf" id="cpf_aluno" placeholder="Digite o CPF do aluno.."/>
+                </div>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-outline-secondary">
+                        <input type="radio" name="sexo" id="masculino" th:field="*{sexo}" value="1" autocomplete="off"/> Masculino
+                    </label>
+                    <label class="btn btn-outline-secondary">
+                        <input type="radio" name="sexo" id="feminino" th:field="*{sexo}" value="2" autocomplete="off"/> Feminino
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+</body>
+
+<footer th:replace="Fragments/footer :: footer">
+</footer>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#cpf_aluno").mask("999.999.999-99");
+    });
+</script>
+</html>
+
