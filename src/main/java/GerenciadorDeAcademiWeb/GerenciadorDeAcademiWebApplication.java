@@ -1,7 +1,8 @@
 package GerenciadorDeAcademiWeb;
 
 import ControleDeAcesso.SecurityConfig;
-import GerenciadorDeAcademiWeb.Controllers.Home.HomeController;
+import GerenciadorDeAcademiWeb.Controllers.HomeController;
+import GerenciadorDeAcademiWeb.Controllers.AlunoController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;

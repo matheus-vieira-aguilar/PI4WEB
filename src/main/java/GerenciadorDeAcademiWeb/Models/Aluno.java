@@ -40,7 +40,8 @@ public class Aluno {
     public void setId(UUID id) {
         this.id = id;
     }
-    public String getNome() {
+
+    public String getNome() {        
         return this.nome;
     }
 
@@ -65,10 +66,10 @@ public class Aluno {
         this.ultimaAvaliacao = ultimaAvaliacao;
     }
 
-    public SexoEnum getSexo() {
-        return this.sexo;
+    public int getSexo() {
+        return this.sexo.getInt();        
     }
-
+    
     public void setSexoEnum(SexoEnum sexo) {
         this.sexo = sexo;
     }

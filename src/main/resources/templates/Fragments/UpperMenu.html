@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Todos alunos</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="/css/style_listar.css" type="text/css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
+        <link rel="stylesheet" href="css/Bootstrap/bootstrap.css" type="text/css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <!-- validador de CPF -->
+        <script type="text/javascript" src="js/jquery-1.2.6.pack.js"></script>
+        <script type="text/javascript" src="js/jquery.maskedinput-1.1.4.pack.js"></script>
+    </head>
+    <body>   
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="lista_alunos.html">
+                    <a th:href="@{/Index}"><img class="rounded" height="60px" src="https://logopond.com/logos/0343ba08a5fd3ca2a92cbd23932a1b14.png"/></a>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse" id="menu">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/alunos}">Alunos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/Index}">Dashboards</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="modal" data-target="#exampleModal">Sair</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" >
+                        <table id="tableModalTitle" >
+                            <tr>
+                                <td>
+                                    <center>
+                                        <h4 class="modal-title" style="white-space: nowrap;" id="exampleModalLabel">Deslogar</h4>
+                                    </center>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="modal-body" style="background-color: #f2f7f982">
+
+                        Olá, deseja mesmo encerrar a sessão?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
+                        <a th:href="@{/logout}"><button type="submit" class="btn btn-primary" >Sim, sair</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
