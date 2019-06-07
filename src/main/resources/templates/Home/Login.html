@@ -7,14 +7,14 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <script type="text/javascript" src="js/jquery.js" ></script>
-           
+
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
 
     </head>
@@ -22,9 +22,9 @@
         <div class="container">
             <div class="row row-principal">
                 <!-- LADO ESQUERDO -->
-                <div class="col-md-6 col-lg-6 col-lg-offset-1 col-md-offset-1 row-column__height" id="row-left__img">   
+                <div class="col-md-6 col-lg-6 col-lg-offset-1 offset-md-1 row-column__height" id="row-left__img">   
                     <div>
-                        <img src="/images/bg1.jpg" class="bg_left" />
+
                     </div>
                 </div>
                 <!-- LADO DIREITO -->
@@ -32,24 +32,16 @@
                     <div class="divRight-form__align">
                         <!-- CAMPOS -->
                         <form id="formLogin" method="POST" role="form" data-toggle="validator" th:action="@{/login}" novalidate="true" style="">
-                            <h2>Login</h2>
-                            <div class="camposDeTexto">
-                                <div th:if="${loginError}" class="alert alert-danger"><p  class="error" style="color:red">Login ou senha incorretos.</p></div>
-                                <div class="input-group margin-bottom-sm divInput" style="padding-bottom:9px;">
-                                    <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-                                    <input class="form-control inputCtrl" id="username" name="username" type="text" placeholder="Digite seu login..." required="true"/>
-                                </div>
-                            </div>
-                            <div class="camposDeTexto">
-                                <div class="input-group divInput">
-                                    <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
-                                    <input class="form-control inputCtrl" type="password" placeholder="Digite sua senha..." id="password" name="password" required="true"/>
-                                </div>
-                            </div>
-                            <input type="submit" class="btn btn-primary form-submit__width" value="Entrar" style="margin-top:3%" />
+                            <h2 style="margin-bottom: 2%">Login</h2>
+                                <div th:if="${loginError}" class="alert alert-danger error"><p  style="color:red">Login ou senha incorretos.</p></div>
+                                <center>
+                                    <input class="form-control inputCtrl form-submit__width" id="username" style="margin-top:4%" name="username" type="text" placeholder="Digite seu login..." required="true"/>
+                                    <input class="form-control form-submit__width inputCtrl" type="password" placeholder="Digite sua senha..." id="password" name="password" required="true"/>
+                                    <input type="submit" class="btn btn-dark form-submit__width" value="Entrar" style="margin-top:3%; width: 84%" />
+                                </center>
                         </form>
 
-                        <a href="#" id="forgot" data-toggle="modal" data-target="#exampleModal" style="margin-top: 15% !importants;font-weight: lighter;font-size: 12px;color:blue">Esqueci o login/senha </a>
+                        <a href="#" id="forgot" data-toggle="modal" data-target="#exampleModal" style="font-weight: lighter;font-size: 14px;color:blue">Esqueci o login/senha </a>
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
