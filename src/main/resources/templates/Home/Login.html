@@ -1,118 +1,86 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"> 
-    <head>
-        <title>Login</title>
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <script type="text/javascript" src="js/jquery.js" ></script>
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
-        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
+<head>
 
-    </head>
-    <body>       
-        <div class="container">
-            <div class="row row-principal">
-                <!-- LADO ESQUERDO -->
-                <div class="col-md-6 col-lg-6 col-lg-offset-1 offset-md-1 row-column__height" id="row-left__img">   
-                    <div>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
 
+  <title>Login</title>
+
+  <!-- Custom fonts for this template-->
+  <link th:href="@{vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css"/>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"/>
+
+  <!-- Custom styles for this template-->
+  <link th:href="@{css/sb-admin-2.min.css}" rel="stylesheet"/>
+
+</head>
+
+<body class="bg-gradient-primary">
+
+  <div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+      <div class="col-xl-10 col-lg-12 col-md-9">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Gym Experience</h1>
+                  </div>
+                  <form id="formLogin" method="POST" role="form" data-toggle="validator" th:action="@{/login}" novalidate="true">
+                    <div class="form-group">
+                        <input class="form-control form-control-user" id="username" style="margin-top:4%" name="username" type="text" placeholder="Digite seu login..." required="true"/>
                     </div>
-                </div>
-                <!-- LADO DIREITO -->
-                <div class="col-md-4 col-lg-4 row-column__height row_column-right__bgcolor text-center">
-                    <div class="divRight-form__align">
-                        <!-- CAMPOS -->
-                        <form id="formLogin" method="POST" role="form" data-toggle="validator" th:action="@{/login}" novalidate="true" style="">
-                            <h2 style="margin-bottom: 2%">Login</h2>
-                                <div th:if="${loginError}" class="alert alert-danger error"><p  style="color:red">Login ou senha incorretos.</p></div>
-                                <center>
-                                    <input class="form-control inputCtrl form-submit__width" id="username" style="margin-top:4%" name="username" type="text" placeholder="Digite seu login..." required="true"/>
-                                    <input class="form-control form-submit__width inputCtrl" type="password" placeholder="Digite sua senha..." id="password" name="password" required="true"/>
-                                    <input type="submit" class="btn btn-dark form-submit__width" value="Entrar" style="margin-top:3%; width: 84%" />
-                                </center>
-                        </form>
-
-                        <a href="#" id="forgot" data-toggle="modal" data-target="#exampleModal" style="font-weight: lighter;font-size: 14px;color:blue">Esqueci o login/senha </a>
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <table style="margin-left:38%" id="tableModalTitle">
-                                            <tr>
-                                                <td>
-                                                    <h4 class="modal-title" style="white-space: nowrap" id="exampleModalLabel">Recuperar dados</h4>
-                                                </td>
-                                                <td style="margin-left:90%;width:90%">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <form action="sadasdasd.html">
-                                        <div class="modal-body" style="background-color: #f2f7f982">
-                                            <table border="0" align="center" class="retrieve" > 
-                                                <tr>
-                                                    <td> 
-                                                        <p style="margin-bottom: 16px !important; margin-top: 2vh">Olá, se você esqueceu seus dados,  por favor, preencha as informações abaixo</p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="input-group col-xs-2" style="width:77%;margin-left: 9vh">
-                                                            <span class="input-group-addon"><i class="fas fa-address-card fa-fw"></i></span>
-                                                            <input class="form-control" type="cpf" placeholder="Digite seu CPF..." id="inputModal" name="cpf" required="true"/>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="input-group"  style="width:77%;margin-left: 9vh">
-                                                            <span class="input-group-addon"><i class="fas fa-envelope fa-fw"></i></span>
-                                                            <input class="form-control" type="email" placeholder="Digite seu email..." name="email" required="true"/>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="input-group" style="width:77%;margin-left: 9vh">
-                                                            <span class="input-group-addon"><i class="fas fa-envelope fa-fw"></i></span>
-                                                            <input class="form-control" type="email" placeholder="Redigite seu email..." name="reemail" required="true"/>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-                                            </table>
-                                            <br/>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                            <button type="submit" class="btn btn-primary" >Recuperar</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="form-group">
+                      <input class="form-control form-control-user" type="password" placeholder="Digite sua senha..." id="password" name="password" required="true"/>
                     </div>
+                    <div class="form-group">
+                      <div class="custom-control custom-checkbox small">
+                        <input type="checkbox" class="custom-control-input" id="customCheck"/>
+                        <label class="custom-control-label" for="customCheck">Remember Me</label>
+                      </div>
+                    </div>
+                    <input type="submit" class="btn btn-dark form-submit__width" value="Entrar"  />
+                 <hr/>                    
+                  </form>
+                  
+
                 </div>
-            </div><!--ROW ROW-PRINCIPAL -->
-        </div><!-- CONTAINER -->
-    </body>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="@{vendor/jquery/jquery.min.js}"></script>
+  <script src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="@{js/sb-admin-2.min.js}"></script>
+
+</body>
+
 </html>
-<script>
-    $('#myModal').on('shown.bs.modal', function () {
-        $('#myInput').trigger('focus')
-    })
-</script>
-
-
