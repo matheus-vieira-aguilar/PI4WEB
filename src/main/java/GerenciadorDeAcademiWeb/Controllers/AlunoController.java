@@ -103,9 +103,9 @@ public class AlunoController {
 
             ApiRetorno<List<Aluno>> response = gson.fromJson(retornoJson, new TypeToken<ApiRetorno<List<Aluno>>>() {
             }.getType());
-            
+
             return response;
-            
+
         } catch (Exception ex) {
             ApiRetorno<List<Aluno>> retorno = new ApiRetorno<List<Aluno>>();
 
@@ -189,15 +189,56 @@ public class AlunoController {
 
         } catch (Exception ex) {
             Logger.getLogger(AlunoController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ModelAndView("redirect:/Alunos");
+            return new ModelAndView("redirect:/alunos").addObject("error", ex);
         }
 
+    }
+
+    @RequestMapping(value = {"/salva_edicao"}, method = RequestMethod.POST)
+    public ModelAndView salvaEdicao(@ModelAttribute("aluno") Aluno aluno, @RequestParam("sexo") Integer sexo, RedirectAttributes redirectAttributes) {
+        Gson gson = GsonHelper.getGson();
+        ModelAndView modelAndView = new ModelAndView("Aluno/FormAluno");
+        LoginApi loginApi = new LoginApi();
+        String urlAluno = "Api/Aluno";
+
+        try {
+            String token = loginApi.logar();
+
+            MediaType media = MediaType.parse("application/json");
+
+            aluno.setSexoEnum(sexo);
+            aluno.setAtivo(true);
+
+            OkHttpClient client = new OkHttpClient();
+            RequestBody body = RequestBody.create(media, gson.toJson(aluno));
+
+            Request request = new Request.Builder()
+                    .url(baseUrl + urlAluno)
+                    .post(body)
+                    .addHeader("Authorization", "Bearer" + token)
+                    .build();
+
+            Response responseApi = client.newCall(request).execute();
+
+            if (!responseApi.isSuccessful()) {
+                redirectAttributes.addFlashAttribute("error", true);
+                return new ModelAndView("redirect:/cadastro");
+            }
+
+            redirectAttributes.addFlashAttribute("success", true);
+            return new ModelAndView("redirect:/alunos");
+
+        } catch (Exception ex) {
+
+            Logger.getLogger(AlunoController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ModelAndView("Aluno/FormAluno").addObject("error", true);
+        }
     }
 
     @RequestMapping(value = {"delete/{id}"}, method = RequestMethod.GET)
     public ModelAndView deleteAluno(@PathVariable String id) {
         Gson gson = GsonHelper.getGson();
-        ModelAndView modelAndView = new ModelAndView("Home/ListAluno");
+        ModelAndView modelAndView = new ModelAndView("Aluno/ListAluno");
         LoginApi loginApi = new LoginApi();
         String urlAluno = "Api/Aluno/";
 
@@ -208,10 +249,8 @@ public class AlunoController {
                 return new ModelAndView("redirect:/logout");
             }
 
-            System.out.println(id);
-            System.out.println(baseUrl + urlAluno);
             OkHttpClient client = new OkHttpClient();
-
+            System.out.println("GUID: " + id);
             Request request = new Request.Builder()
                     .url(baseUrl + urlAluno + id)
                     .delete()
@@ -224,7 +263,7 @@ public class AlunoController {
 
         } catch (Exception ex) {
             Logger.getLogger(AlunoController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ModelAndView("redirect:/Alunos");
+            return new ModelAndView("redirect:/alunos");
         }
     }
 

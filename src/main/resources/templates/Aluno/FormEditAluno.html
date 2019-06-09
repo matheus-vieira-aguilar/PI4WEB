@@ -28,7 +28,7 @@
                 </div>
                 <div>
                     <label for="nascimento_aluno">Data de nascimento</label>
-                    <input type="date" class="form-control" id="nascimento_aluno" name="dataNascimento" th:field="*{dataNascimento}" min="1920-01-01" max="2019-01-01" value="1985-01-01"/>
+                    <input  type="date" class="form-control" id="nascimento_aluno" name="dataNascimento" th:field="*{dataNascimento}" min="1920-01-01" max="2019-01-01" value="1985-01-01"/>
                 </div>
                 <div>
                     <label for="cpf_aluno">CPF</label>
@@ -36,10 +36,10 @@
                 </div>
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-outline-secondary">
-                        <input type="radio" name="sexo" id="masculino" th:field="*{sexo}" value="1" autocomplete="off"/> Masculino
+                        <input type="radio" name="sexo" id="masculino" th:field="*{sexo}" th:value="1" autocomplete="off"/> Masculino
                     </label>
                     <label class="btn btn-outline-secondary">
-                        <input type="radio" name="sexo" id="feminino" th:field="*{sexo}" value="2" autocomplete="off"/> Feminino
+                        <input type="radio" name="sexo" id="feminino" th:field="*{sexo}" th:value="2" autocomplete="off"/> Feminino
                     </label>
                 </div>
                 

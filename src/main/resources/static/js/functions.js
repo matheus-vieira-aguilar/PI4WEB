@@ -11,7 +11,7 @@
                     $(element).parents('tr').remove()
                 },
                 error: function (e) {
-                    alert("Erro ao excluir Aluno")
+                    console.log("Erro ao excluir Aluno" + e.Message)
                 }
             })
         })

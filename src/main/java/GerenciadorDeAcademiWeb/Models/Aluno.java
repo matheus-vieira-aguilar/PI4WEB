@@ -6,6 +6,7 @@ import java.util.List;
 import GerenciadorDeAcademiWeb.Enums.SexoEnum;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -13,13 +14,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
  *
  * @author Gabriel
  */
+
 public class Aluno {
 
     private UUID id;
 
     private String nome;
-
-    private LocalDate dataNascimento;
+    
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    LocalDate dataNascimento;
 
     private LocalDate ultimaAvaliacao;
 
@@ -38,6 +41,9 @@ public class Aluno {
     }
 
     public void setId(UUID id) {
+        if (id == null) {
+            throw new NullPointerException();
+        } 
         this.id = id;
     }
 
@@ -46,14 +52,28 @@ public class Aluno {
     }
 
     public void setNome(String nome) {
+        if (nome.trim().isEmpty()) {
+            throw new NullPointerException();
+        }
+
+        nome = nome.trim();
         this.nome = nome;
     }
 
     public LocalDate getDataNascimento() {
         return this.dataNascimento;
     }
+    
+    public String getDataNascimentoString(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String data = this.dataNascimento.format(formatter);
+        return data;
+    }
 
     public void setDataNascimento(String dataNascimento) {
+        if (dataNascimento.trim().isEmpty()) {
+            throw new NullPointerException();
+        } 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.dataNascimento = LocalDate.parse(dataNascimento, formatter);
     }
@@ -63,7 +83,10 @@ public class Aluno {
     }
 
     public void setUltimaAvaliacao(LocalDate ultimaAvaliacao) {
-        this.ultimaAvaliacao = ultimaAvaliacao;
+        if (ultimaAvaliacao == null) {
+            throw new NullPointerException();
+        } 
+        this.ultimaAvaliacao = ultimaAvaliacao;               
     }
 
     public int getSexo() {
@@ -101,6 +124,9 @@ public class Aluno {
     }
 
     public void setEmail(String email) {
+        if (email.trim().isEmpty()) {
+            throw new NullPointerException();
+        } 
         this.email = email;
     }
 
@@ -109,6 +135,9 @@ public class Aluno {
     }
 
     public void setCpf(String cpf) {
+        if (cpf.trim().isEmpty()) {
+            throw new NullPointerException();
+        } 
         this.cpf = cpf;
     }
 
