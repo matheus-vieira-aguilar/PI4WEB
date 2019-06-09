@@ -1,0 +1,17 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head th:replace="Fragments/header :: header" >    
+    </head>
+    <body>
+        <nav th:replace="Fragments/topnav :: topnav" ></nav>
+        <div th:replace="Fragments/logout :: logout" ></div> <!-- INCLUI SISTEMA SUPERIOR DE LOGOUT -->
+        <div class="container">
+            
+            
+        </div>
+        <footer th:replace="Fragments/footer :: footer">
+        </footer>
+        <script th:src="@{/js/main.js}"></script>
+    </body>
+</html>
