@@ -36,4 +36,4 @@
             */
         console.log(JSON.stringify(form.val()))
         })
-})(jQuery);
+})

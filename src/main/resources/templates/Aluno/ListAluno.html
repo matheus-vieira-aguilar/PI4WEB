@@ -1,197 +1,127 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-      
-    <head th:replace="Fragments/header :: header">
-    </head>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="Fragments/header :: header">
+</head>
+<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"/>
+<body id="page-top">
     
-    <body>   
-        <nav th:replace="Fragments/topnav :: topnav"></nav>
-        <div th:replace="Fragments/logout :: logout"></div> <!-- INCLUI SISTEMA SUPERIOR DE LOGOUT -->
-        <div class="container">
+    <!--<div th:replace="Fragments/logout :: logout"></div>-->
+    <!-- INCLUI SISTEMA SUPERIOR DE LOGOUT -->
 
-            <br/>
-            <div class="" id="alunos">
-                    <div th:if="${success == true}" class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>Aluno</strong> cadastrado com sucesso.
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                    </div>
-                <h2>Alunos</h2>
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active pb-3" data-toggle="tab" href="#alunos-todos" role="tab">Avaliados</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pb-3" data-toggle="tab" href="#alunos-sem-avaliacao" role="tab">Sem avaliação</a>
-                    </li>
-                    <li class="nav-item"  style="margin-left:49vh;margin-right: 1vh">
-                        <button onclick="location.href='/cadastro'" type="button" class="btn btn-success" style="min-width:10vh">Novo aluno</button>
-                    </li>
-                    <li>
-                        <form class="form-inline  ml-auto">
-                            <input class="form-control mr-sm-m2" type="search" placeholder="Nome do aluno" aria-label="Search" style="margin-right: 1vh;"/>
-                            <button class="btn btn-outline-success" type="submit">Buscar</button>
-                        </form>
-                    </li>
-                </ul>
-                <!-- MODAL INSERIR ALUNO ############################## -->
-                <div class="modal fade" id="myModal">
-                    <div class="modal-dialog">
-                            
-                        <div class="modal-content">
+    <div id="wrapper">
+        <ul th:replace="Fragments/sideBar :: sidebar"></ul>
 
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                                <h4 class="modal-title">Cadastrar novo aluno</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!--INCLUI -->
+            
+            <div id="content">
+                <nav th:replace="Fragments/topnav :: topnav"></nav>
 
-                            <!-- Modal body -->
-                            <form class="form-salva-aluno" th:action="@{/salva_aluno}" th:object="${aluno}" method="POST" >
-                            <div id="form-aluno" class="modal-body table-responsive">
-                                <!--<p  align="center" class="modal-p__color modal-p__size">Para cadastrar um novo aluno na academia, por favor, preencha
-                                    os campos abaixo e clique em Adicionar.</p> -->
-                                <table class="table-hover">
-                                    <tr>
-                                        <td class="modal-table-td__width">
-                                            Nome do aluno
-                                        </td>
-                                        <td class="modal-table-td-input__width">
-                                            <input type="text" class="form-control modal-input__size modal-placeholder-size" name="nome" placeholder="Digite o nome do aluno.."/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="modal-table-td__width">
-                                            CPF do aluno
-                                        </td>
-                                        <td class="modal-table-td-input__width">
-                                            <input type="text" onchange="validaCPF(this.cpf)" class="form-control modal-input__size modal-placeholder-size" name="cpf" id="cpf" placeholder="Digite o CPF do aluno.."/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="modal-table-td__width">
-                                            Data de Nascimento
-                                        </td>
-                                        <td class="modal-table-td-input__width">
-                                            <input type="date" class="form-control modal-input__size modal-placeholder-size" name="nome"  min="1920-01-01" max="2019-01-01" value="1985-01-01" placeholder="Digite o nome do aluno.."/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="modal-table-td__width">
-                                            Email
-                                        </td>
-                                        <td class="modal-table-td-input__width">
-                                            <input type="email" class="form-control modal-input__size modal-placeholder-size" name="email" placeholder="Digite o email do aluno..."/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="modal-table-td__width">
-                                            Sexo
-                                        </td>
-                                        <td class="modal-table-td-input__width">
-                                            <INPUT TYPE="RADIO" class="form-control" NAME="masculino" VALUE="1"/> Masculino 
-                                            <INPUT TYPE="RADIO" class="form-control" NAME="feminino" VALUE="2"/> Feminino
-                                        </td>
-                                    </tr>
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800">Alunos</h1>
+
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Alunos sem Avaliação</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Data de Nascimento</th>
+                                            <th>Sexo</th>
+                                            <th>Email</th>
+                                            <th>CPF</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao == null}">
+                                            <td cclass="column1"><span th:text="${alunos.nome}"> </span></td>
+                                            <td class="column2"><span th:text="${alunos.dataNascimento}"> </span></td>
+                                            <td th:switch="${alunos.sexo}">
+                                                    <span th:case="'1'">MASCULINO</span>
+                                                    <span th:case="'2'">FEMININO</span>
+                                                </td>
+                                            <td class="column4"><span th:text="${alunos.email}"> </span></td>
+                                            <td class="column5"><span th:text="${alunos.cpf}"> </span></td>
+                                            <td>
+                                                <button class="btn btn-outline-primary fas fa-eye" href="ProfVisualizaAluno.html" role="button"></button>
+                                                <a class="btn btn-outline-secondary fas fa-edit" th:href="@{|/edita/${alunos.id}|}"></a>
+                                                <button class="btn btn-outline-danger delete Button fas fa-trash-alt" th:attr="value=${alunos.id}"></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
-                            <!-- Modal footer -->
-                            <div class="modal-footer">
-                                <button id="submit_aluno" type="submit" class="btn btn-success" data-dismiss="modal">Cadastrar</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                        </div>
+
+                    </div>
+                    <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Alunos Avaliados</h6>
                             </div>
-                        </form>
-                        </div>
-                    </div>
-                </div>
-
-
-        
-
-
-                <!-- fim do modal de inserir aluno #################### -->
-                <div class="tab-content">
-                <div class="tab-pane active table100 ver4 m-b-110" id="alunos-todos" role="tabpanel">
-                        <div class="table100-head">
-                            <table>
-                                <thead>
-                                    <tr class="row100 head">
-                                        <th>Nome</th>
-                                        <th>Data de ínicio</th>
-                                        <th>Última avaliação</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Data de Nascimento</th>
+                                                <th>Sexo</th>
+                                                <th>Email</th>
+                                                <th>CPF</th>
+                                                <th>Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao != null}">
+                                                <td cclass="column1"><span th:text="${alunos.nome}"> </span></td>
+                                                <td class="column2"><span th:text="${alunos.dataNascimento}"> </span></td>
+                                                <td th:switch="${alunos.sexo}">
+                                                        <span th:case="'1'">MASCULINO</span>
+                                                        <span th:case="'2'">FEMININO</span>
+                                                    </td>
+                                                <td class="column4"><span th:text="${alunos.email}"> </span></td>
+                                                <td class="column5"><span th:text="${alunos.cpf}"> </span></td>
+                                                <td>
+                                                    <button class="btn btn-outline-primary fas fa-eye" href="ProfVisualizaAluno.html" role="button"></button>
+                                                    <a class="btn btn-outline-secondary fas fa-edit" th:href="@{|/edita/${alunos.id}|}"></a>
+                                                    <button class="btn btn-outline-danger delete Button fas fa-trash-alt" th:attr="value=${alunos.id}"></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
     
-                        <div class="table100-body js-pscroll">
-                            <table>
-                                <tbody>
-                                    <tr class="row100 body" th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao != null}">
-                                        <td class="ola"><span th:text="${alunos.nome}"> </span></td>
-                                        <td><span th:text="${alunos.dataNascimento}"> </span></td>
-                                        <td><span th:text="${alunos.ultimaAvaliacao}"> </span></td>
-                                        <td><a class="btn btn-primary" href="ProfVisualizaAluno.html" role="button">Visualizar</a></td>
-                                        <td><button class="btn fa-pencil-square-o"></button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
-                </div>
-                <div class="tab-pane table100 ver4 m-b-110" id="alunos-sem-avaliacao" role="tabpanel">
-                        <div class="table100-head">
-                            <table>
-                                <thead>
-                                    <tr class="row100 head">
-                                        <th class="column1">Nome</th>
-                                        <th class="column2">Data de Nascimento</th>
-                                        <th class="column3">Sexo</th>
-                                        <th class="column4">Email</th>
-                                        <th class="column5">CPF</th>       
-                                        <th class="column6">Action</th>       
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                        <div class="table100-body js-pscroll">
-                            <table>
-                                <tbody>
-                                    <tr class="row100 body" th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao == null}">
-                                        <td cclass="cell100 column1"><span th:text="${alunos.nome}"> </span></td>
-                                        <td class="cell100 column2"><span th:text="${alunos.dataNascimento}"> </span></td>
-                                        <td class="cell100 column3"><span th:text="${alunos.sexo}"> </span></td>
-                                        <td class="cell100 column4"><span th:text="${alunos.email}"> </span></td>
-                                        <td class="cell100 column5"><span th:text="${alunos.cpf}"> </span></td>
-                                        <td ><button class="btn btn-outline-primary fas fa-eye" href="ProfVisualizaAluno.html" role="button"></button>
-                                            <a class="btn btn-outline-secondary fas fa-edit" th:href="@{|/edita/${alunos.id}|}"></a>
-                                            <button class="btn btn-outline-danger delete Button fas fa-trash-alt" th:attr="value=${alunos.id}" ></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
                 </div>
             </div>
-            <br />
-            <br />            
-        </div>                
-    </body>
-    <footer th:replace="Fragments/footer :: footer">
-    </footer>
-    <script th:src="@{/js/functions.js}"></script>
-    <script>
-            $('.js-pscroll').each(function(){
-                var ps = new PerfectScrollbar(this);
-    
-                $(window).on('resize', function(){
-                    ps.update();
-                })
-            });
-    </script>
-    <script th:src="@{/js/main.js}"></script>
+        </div>
+    </div>
+</body>
+
+<footer th:replace="Fragments/footer :: footer"></footer>
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="js/demo/datatables-demo.js"></script>
 </html>
