@@ -35,14 +35,20 @@
         ]
 
         var data = objetoParsed.data
-        console.log(data.length)
-        limit = data.length - 12
+     
+
+        var limit = 0
+
+        if (data.length > 12) {
+            limit = data.length - 12
+        }
+
         debugger
-        for (let index = data.length; index != limit ; index--) {
+        for (let index = limit; index != data.length ; index++) {
 
-            categories.push(data[index -1].dataAvaliacao)
+            categories.push(data[index].dataAvaliacao)
 
-            var porcentagemDeGordura = data[index -1].porcentagemDeGordura
+            var porcentagemDeGordura = data[index].porcentagemDeGordura
 
             for (let i = 0; i < porcentagemDeGordura.length; i++) {
                 var autor = porcentagemDeGordura[i].autor
@@ -69,7 +75,7 @@
                 }
             }            
         }
-        console.log(categories)
+
         Highcharts.chart('lineChart', {
             chart: {
                 type: 'line'
@@ -121,8 +127,8 @@
         ]
     });
     
-    var ultimaAvaliacao = data[data.length - 1]
-   console.log(ultimaAvaliacao)
+    var ultimaAvaliacao = data[data.length -1]
+
     // Build the chart
     Highcharts.chart('pizzaChart', {
         chart: {
