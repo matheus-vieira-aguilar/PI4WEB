@@ -1,7 +1,7 @@
 (function  () {
     
     var objetoParsed = JSON.parse(objeto)   
-
+        var categories = []
         var grafico = [
             { "POLLOCK3D": 
                 {
@@ -35,10 +35,14 @@
         ]
 
         var data = objetoParsed.data
-        
-        for (let index = 0; index < data.length; index++) {
+        console.log(data.length)
+        limit = data.length - 12
+        debugger
+        for (let index = data.length; index != limit ; index--) {
 
-            var porcentagemDeGordura = data[index].porcentagemDeGordura
+            categories.push(data[index -1].dataAvaliacao)
+
+            var porcentagemDeGordura = data[index -1].porcentagemDeGordura
 
             for (let i = 0; i < porcentagemDeGordura.length; i++) {
                 var autor = porcentagemDeGordura[i].autor
@@ -65,7 +69,7 @@
                 }
             }            
         }
-        
+        console.log(categories)
         Highcharts.chart('lineChart', {
             chart: {
                 type: 'line'
@@ -74,7 +78,7 @@
                 text: 'Porcentagem de Gordura'
             },
             xAxis: {
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                categories: categories
             },
             yAxis: {
                 title: {

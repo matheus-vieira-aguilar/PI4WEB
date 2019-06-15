@@ -73,7 +73,7 @@ public class AvaliacaoController {
             System.out.println(alunosApi.getData().get(0));
             
             modelAndView.addObject("avaliacoes", retornoJson);
-            modelAndView.addObject("aluno", (Aluno) alunosApi.getData().get(0));
+            modelAndView.addObject("aluno", alunosApi.getData().get(0));
 
             return modelAndView;
 
