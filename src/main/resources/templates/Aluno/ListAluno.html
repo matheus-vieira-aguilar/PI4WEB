@@ -51,9 +51,9 @@
                                             <td class="column4"><span th:text="${alunos.email}"> </span></td>
                                             <td class="column5"><span th:text="${alunos.cpf}"> </span></td>
                                             <td>
-                                                <button class="btn btn-outline-primary fas fa-eye" href="ProfVisualizaAluno.html" role="button"></button>
+                                                <a class="btn btn-outline-primary fas fa-address-book" th:href="@{|/avaliacao/${alunos.id}|}" role="button"></a>
                                                 <a class="btn btn-outline-secondary fas fa-edit" th:href="@{|/edita/${alunos.id}|}"></a>
-                                                <button class="btn btn-outline-danger delete Button fas fa-trash-alt" th:attr="value=${alunos.id}"></button>
+                                                <button type="button" data-toggle="modal" data-target="#confirm" class="btn btn-outline-danger Button abreModal fas fa-trash-alt" th:attr="value=${alunos.id}"></button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -90,9 +90,9 @@
                                                 <td class="column4"><span th:text="${alunos.email}"> </span></td>
                                                 <td class="column5"><span th:text="${alunos.cpf}"> </span></td>
                                                 <td>
-                                                    <button class="btn btn-outline-primary fas fa-eye" href="ProfVisualizaAluno.html" role="button"></button>
+                                                    <a class="btn btn-outline-primary fas fas fa-address-book" th:href="@{|/avaliacao/${alunos.id}|}" role="button"></a>
                                                     <a class="btn btn-outline-secondary fas fa-edit" th:href="@{|/edita/${alunos.id}|}"></a>
-                                                    <button class="btn btn-outline-danger delete Button fas fa-trash-alt" th:attr="value=${alunos.id}"></button>
+                                                    <button class="btn btn-outline-danger  Button fas fa-trash-alt" th:attr="value=${alunos.id}"></button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -105,6 +105,24 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="confirm" role="dialog">
+            <div class="modal-dialog modal-md">
+          
+              <div class="modal-content">
+                <div class="modal-body">
+                      <p> VOCÊ REALMENTE DESEJA EXCLUIR ALUNO? </p>
+                </div>
+                <div class="modal-footer">
+                    <button id="deleteModal" type="button" data-dismiss="modal" class="btn btn-danger delete">EXCLUIR</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-primary">VOLTAR</button>
+                </div>
+              </div>
+          
+            </div>
+          </div>
+    
+
 </body>
 
 <footer th:replace="Fragments/footer :: footer"></footer>

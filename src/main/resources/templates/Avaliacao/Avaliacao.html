@@ -1,17 +1,81 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head th:replace="Fragments/header :: header" >    
-    </head>
+    <head th:replace="Fragments/header :: header"></head>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+    <style>
+        .row {
+            padding: 10px;
+        }
+        .col {
+            margin: 5px;
+        }
+    </style>
     <body>
-        <nav th:replace="Fragments/topnav :: topnav" ></nav>
-        <div th:replace="Fragments/logout :: logout" ></div> <!-- INCLUI SISTEMA SUPERIOR DE LOGOUT -->
-        <div class="container">
-            
-            
-        </div>
-        <footer th:replace="Fragments/footer :: footer">
-        </footer>
-        <script th:src="@{/js/main.js}"></script>
-    </body>
+            <div id="wrapper">
+                    <ul th:replace="Fragments/sideBar :: sidebar"></ul>
+
+                    <div id="content-wrapper" class="d-flex flex-column">
+                        <!--INCLUI -->
+                        
+                        <div id="content">
+                            <nav th:replace="Fragments/topnav :: topnav"></nav>
+                            <div th:replace="Fragments/logout :: logout"></div>
+                            <div class="container-fluid">  
+
+                            <div class="row">
+                            <div class="card col">
+                                
+                                   <div class="container-fluid">
+                                        <div class="card-header">
+                                            Header
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Title</h5>
+                                            <p class="card-text">Content</p>
+                                        </div>
+                                    
+                                    </div>
+                               
+                                </div>
+                                </div>
+                                <div class="row">
+                                    <div class="card col">
+                                        <div class="container-fluid">
+                                            <div id="lineChart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>                                        
+                                        </div>
+                                    </div>
+                                </div>                                 
+                                <div class="row">
+                                  <div class="card col chart1">
+                                        <div class="container-fluid">
+                                            <div id="pizzaChart" style="min-width: px; height: 400px; "></div>
+                                        </div>
+                                    </div>      
+
+                                  <div class="card col chart2">
+                                        <div class="container-fluid">
+                                            <div id="barChart" style="min-width: px; height: 400px; "></div>
+                                        </div>
+                                    </div>       
+                                </div>                                    
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </body>
+
+        <footer th:replace="Fragments/footer :: footer"></footer>
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            var objeto = [[${avaliacoes}]];
+            /*]]>*/
+        </script>
+        <script th:src="@{/js/Graficos/DashboardAluno.js}" >            
+        </script>
 </html>
