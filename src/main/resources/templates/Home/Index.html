@@ -1,38 +1,49 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head th:replace="Fragments/header :: header"></head>
-    <body>
-        <nav th:replace="Fragments/topnav :: topnav"></nav>
-        <div th:replace="Fragments/logout :: logout"></div> <!-- INCLUI SISTEMA SUPERIOR DE LOGOUT -->
-        <br/><br/>
-        <div class="container">
-            <div class="" id="dashboard">
-                <h2>Dashboard</h2>
-                <div class="row">
-                    <div class="offset-md-1 col-md-5">
-                        <canvas id="chart1"></canvas>
-                    </div>
-                    <div class="col-md-5">
-                        <canvas id="chart2"></canvas>
-                    </div>
-                    <div class="offset-md-1 col-md-10">
-                        <canvas id="chart3"></canvas>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="Fragments/header :: header"></head>
+
+<body>
+    <div id="wrapper">
+        <ul th:replace="Fragments/sideBar :: sidebar"></ul>
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!--INCLUI -->
+
+            <div id="content">
+                <nav th:replace="Fragments/topnav :: topnav"></nav>
+                <div th:replace="Fragments/logout :: logout"></div>
+                <div class="container-fluid">
+                    <div class="" id="dashboard">
+                        <h2>Dashboard</h2>
+                        <div class="row">
+                            <div class="offset-md-1 col-md-5">
+                                <canvas id="chart1"></canvas>
+                            </div>
+                            <div class="col-md-5">
+                                <canvas id="chart2"></canvas>
+                            </div>
+                            <div class="offset-md-1 col-md-10">
+                                <canvas id="chart3"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+    
+</body>
 
-    <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-    <script th:src="@{/js/Graficos/HomeGraficos.js}"></script>
-    <footer th:replace="Fragments/footer :: footer"></footer>
+<!-- jQuery first, then Tether, then Bootstrap JS. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script th:src="@{/js/Graficos/HomeGraficos.js}"></script>
+<footer th:replace="Fragments/footer :: footer"></footer>
 
-    <script>
-        $('#myModal').on('shown.bs.modal', function () {
-            $('#myInput').trigger('focus')
-        })
-    </script>
+<script>
+    $('#myModal').on('shown.bs.modal', function() {
+        $('#myInput').trigger('focus')
+    })
+</script>
+
 </html>

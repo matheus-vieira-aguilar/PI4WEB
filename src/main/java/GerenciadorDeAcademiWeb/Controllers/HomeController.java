@@ -30,7 +30,7 @@ public class HomeController {
 
         } catch (Exception ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ModelAndView("Home/Index");
+            return new ModelAndView("redirect:/logout");
         }
 
     }

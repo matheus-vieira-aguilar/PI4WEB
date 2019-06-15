@@ -1,75 +1,82 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head th:replace="Fragments/header :: header">
-        <title>Cadastro</title>
-        <link rel="stylesheet" type="text/css" href="../css/style_listar.css"/>
-    </head>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<title>Cadastro</title>
 
-    <body>
-        <nav th:replace="Fragments/topnav :: topnav"></nav>
+<head th:replace="Fragments/header :: header">
+</head>
 
-        <div class="container">
-            <br/>
-            <div th:if="${error == true}" class="alert alert-success alert-dismissible fade show" role="alert">
-                    <b>Erro</b> ao cadastrar aluno.
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-            </div>
-            <div class="col-sm-10 offset-sm-1 col-md-6 offset-md-3 col-sm-10 offset-sm-1">
-                <h2 class="text-center" style="font-family: 'Lato', sans-serif;font-weight: 400;margin-left:2.4%;margin-top:1.2%;margin-bottom:1.5%;">
-                    Novo Aluno
-                </h2>
-                <form class="form-salva-aluno" th:action="@{/salva_aluno}" th:object="${aluno}" method="POST" >
-                    <table style="width:100% !important" cellpadding="5">
-                        <tr>
-                            <td>
-                                <input type="text" required="required" class="form-control" name="nome" id="nome_aluno" th:field="*{nome}" placeholder="Digite o nome do Aluno.."/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="email" required="required" class="form-control input_size" id="email_aluno" name="email" th:field="*{email}" placeholder="Digite o email do Aluno..."/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="date" required="required" class="form-control input_size" id="nascimento_aluno" name="dataNascimento" th:field="*{dataNascimento}" min="1920-01-01" max="2019-01-01" value="1985-01-01"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" required="required" onchange="validaCPF(this.cpf)" th:field="*{cpf}" class="form-control input_size" name="cpf" id="cpf_aluno" placeholder="Digite o CPF do aluno.."/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="row">
-                                    <div class="btn-group btn-group-toggle col-12" data-toggle="buttons">
-                                        <label class="btn btn-outline-secondary">
-                                            <input type="radio" required="required" style="width:50%" name="sexo" id="masculino" th:value="2" autocomplete="off"/> Masculino
-                                        </label>
-                                        <label class="btn btn-outline-secondary">
-                                            <input type="radio" required="required" style="width:50% !important" name="sexo" id="feminino" th:value="1" autocomplete="off"/> Feminino
-                                        </label>
-                                    </div>
+<body>
+    <div id="wrapper">
+        <ul th:replace="Fragments/sideBar :: sidebar"></ul>
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!--INCLUI -->
+
+            <div id="content">
+                <nav th:replace="Fragments/topnav :: topnav"></nav>
+                <div th:replace="Fragments/logout :: logout"></div>
+                <div class="container-fluid">
+                    <h1 class="h3 mb-4 text-gray-800">Alunos</h1>
+                    <hr/>
+                    <div th:if="${error == true}" class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Erro</strong> ao cadastrar aluno.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form class="form-salva-aluno" th:action="@{/salva_aluno}" th:object="${aluno}" method="POST">
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                                 </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center>
-                                    <button type="submit" class="btn btn-primary" style="width:50%;margin-top:3%">Enviar</button>
-                                </center>
-                            </td>
-                        </tr>
-                    </table>
-                </form>
+                                <input type="text" class="form-control border" name="nome" id="nome_aluno" th:field="*{nome}" placeholder="Digite o nome do Aluno.." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope"></i></span>
+                                </div>
+                                <input type="email" class="form-control border" id="email_aluno" name="email" th:field="*{email}" placeholder="Digite o email do Aluno..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar-week"></i></span>
+                                </div>
+                                <input type="date" class="form-control border" id="nascimento_aluno" name="dataNascimento" th:field="*{dataNascimento}" min="1920-01-01" max="2019-01-01" value="1985-01-01" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-id-card"></i></span>
+                                </div>
+                                <input type="text" onchange="validaCPF(this.cpf)" th:field="*{cpf}" class="form-control border" name="cpf" id="cpf_aluno" placeholder="Digite o CPF do aluno.." />
+                            </div>
+                        </div>
+                        <div class="form-group btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-outline-secondary">
+                                <input type="radio" name="sexo" id="masculino" th:value="1" autocomplete="off" /> Masculino
+                            </label>
+                            <label class="btn btn-outline-secondary">
+                                <input type="radio" name="sexo" id="feminino" th:value="2" autocomplete="off" /> Feminino
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <center>
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                            </center>
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
-    </body>
+    </div>
+</body>
 
     <footer th:replace="Fragments/footer :: footer">
     </footer>
