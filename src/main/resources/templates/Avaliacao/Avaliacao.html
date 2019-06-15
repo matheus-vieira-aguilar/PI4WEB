@@ -10,10 +10,19 @@
     <script src="https://code.highcharts.com/modules/drilldown.js"></script>
     <style>
         .row {
-            padding: 10px;
+            padding: 5px;
         }
         .col {
             margin: 5px;
+        }
+        .card-header {
+            margin: 0 -30;
+        }
+        img {
+            max-width:150px;
+            max-height:100px;
+            width: auto;
+            height: auto;
         }
     </style>
     <body>
@@ -31,14 +40,27 @@
                             <div class="row">
                             <div class="card col">
                                 
-                                   <div class="container-fluid">
-                                        <div class="card-header">
-                                            Header
+                                   <div th:each="aluno:${aluno}" class="container-fluid">
+                                        <div  class="card-header">
+                                            <center>Aluno</center>
                                         </div>
+                                        <th:block th:each="aluno : ${aluno}">
                                         <div class="card-body">
-                                            <h5 class="card-title">Title</h5>
-                                            <p class="card-text">Content</p>
+                                            <div class="row">
+                                                <div class="col-md-2 padding-0">
+                                                    <img alt="User Pic" th:src="@{/images/user_image.png}" id="profile-image1" class="rounded-circle img-responsive"/>                                                                                                    
+                                                </div>   
+                                                <div class="col-md-2 padding-0">
+                                                        <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                                                                </div>
+                                                                <input type="text" class="form-control border" name="nome" id="nome_aluno" th:field="${aluno.nome}" placeholder="Digite o nome do Aluno.." />
+                                                            </div>
+                                                </div>
+                                            </div>
                                         </div>
+                                        </th:block>
                                     
                                     </div>
                                
