@@ -35,8 +35,6 @@
         ]
 
         var data = objetoParsed.data
-     
-
         var limit = 0
 
         if (data.length > 12) {

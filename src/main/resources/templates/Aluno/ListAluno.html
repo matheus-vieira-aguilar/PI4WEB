@@ -3,9 +3,27 @@
 
 <head th:replace="Fragments/header :: header">
 </head>
-<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"/>
-<body id="page-top">
+<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<style>
+    .tableTabs {
+        margin: 20px;
+    }
     
+    table {
+        margin: 20px;
+    }
+    
+    .dataTables_length {
+        margin-left: 20px;
+    }
+    
+    .dataTables_info {
+        margin-left: 20px;
+    }
+</style>
+
+<body id="page-top">
+
     <!--<div th:replace="Fragments/logout :: logout"></div>-->
     <!-- INCLUI SISTEMA SUPERIOR DE LOGOUT -->
 
@@ -14,21 +32,64 @@
 
         <div id="content-wrapper" class="d-flex flex-column">
             <!--INCLUI -->
-            
+
             <div id="content">
                 <nav th:replace="Fragments/topnav :: topnav"></nav>
 
                 <div class="container-fluid">
-
-                    <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Alunos</h1>
 
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Alunos sem Avaliação</h6>
+                    <div class="tableTabs">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a href="#avaliados" class="nav-link active" data-toggle="tab">Avaliados</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#naoAvaliados" class="nav-link" data-toggle="tab">Não Avaliados</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="avaliados">
+
+                            <div class="table-responsive table-hover">
+
+                                <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Data de Nascimento</th>
+                                            <th>Sexo</th>
+                                            <th>Email</th>
+                                            <th>CPF</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao != null}">
+                                            <td cclass="column1"><span th:text="${alunos.nome}"> </span></td>
+                                            <td class="column2"><span th:text="${alunos.dataNascimento}"> </span></td>
+                                            <td th:switch="${alunos.sexo}">
+                                                <span th:case="'1'">MASCULINO</span>
+                                                <span th:case="'2'">FEMININO</span>
+                                            </td>
+                                            <td class="column4"><span th:text="${alunos.email}"> </span></td>
+                                            <td class="column5"><span th:text="${alunos.cpf}"> </span></td>
+                                            <td>
+                                                <a class="btn btn-outline-primary fas fas fa-address-book" th:href="@{|/avaliacao/${alunos.id}|}" role="button"></a>
+                                                <a class="btn btn-outline-secondary fas fa-edit" th:href="@{|/edita/${alunos.id}|}"></a>
+                                                <button class="btn btn-outline-danger  Button fas fa-trash-alt" th:attr="value=${alunos.id}"></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
+
+                        <div class="tab-pane fade" id="naoAvaliados">
+
+                            <div class="table-responsive table-hover">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -45,9 +106,9 @@
                                             <td cclass="column1"><span th:text="${alunos.nome}"> </span></td>
                                             <td class="column2"><span th:text="${alunos.dataNascimento}"> </span></td>
                                             <td th:switch="${alunos.sexo}">
-                                                    <span th:case="'1'">MASCULINO</span>
-                                                    <span th:case="'2'">FEMININO</span>
-                                                </td>
+                                                <span th:case="'1'">MASCULINO</span>
+                                                <span th:case="'2'">FEMININO</span>
+                                            </td>
                                             <td class="column4"><span th:text="${alunos.email}"> </span></td>
                                             <td class="column5"><span th:text="${alunos.cpf}"> </span></td>
                                             <td>
@@ -59,89 +120,33 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
 
-                    </div>
-                    <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Alunos Avaliados</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Data de Nascimento</th>
-                                                <th>Sexo</th>
-                                                <th>Email</th>
-                                                <th>CPF</th>
-                                                <th>Ações</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao != null}">
-                                                <td cclass="column1"><span th:text="${alunos.nome}"> </span></td>
-                                                <td class="column2"><span th:text="${alunos.dataNascimento}"> </span></td>
-                                                <td th:switch="${alunos.sexo}">
-                                                        <span th:case="'1'">MASCULINO</span>
-                                                        <span th:case="'2'">FEMININO</span>
-                                                    </td>
-                                                <td class="column4"><span th:text="${alunos.email}"> </span></td>
-                                                <td class="column5"><span th:text="${alunos.cpf}"> </span></td>
-                                                <td>
-                                                    <a class="btn btn-outline-primary fas fas fa-address-book" th:href="@{|/avaliacao/${alunos.id}|}" role="button"></a>
-                                                    <a class="btn btn-outline-secondary fas fa-edit" th:href="@{|/edita/${alunos.id}|}"></a>
-                                                    <button class="btn btn-outline-danger  Button fas fa-trash-alt" th:attr="value=${alunos.id}"></button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-    
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="modal fade" id="confirm" role="dialog">
-            <div class="modal-dialog modal-md">
-          
-              <div class="modal-content">
+        <div class="modal-dialog modal-md">
+
+            <div class="modal-content">
                 <div class="modal-body">
-                      <p> VOCÊ REALMENTE DESEJA EXCLUIR ALUNO? </p>
+                    <p> VOCÊ REALMENTE DESEJA EXCLUIR ALUNO? </p>
                 </div>
                 <div class="modal-footer">
                     <button id="deleteModal" type="button" data-dismiss="modal" class="btn btn-danger delete">EXCLUIR</button>
                     <button type="button" data-dismiss="modal" class="btn btn-primary">VOLTAR</button>
                 </div>
-              </div>
-          
             </div>
-          </div>
-    
+
+        </div>
+    </div>
 
 </body>
 
 <footer th:replace="Fragments/footer :: footer"></footer>
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
-
-
-  <!-- Page level plugins -->
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="js/demo/datatables-demo.js"></script>
+<script th:src="@{/js/Tabelas/TableListAlunos.js}"></script>
 
 </html>

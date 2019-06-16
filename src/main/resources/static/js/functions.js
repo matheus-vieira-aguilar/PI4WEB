@@ -3,13 +3,12 @@
     $(".abreModal").click(function () {
 
         var id = $(this).val()
-        console.log(id)
         $(".modal-footer #deleteModal").attr("value",id)
 
     })
 
-    $(".delete").click(function (e) {
-        e.preventDefault();
+    $("#deleteModal").click(function (e) {
+        
         var id = $(this).attr("value");
         var element = $(this)
         $.ajax({
@@ -23,4 +22,5 @@
             }
         })
     })
+
 })(jQuery)

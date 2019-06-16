@@ -65,7 +65,7 @@ public class LoginApi {
 
             return responseToken.getAcessToken();
         } catch (Exception ex) {
-            throw new Exception(ex.getMessage());
+           throw new Exception(ex.getMessage());
         }
     }
 
