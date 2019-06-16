@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <title>Cadastro</title>
 
 <head th:replace="Fragments/header :: header">
@@ -17,7 +18,7 @@
                 <div th:replace="Fragments/logout :: logout"></div>
                 <div class="container-fluid">
                     <h1 class="h3 mb-4 text-gray-800">Alunos</h1>
-                    <hr/>
+                    <hr />
                     <div th:if="${error == true}" class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>Erro</strong> ao cadastrar aluno.
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -27,50 +28,58 @@
                     <form class="form-salva-aluno" th:action="@{/salva_aluno}" th:object="${aluno}" method="POST">
                         <div class="form-group">
                             <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                                <div class="input-group-prepend" style="width: 40px;">
+                                    <span class="input-group-text" style="width: 100%" id="basic-addon1"><i
+                                            class="fas fa-user"></i></span>
                                 </div>
-                                <input type="text" class="form-control border" name="nome" id="nome_aluno" th:field="*{nome}" placeholder="Digite o nome do Aluno.." />
+                                <input type="text" class="form-control border" name="nome" id="nome_aluno"
+                                    th:field="*{nome}" placeholder="Digite o nome do Aluno.." />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope"></i></span>
+                                <div class="input-group-prepend" style="width: 40px;">
+                                    <span class="input-group-text" style="width: 100%" id="basic-addon1"><i
+                                            class="fas fa-envelope"></i></span>
                                 </div>
-                                <input type="email" class="form-control border" id="email_aluno" name="email" th:field="*{email}" placeholder="Digite o email do Aluno..." />
+                                <input type="email" class="form-control border" id="email_aluno" name="email"
+                                    th:field="*{email}" placeholder="Digite o email do Aluno..." />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar-week"></i></span>
+                                <div class="input-group-prepend" style="width: 40px;">
+                                    <span class="input-group-text" style="width: 100%" id="basic-addon1"><i
+                                            class="fas fa-calendar-week"></i></span>
                                 </div>
-                                <input type="date" class="form-control border" id="nascimento_aluno" name="dataNascimento" th:field="*{dataNascimento}" min="1920-01-01" max="2019-01-01" value="1985-01-01" />
+                                <input type="date" class="form-control border" id="nascimento_aluno"
+                                    name="dataNascimento" th:field="*{dataNascimento}" min="1920-01-01" max="2019-01-01"
+                                    value="1985-01-01" />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-id-card"></i></span>
+                                <div class="input-group-prepend" style="width: 40px;">
+                                    <span class="input-group-text" style="width: 100%" id="basic-addon1"><i
+                                            class="fas fa-id-card"></i></span>
                                 </div>
-                                <input type="text" onchange="validaCPF(this.cpf)" th:field="*{cpf}" class="form-control border" name="cpf" id="cpf_aluno" placeholder="Digite o CPF do aluno.." />
+                                <input type="text" onchange="validaCPF(this.cpf)" th:field="*{cpf}"
+                                    class="form-control border" name="cpf" id="cpf_aluno"
+                                    placeholder="Digite o CPF do aluno.." />
                             </div>
                         </div>
-                        <div class="form-group btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-outline-secondary">
-                                <input type="radio" name="sexo" id="masculino" th:value="1" autocomplete="off" /> Masculino
+                        <div class="form-group btn-group btn-group-toggle" data-toggle="buttons" style="margin-bottom: 0;">
+                            <label class="btn btn-outline-secondary active">
+                                <input type="radio" name="sexo" id="masculino" th:value="1" autocomplete="off" />
+                                Masculino
                             </label>
                             <label class="btn btn-outline-secondary">
-                                <input type="radio" name="sexo" id="feminino" th:value="2" autocomplete="off" /> Feminino
+                                <input type="radio" name="sexo" id="feminino" th:value="2" autocomplete="off" />
+                                Feminino
                             </label>
                         </div>
-                        <div class="form-group">
-                            <center>
-                                <button type="submit" class="btn btn-primary">Enviar</button>
-                            </center>
-                        </div>
-
+                        
+                        <button type="submit" class="btn btn-primary">Enviar</button>
                     </form>
                 </div>
             </div>
@@ -78,11 +87,12 @@
     </div>
 </body>
 
-    <footer th:replace="Fragments/footer :: footer">
-    </footer>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#cpf_aluno").mask("999.999.999-99");
-        });
-    </script>
+<footer th:replace="Fragments/footer :: footer">
+</footer>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#cpf_aluno").mask("999.999.999-99");
+    });
+</script>
+
 </html>
