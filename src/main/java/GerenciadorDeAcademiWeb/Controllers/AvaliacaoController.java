@@ -4,17 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.access.event.AuthorizationFailureEvent;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ControleDeAcesso.LoginApi.LoginApi;
 import GerenciadorDeAcademiWeb.Models.Aluno;
 import GerenciadorDeAcademiWeb.Models.Avaliacao;
+import GerenciadorDeAcademiWeb.Models.AvaliacaoDTO;
 import GerenciadorDeAcademiWeb.Models.ResponseModels.ApiRetorno;
 import Helper.GsonHelper;
 
@@ -23,17 +21,12 @@ import java.util.logging.Logger;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+import static java.util.stream.Collectors.toList;
 import javax.validation.Valid;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import com.squareup.okhttp.RequestBody;
-import java.time.OffsetDateTime;
-import okio.ByteString;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -44,7 +37,7 @@ public class AvaliacaoController {
     private String baseUrl;
 
     @RequestMapping(value = {"/avaliacao/{idAluno}"})
-    public ModelAndView avaliacao(@Valid @PathVariable("idAluno") UUID idAluno,  RedirectAttributes redirectAttributes) {
+    public ModelAndView avaliacao(@Valid @PathVariable("idAluno") UUID idAluno, @RequestParam int avaliacao,  RedirectAttributes redirectAttributes) {
         Gson gson = GsonHelper.getGson();
         ModelAndView modelAndView = new ModelAndView("Avaliacao/Avaliacao");  
         LoginApi loginApi = new LoginApi();
@@ -67,9 +60,16 @@ public class AvaliacaoController {
             responseApi.body().close();       
 
             ApiRetorno<List<Aluno>> alunosApi = getAlunos(token, idAluno);
+            ApiRetorno<List<AvaliacaoDTO>> avaliacoes = gson.fromJson(retornoJson, new TypeToken<ApiRetorno<List<AvaliacaoDTO>>>(){}.getType());
+            avaliacoes.setData(avaliacoes
+                                    .getData()
+                                    .stream()
+                                    .filter(x -> x.getAvaliacao() >= avaliacao)
+                                    .map(x -> x)
+                                    .collect(toList()));
             
-            modelAndView.addObject("avaliacoes", retornoJson);
-            modelAndView.addObject("aluno", alunosApi.getData().get(0));
+            modelAndView.addObject("avaliacoes", avaliacoes);
+            modelAndView.addObject("aluno", alunosApi.getData().stream().findFirst().get());
 
             return modelAndView;
 

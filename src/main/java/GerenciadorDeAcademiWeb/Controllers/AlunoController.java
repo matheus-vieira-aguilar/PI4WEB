@@ -194,7 +194,7 @@ public class AlunoController {
 
     }
 
-    @RequestMapping(value = {"/salva_edicao"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/salva_edicao"}, method = RequestMethod.PUT)
     public ModelAndView salvaEdicao(@ModelAttribute("aluno") Aluno aluno, @RequestParam("sexo") Integer sexo, RedirectAttributes redirectAttributes) {
         Gson gson = GsonHelper.getGson();
         ModelAndView modelAndView = new ModelAndView("Aluno/FormAluno");
@@ -210,11 +210,12 @@ public class AlunoController {
             aluno.setAtivo(true);
 
             OkHttpClient client = new OkHttpClient();
+            String a = gson.toJson(aluno).toString();
             RequestBody body = RequestBody.create(media, gson.toJson(aluno));
 
             Request request = new Request.Builder()
                     .url(baseUrl + urlAluno)
-                    .post(body)
+                    .put(body)
                     .addHeader("Authorization", "Bearer" + token)
                     .build();
 
@@ -222,7 +223,7 @@ public class AlunoController {
 
             if (!responseApi.isSuccessful()) {
                 redirectAttributes.addFlashAttribute("error", true);
-                return new ModelAndView("redirect:/cadastro");
+                return new ModelAndView("redirect:/edita/" + aluno.getId());
             }
 
             redirectAttributes.addFlashAttribute("success", true);
@@ -231,7 +232,7 @@ public class AlunoController {
         } catch (Exception ex) {
 
             Logger.getLogger(AlunoController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ModelAndView("Aluno/FormAluno").addObject("error", true);
+            return new ModelAndView("redirect:/edita/" + aluno.getId()).addObject("error", true);
         }
     }
 

@@ -1,6 +1,6 @@
 (function  () {
     
-    var objetoParsed = JSON.parse(objeto)   
+    var objetoParsed = objeto;
         var categories = []
         var grafico = [
             { "POLLOCK3D": 
@@ -41,17 +41,26 @@
             limit = data.length - 12
         }
 
-        debugger
         for (let index = limit; index != data.length ; index++) {
+            
+            var day = objeto.data[index].dataAvaliacao.dayOfMonth;
+            var month = objeto.data[index].dataAvaliacao.monthValue - 1;
+            var year = objeto.data[index].dataAvaliacao.year;
 
-            categories.push(data[index].dataAvaliacao)
+            var date = new Date(Date.UTC(year, month, day)).toLocaleDateString();
+
+            categories.push(date)
 
             var porcentagemDeGordura = data[index].porcentagemDeGordura
 
             for (let i = 0; i < porcentagemDeGordura.length; i++) {
                 var autor = porcentagemDeGordura[i].autor
+                
+                if(autor == null || undefined){
+                    continue;
+                }
 
-                switch (autor) {
+                switch (autor.$name) {
                     case "POLLOCK3D":
                         grafico[0]["POLLOCK3D"].data.push(parseFloat(porcentagemDeGordura[i].porcentagemDeGordura.toFixed(2)))
                         break;
