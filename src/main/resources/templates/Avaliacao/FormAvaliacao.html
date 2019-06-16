@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+    <title>Realizar Avaliação</title>
+    <head th:replace="Fragments/header :: header"></head>
+
+<body>
+        <div id="wrapper">
+                <ul th:replace="Fragments/sideBar :: sidebar"></ul>
+        
+                <div id="content-wrapper" class="d-flex flex-column">
+                    <!--INCLUI -->
+        
+                    <div id="content">
+                        <nav th:replace="Fragments/topnav :: topnav"></nav>
+        
+                        <div class="container-fluid">
+                            <form action="" th:object="${aluno}">
+                                <div class="card " >
+                                        <div class="card-header">
+                                            Aluno
+                                        </div>
+                                        
+                                        <ul class="list-group list-group-flush">
+                                          <li class="list-group-item"><span th:text="*{nome}"></span></li>
+                                          <li class="list-group-item"><span th:text="*{dataNascimento}"></span></li>
+                                          <li class="list-group-item">Vestibulum at eros</li>
+                                        </ul>
+                                      </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+                
+</body>
+<footer th:replace="Fragments/footer :: footer"></footer>
+</html>
