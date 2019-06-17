@@ -63,7 +63,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao != null}">
+                                        <tr th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao != null and alunos.ativo != false}">
                                             <td cclass="column1"><span th:text="${alunos.nome}"> </span></td>
                                             <td class="column2"><span th:text="${alunos.dataNascimento}"> </span></td>
                                             <td th:switch="${alunos.sexo}">
@@ -75,7 +75,7 @@
                                             <td>
                                                 <a class="btn btn-outline-primary fas fas fa-address-book" th:href="@{|/avaliacao/${alunos.id}?avaliacao=1|}" role="button"></a>
                                                 <a class="btn btn-outline-secondary fas fa-edit" th:href="@{|/edita/${alunos.id}|}"></a>
-                                                <button class="btn btn-outline-danger  Button fas fa-trash-alt" th:attr="value=${alunos.id}"></button>
+                                                <button type="button" data-toggle="modal" data-target="#confirm" class="btn btn-outline-danger Button abreModal fas fa-trash-alt" th:attr="value=${alunos.id}"></button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -99,7 +99,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao == null}">
+                                        <tr th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao == null and alunos.ativo != false}">
                                             <td cclass="column1"><span th:text="${alunos.nome}"> </span></td>
                                             <td class="column2"><span th:text="${alunos.dataNascimento}"> </span></td>
                                             <td th:switch="${alunos.sexo}">
