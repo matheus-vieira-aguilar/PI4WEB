@@ -23,7 +23,7 @@
             {
                 data: "iD", 
                 render: function ( data, type, row, meta ) { 
-                    debugger;
+                    
                     var acoes = '<a class="btn btn-outline-primary fas fas fa-eye" href="/avaliacao/'+ row.idAluno +'?avaliacao=' + row.avaliacao +'" role="button"></a>';
                     if(row.avaliacao == 1){
                         acoes = acoes + ' <a class="btn btn-outline-secondary fas fas fa-edit" href="/avaliacao/'+ row.idAluno +'" role="button"></a>'

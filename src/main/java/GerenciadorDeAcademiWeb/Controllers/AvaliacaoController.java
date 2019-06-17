@@ -90,7 +90,7 @@ public class AvaliacaoController {
 
         ApiRetorno<List<Aluno>> alunosApi = getAlunos(token, idAluno);
 
-        modelAndView.addObject("aluno", (Aluno) alunosApi.getData().get(0));
+        modelAndView.addObject("aluno", (Aluno) alunosApi.getData().stream().findFirst().get());
 
         return modelAndView;             
     }
