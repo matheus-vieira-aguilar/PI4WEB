@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<title>Realizar Avaliação</title>
+
+<head th:replace="Fragments/header :: header"></head>
+<style>
+    .card {
+        margin: 10px;
+    }
+</style>
+
+<body>
+    <div id="wrapper">
+        <ul th:replace="Fragments/sideBar :: sidebar"></ul>
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!--INCLUI -->
+
+            <div id="content">
+                <nav th:replace="Fragments/topnav :: topnav"></nav>
+
+                <div class="container-fluid">
+                    <form action="" th:object="${aluno}">
+                        <div class="card ">
+                            <div class="card-header"> Aluno </div>
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="nome">Nome:</label>
+                                            <input type="text" name="nome" class="form form-control border"
+                                                th:value="*{nome}" />
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <label for="idade">Idade:</label>
+                                        <input id="idade" type="date" name="idade" class="form form-control border"
+                                            th:value="*{dataNascimento}" />
+                                    </div>
+                                    <div class="col-2">
+                                        <label for="massa">Peso:</label>
+                                        <input type="text" name="massa" id="massa"
+                                            class=" number form form-control border" placeholder="Peso" />
+                                    </div>
+                                    <div class="col-2">
+                                        <label for="estatura">Estatura:</label>
+                                        <input type="text" name="estatura" placeholder="Estatura"
+                                            class="number form form-control border" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card ">
+                            <div class="card-header"> Dobras </div>
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <div class="form-group">
+                                            <label for="peitoral">Peitoral:</label>
+                                            <input type="text" name="peitoral"
+                                                class="number form form-control border" />
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <label for="idade">Auxilar Média:</label>
+                                        <input id="mediaAuxiliar" type="text" name="mediaAuxiliar"
+                                            class="number form form-control border" />
+                                    </div>
+                                    <div class="col-2">
+                                        <label for="massa">Peso:</label>
+                                        <input type="text" name="massa" id="massa"
+                                            class=" number form form-control border" placeholder="Peso" />
+                                    </div>
+                                    <div class="col-2">
+                                        <label for="estatura">Estatura:</label>
+                                        <input type="text" name="estatura" placeholder="Estatura"
+                                            class="number form form-control border" />
+                                    </div>
+                                    <div class="col-2">
+                                        <label for="estatura">Estatura:</label>
+                                        <input type="text" name="estatura" placeholder="Estatura"
+                                            class="number form form-control border" />
+                                    </div>
+                                    <div class="col-2">
+                                        <label for="estatura">Estatura:</label>
+                                        <input type="text" name="estatura" placeholder="Estatura"
+                                            class="number form form-control border" />
+                                    </div>
+                                </div>
+                                <div class="contaier-center"></div>
+                                <div class="row">
+                                    <div class="col-4 justify-content-md-center">
+                                        <label for="estatura">Estatura:</label>
+                                        <input type="text" name="estatura" placeholder="Estatura"
+                                            class="number form form-control border" />
+                                    </div>
+                                    <div class="col-4 col-centered">
+                                        <label for="estatura">Estatura:</label>
+                                        <input type="text" name="estatura" placeholder="Estatura"
+                                            class="number form form-control border" />
+                                    </div>
+                                    <div class="col-4 justify-content-md-center">
+                                        <label for="estatura">Estatura:</label>
+                                        <input type="text" name="estatura" placeholder="Estatura"
+                                            class="number cent form form-control border" />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            
+                        </div>
+
+                        <div class="card ">
+                                <div class="card-header"> Dobras </div>
+    
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <div class="form-group">
+                                                <label for="peitoral">Peitoral:</label>
+                                                <input type="text" name="peitoral"
+                                                    class="number form form-control border" />
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <label for="idade">Auxilar Média:</label>
+                                            <input id="mediaAuxiliar" type="text" name="mediaAuxiliar"
+                                                class="number form form-control border" />
+                                        </div>
+                                        <div class="col-2">
+                                            <label for="massa">Peso:</label>
+                                            <input type="text" name="massa" id="massa"
+                                                class=" number form form-control border" placeholder="Peso" />
+                                        </div>
+                                        <div class="col-2">
+                                            <label for="estatura">Estatura:</label>
+                                            <input type="text" name="estatura" placeholder="Estatura"
+                                                class="number form form-control border" />
+                                        </div>
+                                        <div class="col-2">
+                                            <label for="estatura">Estatura:</label>
+                                            <input type="text" name="estatura" placeholder="Estatura"
+                                                class="number form form-control border" />
+                                        </div>
+                                        <div class="col-2">
+                                            <label for="estatura">Estatura:</label>
+                                            <input type="text" name="estatura" placeholder="Estatura"
+                                                class="number form form-control border" />
+                                        </div>
+                                    </div>
+                                    <div class="contaier-center"></div>
+                                    <div class="row">
+                                        <div class="col-4 justify-content-md-center">
+                                            <label for="estatura">Estatura:</label>
+                                            <input type="text" name="estatura" placeholder="Estatura"
+                                                class="number form form-control border" />
+                                        </div>
+                                        <div class="col-4 col-centered">
+                                            <label for="estatura">Estatura:</label>
+                                            <input type="text" name="estatura" placeholder="Estatura"
+                                                class="number form form-control border" />
+                                        </div>
+                                        <div class="col-4 justify-content-md-center">
+                                            <label for="estatura">Estatura:</label>
+                                            <input type="text" name="estatura" placeholder="Estatura"
+                                                class="number cent form form-control border" />
+                                        </div>
+                                    </div>
+    
+                                </div>
+    
+                                
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<footer th:replace="Fragments/footer :: footer"></footer>
+<script>
+    (function () {
+        $(document).ready(function () {
+            $('.number').mask('000.00', { reverse: true });
+        });
+
+    })(jQuery)
+</script>
+
+</html>

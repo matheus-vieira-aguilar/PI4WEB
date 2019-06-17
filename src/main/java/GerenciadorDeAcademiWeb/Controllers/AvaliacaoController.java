@@ -60,10 +60,7 @@ public class AvaliacaoController {
             String retornoJson = responseApi.body().string();
 
             responseApi.body().close();       
-            if (responseApi.isSuccessful()) {
-                System.out.println(responseApi.code());
-            }
-            
+
             ApiRetorno<List<Aluno>> alunosApi = getAlunos(token, idAluno);
             ApiRetorno<List<AvaliacaoDTO>> avaliacoes = gson.fromJson(retornoJson, new TypeToken<ApiRetorno<List<AvaliacaoDTO>>>(){}.getType());
             
@@ -89,13 +86,21 @@ public class AvaliacaoController {
     }    
     
     @RequestMapping(value = {"/avaliar/{id}"})
-    public ModelAndView avaliar(@Valid @PathVariable("idAluno") UUID idAluno){                        
-        ModelAndView modelAndView = new ModelAndView("Avaliacao/Avaliacao");
-        modelAndView.addObject("idAluno", idAluno);
+    public ModelAndView avaliar(@Valid @PathVariable("id") UUID idAluno) throws Exception {
+        ModelAndView modelAndView = new ModelAndView("Avaliacao/FormAvaliacao");
+        LoginApi loginApi = new LoginApi();
+
+        String token = loginApi.logar();
+
+        ApiRetorno<List<Aluno>> alunosApi = getAlunos(token, idAluno);
+
+        modelAndView.addObject("aluno", (Aluno) alunosApi.getData().stream().findFirst().get());
+
         return modelAndView;             
     }
     
     private List<Avaliacao> GetAvaliacoes(UUID idAluno){
+
         return new ArrayList<Avaliacao>();
     }
 

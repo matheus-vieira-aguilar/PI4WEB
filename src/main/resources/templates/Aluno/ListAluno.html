@@ -6,19 +6,16 @@
 <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
 <style>
     .tableTabs {
-        margin: 20px;
+        margin-bottom: 10px;
     }
     
-    table {
-        margin: 20px;
-    }
-    
+
     .dataTables_length {
-        margin-left: 20px;
+        margin-left: 10px;
     }
     
     .dataTables_info {
-        margin-left: 20px;
+        margin-left: 10px;
     }
 </style>
 
@@ -95,10 +92,10 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Data de Nascimento</th>
-                                            <th>Sexo</th>
+                                            <th style="width: 100px">Sexo</th>
                                             <th>Email</th>
                                             <th>CPF</th>
-                                            <th>Ações</th>
+                                            <th style="width: 150px">Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -112,7 +109,7 @@
                                             <td class="column4"><span th:text="${alunos.email}"> </span></td>
                                             <td class="column5"><span th:text="${alunos.cpf}"> </span></td>
                                             <td>
-                                                <a class="btn btn-outline-primary fas fa-address-book" th:href="@{|/avaliacao/${alunos.id}|}" role="button"></a>
+                                                <a class="btn btn-outline-primary fas fa-address-book" th:href="@{|/avaliar/${alunos.id}|}" role="button"></a>
                                                 <a class="btn btn-outline-secondary fas fa-edit" th:href="@{|/edita/${alunos.id}|}"></a>
                                                 <button type="button" data-toggle="modal" data-target="#confirm" class="btn btn-outline-danger Button abreModal fas fa-trash-alt" th:attr="value=${alunos.id}"></button>
                                             </td>
