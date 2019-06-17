@@ -1,8 +1,9 @@
 package GerenciadorDeAcademiWeb.Models;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -18,7 +19,7 @@ public class AvaliacaoDTO {
 
     private String idAluno;
 
-    private LocalDate dataAvaliacao;
+    private LocalDateTime dataAvaliacao;
 
     private double massa;
 
@@ -96,11 +97,11 @@ public class AvaliacaoDTO {
         this.idAluno = idAluno;
     }
 
-    public LocalDate getDataAvaliacao() {
+    public LocalDateTime getDataAvaliacao() {
         return dataAvaliacao;
     }
 
-    public void setDataAvaliacao(LocalDate dataAvaliacao) {
+    public void setDataAvaliacao(LocalDateTime dataAvaliacao) {
         this.dataAvaliacao = dataAvaliacao;
     }
 

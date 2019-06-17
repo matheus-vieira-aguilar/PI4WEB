@@ -1,6 +1,7 @@
 package GerenciadorDeAcademiWeb.Controllers;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,6 +20,7 @@ import Helper.GsonHelper;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.okhttp.OkHttpClient;
@@ -61,14 +63,16 @@ public class AvaliacaoController {
             if (responseApi.isSuccessful()) {
                 System.out.println(responseApi.code());
             }
-
+            
             ApiRetorno<List<Aluno>> alunosApi = getAlunos(token, idAluno);
             ApiRetorno<List<AvaliacaoDTO>> avaliacoes = gson.fromJson(retornoJson, new TypeToken<ApiRetorno<List<AvaliacaoDTO>>>(){}.getType());
+            
             avaliacoes.setData(avaliacoes
                                     .getData()
                                     .stream()
                                     .filter(x -> x.getAvaliacao() >= avaliacao)
                                     .map(x -> x)
+                                    .sorted(Comparator.comparing(AvaliacaoDTO::getAvaliacao))
                                     .collect(toList()));
             
             modelAndView.addObject("avaliacoes", avaliacoes);

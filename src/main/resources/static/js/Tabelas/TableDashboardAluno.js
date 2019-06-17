@@ -1,6 +1,7 @@
 (function($){
+    debugger;
     var objetoParsed = objeto;
-    var data = objetoParsed.data
+    var data = objetoParsed.data.reverse();
 
     $('.table').DataTable( {
         data: data,
