@@ -33,7 +33,7 @@
                                             class="fas fa-user"></i></span>
                                 </div>
                                 <input type="text" class="form-control border" name="nome" id="nome_aluno"
-                                    th:field="*{nome}" placeholder="Digite o nome do Aluno.." />
+                                    th:field="*{nome}" placeholder="Digite o nome do Aluno.." th:required="required" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -43,7 +43,8 @@
                                             class="fas fa-envelope"></i></span>
                                 </div>
                                 <input type="email" class="form-control border" id="email_aluno" name="email"
-                                    th:field="*{email}" placeholder="Digite o email do Aluno..." />
+                                    th:field="*{email}" placeholder="Digite o email do Aluno..."
+                                    th:required="required" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -54,7 +55,7 @@
                                 </div>
                                 <input type="date" class="form-control border" id="nascimento_aluno"
                                     name="dataNascimento" th:field="*{dataNascimento}" min="1920-01-01" max="2019-01-01"
-                                    value="1985-01-01" />
+                                    value="1985-01-01" th:required="required" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -65,10 +66,11 @@
                                 </div>
                                 <input type="text" onchange="validaCPF(this.cpf)" th:field="*{cpf}"
                                     class="form-control border" name="cpf" id="cpf_aluno"
-                                    placeholder="Digite o CPF do aluno.." />
+                                    placeholder="Digite o CPF do aluno.." th:required="required" />
                             </div>
                         </div>
-                        <div class="form-group btn-group btn-group-toggle" data-toggle="buttons" style="margin-bottom: 0;">
+                        <div class="form-group btn-group btn-group-toggle" data-toggle="buttons"
+                            style="margin-bottom: 0;">
                             <label class="btn btn-outline-secondary active">
                                 <input type="radio" name="sexo" id="masculino" th:value="1" autocomplete="off" />
                                 Masculino
@@ -78,8 +80,14 @@
                                 Feminino
                             </label>
                         </div>
-                        
-                        <button type="submit" class="btn btn-primary">Enviar</button>
+                        <div class="row">
+                            <div class="col">
+                                <center>
+                                    <button type="submit" class="btn btn-primary btn-lg">Salvar Aluno</button>
+                                </center>
+                            </div>
+
+                        </div>
                     </form>
                 </div>
             </div>
