@@ -27,6 +27,10 @@
         width: auto;
         height: auto;
     }
+
+    .avaliacaoTable {
+        width: 1%;
+    }
 </style>
 
 <body>
@@ -124,8 +128,6 @@
 
                     </th:block>
 
-                    <hr />
-
                     <div class="row">
                         <div class="card shadow mb-4 col">
 
@@ -152,6 +154,23 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="card shadow mb-4 col">
+                            <div class="container-fluid">
+                                <a href="#collapseCardExample" class="d-block card-header py-3 collapsed"
+                                    data-toggle="collapse" role="button" aria-expanded="false"
+                                    aria-controls="collapseCardExample">
+                                    <P>Informações gerais</P>
+                                </a>
+                                <div class="collapse" id="collapseCardExample">
+                                    <div class="card-body">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <hr />
                     <div class="row">
                         <div class="card col shadow mb-4 chart2">
@@ -160,19 +179,47 @@
                                     width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th style="width: 15%;">DATA DA AVALIAÇÃO</th>
-                                            <th style="width: 14%;">MASSA</th>
-                                            <th style="width: 14%;">MASSA DE GORDURA</th>
-                                            <th style="width: 14%;">MASSA MAGRA</th>
-                                            <th style="width: 14%;">IMC</th>
-                                            <th style="width: 14%;">PGGG</th>
-                                            <th style="width: 10%;">Ações</th>
+                                            <th style="width: 2%;"></th>
+                                            <th style="width: 12.5%;">DATA DA AVALIAÇÃO</th>
+                                            <th style="width: 12.5%;">ESTATURA</th>
+                                            <th style="width: 12.5%;">MASSA</th>
+                                            <th style="width: 12.5%;">MASSA DE GORDURA</th>
+                                            <th style="width: 12%;">MASSA MAGRA</th>
+                                            <th style="width: 12%;">IMC</th>
+                                            <th style="width: 12%;">PGGG</th>
+                                            <th style="width: 12%;">Ações</th>
                                         </tr>
                                     </thead>
                                 </table>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="visualizarAvaliacaoModal" tabindex="-1" role="dialog"
+        aria-labelledby="visualizarAvaliacaoModal" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="card shadow mb-4 col">
+                            <div>
+                                <div style="height: 400px; "></div>
+                            </div>
+                        </div>
+
+                        <div class="card shadow mb-4 col">
+                            <div>
+                                <div style="height: 400px; "></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                 </div>
             </div>
         </div>

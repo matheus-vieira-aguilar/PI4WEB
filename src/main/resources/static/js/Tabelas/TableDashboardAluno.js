@@ -6,6 +6,10 @@
     $('.table').DataTable( {
         data: data,
         columns: [
+            { 
+                data: "avaliacao",
+                class: "avaliacaoTable"
+            },
             { data: "dataAvaliacao",
                 render: function ( data, type, row, meta ) {
                     var day = data.dayOfMonth;
@@ -16,6 +20,7 @@
                     return date;
                 }    
             },
+            { data: "estatura" },
             { data: "massa" },
             { data: 'massaDeGordura' },
             { data: "massaMagra" },
@@ -23,12 +28,14 @@
             { data: "pccg"},
             {
                 data: "iD", 
-                render: function ( data, type, row, meta ) { 
-                    
-                    var acoes = '<a class="btn btn-outline-primary fas fas fa-eye" href="/avaliacao/'+ row.idAluno +'?avaliacao=' + row.avaliacao +'" role="button"></a>';
-                    if(row.avaliacao == 1){
-                        acoes = acoes + ' <a class="btn btn-outline-secondary fas fas fa-edit" href="/avaliacao/'+ row.idAluno +'" role="button"></a>'
-                    }            
+                render: function ( data, type, row, meta ) {                                         
+                    var visualizar = '<button type="button" class="btn btn-outline-primary fas fas fa-eye" data-toggle="modal" data-target="#visualizarAvaliacaoModal" role="button"></button>';                      
+                    var editar = ' <a class="btn btn-outline-success fas fas fa-edit" href="/avaliacao/'+ row.idAluno +'" role="button"></a>';
+
+                    var acoes = visualizar;
+                    if(row.avaliacao === 1){
+                        acoes = acoes + editar;
+                    }      
 
                     return acoes;
                 } 

@@ -15,5 +15,5 @@ public class GerenciadorDeAcademiWebApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GerenciadorDeAcademiWebApplication.class, args);
-    }
+    } 
 }
