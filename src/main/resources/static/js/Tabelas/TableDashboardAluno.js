@@ -29,7 +29,7 @@
             {
                 data: "iD", 
                 render: function ( data, type, row, meta ) {                                         
-                    var visualizar = '<button type="button" class="btn btn-outline-primary fas fas fa-eye" data-toggle="modal" data-target="#visualizarAvaliacaoModal" role="button"></button>';                      
+                    var visualizar = '<a class="btn btn-outline-primary fas fas fa-eye" href="/avaliacao/'+ row.idAluno +'?avaliacao=' + row.avaliacao +'" role="button"></a>';
                     var editar = ' <a class="btn btn-outline-success fas fas fa-edit" href="/avaliacao/'+ row.idAluno +'" role="button"></a>';
 
                     var acoes = visualizar;

@@ -1,5 +1,4 @@
 (function () {
-    debugger;
     var objetoParsed = objeto;
     objetoParsed.data = objetoParsed.data.reverse();
     var categories = []

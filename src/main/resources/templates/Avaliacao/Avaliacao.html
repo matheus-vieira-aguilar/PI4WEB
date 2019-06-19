@@ -31,6 +31,17 @@
     .avaliacaoTable {
         width: 1%;
     }
+
+    #dataTable_filter,
+    .pagination {
+        float: right;
+
+    }
+
+    #dataTable_filter label input {
+        border: 1px solid rgba(0, 0, 0, .125);
+        border-radius: .25rem;
+    }
 </style>
 
 <body>
@@ -125,7 +136,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </th:block>
 
                     <div class="row">
@@ -197,32 +207,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="visualizarAvaliacaoModal" tabindex="-1" role="dialog"
-        aria-labelledby="visualizarAvaliacaoModal" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="card shadow mb-4 col">
-                            <div>
-                                <div style="height: 400px; "></div>
-                            </div>
-                        </div>
-
-                        <div class="card shadow mb-4 col">
-                            <div>
-                                <div style="height: 400px; "></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                 </div>
             </div>
         </div>
