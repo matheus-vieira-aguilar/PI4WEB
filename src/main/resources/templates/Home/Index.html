@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head th:replace="Fragments/header :: header"></head>
 
@@ -16,23 +17,108 @@
                 <div class="container-fluid">
                     <div class="" id="dashboard">
                         <h2>Dashboard</h2>
-                        <div class="row">
-                            <div class="offset-md-1 col-md-5">
-                                <canvas id="chart1"></canvas>
+                        <th:block>
+                            <div class="row">
+
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card border-left-info shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                        Porcentagem de Alunos Avaliados</div>
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col-auto">
+                                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                                <span th:text="${dados.porcentagemNaoAvaliados}"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="progress progress-sm mr-2">
+                                                                <div class="progress-bar bg-info" role="progressbar"                                                                    
+                                                                    aria-valuemin="0" aria-valuemax="100"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card border-left-success shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div
+                                                        class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                        Data de Nascimento</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><span></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-birthday-cake fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card border-left-success shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div
+                                                        class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                        Sexo</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-venus-mars fa-2x text-gray-300"></i>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card border-left-success shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div
+                                                        class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                        Ultima Avaliação</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><span></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-5">
-                                <canvas id="chart2"></canvas>
-                            </div>
-                            <div class="offset-md-1 col-md-10">
-                                <canvas id="chart3"></canvas>
-                            </div>
-                        </div>
+
+                        </th:block>
                     </div>
                 </div>
             </div>
         </div>
+        
     </div>
-    
 </body>
 
 <!-- jQuery first, then Tether, then Bootstrap JS. -->
@@ -40,8 +126,15 @@
 <script th:src="@{/js/Graficos/HomeGraficos.js}"></script>
 <footer th:replace="Fragments/footer :: footer"></footer>
 
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var porcentagem = [[${ dados }]];
+    /*]]>*/
+</script>
 <script>
-    $('#myModal').on('shown.bs.modal', function() {
+
+    $(".progress-bar").css("width", porcentagem.porcentagemNaoAvaliados)
+    $('#myModal').on('shown.bs.modal', function () {
         $('#myInput').trigger('focus')
     })
 </script>
