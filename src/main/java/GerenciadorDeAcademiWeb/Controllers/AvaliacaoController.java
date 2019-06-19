@@ -8,12 +8,14 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ControleDeAcesso.LoginApi.LoginApi;
 import GerenciadorDeAcademiWeb.Models.Aluno;
 import GerenciadorDeAcademiWeb.Models.Avaliacao;
 import GerenciadorDeAcademiWeb.Models.AvaliacaoDTO;
+import GerenciadorDeAcademiWeb.Models.AvaliacaoRequest;
 import GerenciadorDeAcademiWeb.Models.ResponseModels.ApiRetorno;
 import Helper.GsonHelper;
 
@@ -23,11 +25,20 @@ import java.util.logging.Logger;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 import static java.util.stream.Collectors.toList;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+
 import javax.validation.Valid;
+
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -93,15 +104,54 @@ public class AvaliacaoController {
         String token = loginApi.logar();
 
         ApiRetorno<List<Aluno>> alunosApi = getAlunos(token, idAluno);
+        Aluno aluno = alunosApi.getData().stream().findFirst().get();
+        
+        Period periodo = Period.between(aluno.getDataNascimento(), LocalDate.now());
+        int idade = periodo.getYears();    
+        AvaliacaoRequest avaliacao = new AvaliacaoRequest();    
+        avaliacao.setIdAluno(aluno.getId().toString());
+        avaliacao.setIdade(idade);
+        avaliacao.setSexo(aluno.getSexo());
 
-        modelAndView.addObject("aluno", (Aluno) alunosApi.getData().stream().findFirst().get());
-
+        modelAndView.addObject("aluno", aluno);
+        modelAndView.addObject("avaliacao", avaliacao);
         return modelAndView;             
     }
-    
-    private List<Avaliacao> GetAvaliacoes(UUID idAluno){
 
-        return new ArrayList<Avaliacao>();
+    @RequestMapping(value = {"/salvar-avaliacao"}, method = RequestMethod.POST)
+    public ModelAndView salvarAvaliacao(@Valid @ModelAttribute("avaliacao") AvaliacaoRequest avaliacao, RedirectAttributes redirectAttributes) throws Exception {
+        Gson gson = GsonHelper.getGson();
+        LoginApi loginApi = new LoginApi();
+
+        try {
+            String token = loginApi.logar();            
+            
+            String urlAvaliacao = "Api/Avaliacao";
+
+            OkHttpClient client = new OkHttpClient();
+
+            MediaType media = MediaType.parse("application/json");
+            RequestBody body = RequestBody.create(media, gson.toJson(avaliacao));
+            
+            Request request = new Request.Builder()
+                    .url(baseUrl + urlAvaliacao)
+                    .post(body)
+                    .addHeader("Authorization", "Bearer" + token)
+                    .build();
+
+            Response responseApi = client.newCall(request).execute();
+
+            if (!responseApi.isSuccessful()) {
+                redirectAttributes.addFlashAttribute("error", true);
+                return new ModelAndView("redirect:/avaliar/" + avaliacao.getIdAluno());
+            }
+
+            redirectAttributes.addFlashAttribute("success", true);
+            return new ModelAndView("/avaliacao/" + avaliacao.getIdAluno() + "?avaliacao=1");
+        } catch (Exception ex) {
+            Logger.getLogger(AlunoController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ModelAndView("/avaliar/" + avaliacao.getIdAluno()).addObject("error", true);
+        }                    
     }
 
     private ApiRetorno<List<Aluno>> getAlunos(String token, UUID id) {
