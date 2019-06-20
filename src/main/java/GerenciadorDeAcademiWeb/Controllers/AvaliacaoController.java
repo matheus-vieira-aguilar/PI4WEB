@@ -83,7 +83,7 @@ public class AvaliacaoController {
                                     .sorted(Comparator.comparing(AvaliacaoDTO::getAvaliacao))
                                     .collect(toList()));
             
-            modelAndView.addObject("avaliacoes", avaliacoes);
+            modelAndView.addObject("avaliacoes", avaliacoes.getData());
             modelAndView.addObject("aluno", alunosApi.getData().stream().findFirst().get());
 
             return modelAndView;
@@ -138,10 +138,11 @@ public class AvaliacaoController {
                     .post(body)
                     .addHeader("Authorization", "Bearer" + token)
                     .build();
-
+        
             Response responseApi = client.newCall(request).execute();
 
             if (!responseApi.isSuccessful()) {
+                
                 redirectAttributes.addFlashAttribute("error", true);
                 return new ModelAndView("redirect:/avaliar/" + avaliacao.getIdAluno());
             }

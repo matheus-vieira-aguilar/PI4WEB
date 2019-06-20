@@ -1,5 +1,6 @@
 package Helper;
 
+import GerenciadorDeAcademiWeb.Enums.SexoEnum;
 import GerenciadorDeAcademiWeb.Models.Aluno;
 import GerenciadorDeAcademiWeb.Models.Dados;
 import java.util.List;
@@ -17,46 +18,33 @@ import java.util.Iterator;
  */
 public class IndexHelper {
 
+    private int[] qtdGenero = new int[2];
+    private int avaliados = 0;
+    private int inativados = 0;
+    private int ativados = 0;
+    private int qtdAlunos = 0;
+
     public Dados coletaDados(List<Aluno> alunos) {
 
-        Dados dados = new Dados();
-
-        int naoAvaliados = 0;
-        int avaliados = 0;
-        int mulheres = 0;
-        int homens = 0;
-        int inativados = 0;
-        int ativados = 0;
-        
         Iterator<Aluno> alu = alunos.listIterator();
+        this.qtdAlunos = alunos.size();
 
         while (alu.hasNext()) {
 
             Aluno aluLoop = alu.next();
-            if (aluLoop.getAtivo()) {
-                ativados++;
-            }
-            if (!aluLoop.getAtivo()) {
-                inativados++;
-            }
+
+            this.countSexo(aluLoop.getSexo());
+            this.countInativadosEAtivados(aluLoop.isAtivo());
+
             if (aluLoop.getUltimaAvaliacao() != null) {
                 avaliados++;
             }
 
-            if (aluLoop.getSexo() == 2) {
-                mulheres++;
-            }
-            if (aluLoop.getSexo() == 1) {
-                homens++;
-            }
-
+            System.out.println(aluLoop.getSexo());
         }
-        
-        dados.setAtivos(ativados);
-        dados.setInativados(inativados);
-        dados.setPorcentagemNaoAvaliados(this.calculaPorcentagem(avaliados, alunos.size()));
-        dados.setNumHomens(homens);
-        dados.setNumMulherres(mulheres);
+
+        Dados dados = this.fillObject();
+
         return dados;
     }
 
@@ -64,5 +52,40 @@ public class IndexHelper {
 
         double porcentagem = (qtd * 100) / total;
         return porcentagem;
+    }
+
+    private void countSexo(int sexo) {
+
+        switch (sexo) {
+            case 1:
+                this.qtdGenero[0]++;
+                break;
+            case 2:
+                this.qtdGenero[1]++;
+                break;
+        }
+    }
+
+    private void countInativadosEAtivados(boolean ativo) {
+
+        if (ativo) {
+            this.ativados++;
+        }
+        if (!ativo) {
+            this.inativados++;
+        }
+    }
+
+    private Dados fillObject() {
+
+        Dados dados = new Dados();
+
+        dados.setAtivos(this.ativados);
+        dados.setInativados(this.inativados);
+        dados.setPorcentagemNaoAvaliados(this.calculaPorcentagem(this.avaliados, this.qtdAlunos));
+        dados.setNumHomens(this.qtdGenero[0]);
+        dados.setNumMulherres(this.qtdGenero[1]);
+
+        return dados;
     }
 }

@@ -1,6 +1,6 @@
 (function () {
     var objetoParsed = objeto;
-    objetoParsed.data = objetoParsed.data.reverse();
+    objetoParsed = objetoParsed.reverse();
     var categories = []
     var grafico = [
         {
@@ -44,7 +44,7 @@
         }
     ]
 
-    var data = objetoParsed.data
+    var data = objetoParsed
     var limit = 0
 
     if (data.length > 12) {
@@ -53,9 +53,9 @@
 
     for (let index = limit; index != data.length; index++) {
 
-        var day = objeto.data[index].dataAvaliacao.dayOfMonth;
-        var month = objeto.data[index].dataAvaliacao.monthValue - 1;
-        var year = objeto.data[index].dataAvaliacao.year;
+        var day = objeto[index].dataAvaliacao.dayOfMonth + 1;
+        var month = objeto[index].dataAvaliacao.monthValue - 1;
+        var year = objeto[index].dataAvaliacao.year;
 
         var date = new Date(Date.UTC(year, month, day)).toLocaleDateString();
 

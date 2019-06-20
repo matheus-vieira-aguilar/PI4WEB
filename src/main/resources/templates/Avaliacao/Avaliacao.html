@@ -84,7 +84,7 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Data de Nascimento</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><span
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><span id="data"
                                                         th:text="${aluno.dataNascimento}"></span></div>
                                             </div>
                                             <div class="col-auto">
@@ -125,7 +125,7 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Ultima Avaliação</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><span
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><span class="data"
                                                         th:text="${aluno.ultimaAvaliacao}"></span></div>
                                             </div>
                                             <div class="col-auto">
@@ -171,13 +171,165 @@
                                 <a href="#collapseCardExample" class="d-block card-header py-3 collapsed"
                                     data-toggle="collapse" role="button" aria-expanded="false"
                                     aria-controls="collapseCardExample">
-                                    <P>Informações gerais</P>
+                                    <center>INFORMAÇÕES</center>
                                 </a>
                                 <div class="collapse" id="collapseCardExample">
                                     <div class="card-body">
-                                        <th:block th:each="avaliacoes : ${avaliacoes}">
-                                            
-                                        </th:block>
+                                        <div class="row">
+                                            <div class="col card bg-info text-white shadow">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">IMC</div>
+                                                    <span class="big" th:text="${avaliacoes[0].imc}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col card bg-info text-white shadow">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">PCCG</div>
+                                                    <span class="big" th:text="${avaliacoes[0].pccg}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col card bg-info text-white shadow">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">ESTATURA</div>
+                                                    <span class="big" th:text="${avaliacoes[0].estatura}"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col card bg-secondary text-white">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">PEITORAL</div>
+                                                    <span class="big" th:text="${avaliacoes[0].peitoral}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col card bg-secondary text-white">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">AUXILIAR MÉDIA</div>
+                                                    <span class="big" th:text="${avaliacoes[0].mediaAuxiliar}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col card bg-secondary text-white">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">SUB ESCAPULAR</div>
+                                                    <span class="big" th:text="${avaliacoes[0].subEscapular}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col card bg-secondary text-white">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">TRICIPITAL</div>
+                                                    <span class="big" th:text="${avaliacoes[0].tricipital}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col card bg-secondary text-white">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">BICIPTAL</div>
+                                                    <span class="big" th:text="${avaliacoes[0].biciptal}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col card bg-secondary text-white">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">SUPRA ILIACA</div>
+                                                    <span class="big" th:text="${avaliacoes[0].supraIliaca}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col card bg-secondary text-white">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">DOBRA ABDOMINAL</div>
+                                                    <span class="big" th:text="${avaliacoes[0].abdominalDobra}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col card bg-secondary text-white">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">COXA</div>
+                                                    <span class="big" th:text="${avaliacoes[0].coxa}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col card bg-secondary text-white">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">PANTURRILHA</div>
+                                                    <span class="big" th:text="${avaliacoes[0].panturrilha}"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col card bg-secondary text-white">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">TORAX</div>
+                                                    <span class="big" th:text="${avaliacoes[0].torax}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col card bg-secondary text-white">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">BRAÇO DIREIT</div>
+                                                    <span class="big" th:text="${avaliacoes[0].bracoDireito}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col card bg-secondary text-white">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">BRAÇO ESQUERDO</div>
+                                                    <span class="big" th:text="${avaliacoes[0].bracoEsquerdo}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col card bg-secondary text-white">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">ANTEBRAÇO DIREITO</div>
+                                                    <span class="big"
+                                                        th:text="${avaliacoes[0].antebracoDireito}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col card bg-secondary text-white">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">ANTEBRAÇO ESQUERDO</div>
+                                                    <span class="big"
+                                                        th:text="${avaliacoes[0].antebracoEsquerdo}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col card bg-secondary text-white">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">PERIMETRO ABDOMINAL</div>
+                                                    <span class="big" th:text="${avaliacoes[0].abdominal}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col card bg-secondary text-white">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">CINTURA</div>
+                                                    <span class="big" th:text="${avaliacoes[0].cintura}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col card bg-secondary text-white">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">QUADRIL</div>
+                                                    <span class="big" th:text="${avaliacoes[0].quadril}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col card bg-secondary text-white">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">COXA DIREITA</div>
+                                                    <span class="big" th:text="${avaliacoes[0].coxaDireita}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col card bg-secondary text-white">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">COXA ESQUERDA</div>
+                                                    <span class="big" th:text="${avaliacoes[0].coxaEsquerda}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col card bg-secondary text-white">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">PERNA DIREITA</div>
+                                                    <span class="big" th:text="${avaliacoes[0].pernaDireita}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col card bg-secondary text-white">
+                                                <div class="card-body">
+                                                    <div class="text-white-50 small">PERNA ESQUERDA</div>
+                                                    <span class="big" th:text="${avaliacoes[0].pernaEsquerda}"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -223,5 +375,20 @@
     var data = JSON.parse(objeto)
 </script>
 <script th:src="@{/js/Tabelas/TableDashboardAluno.js}"></script>
+<script>
+
+    debugger
+    $(document).ready(function () {
+        $('#data').val(function (data) {
+            var day = data.dayOfMonth + 1;
+            var month = data.monthValue - 1;
+            var year = data.year;
+
+            var date = new Date(Date.UTC(year, month, day)).toLocaleDateString();
+            $(this).text(date);
+        });
+    });
+
+</script>
 
 </html>

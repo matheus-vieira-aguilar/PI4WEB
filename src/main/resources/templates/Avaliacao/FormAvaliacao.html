@@ -9,6 +9,9 @@
     .card {
         margin: 10px;
     }
+    .alert {
+        margin: 10px;
+    }
 </style>
 
 <body>
@@ -22,7 +25,15 @@
                 <nav th:replace="Fragments/topnav :: topnav"></nav>
 
                 <div class="container-fluid">
-
+                    <div th:if="@{error == true}" class="row">
+                        
+                            <div class="col alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Erro</strong> ao inserir avaliação.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                    </div>
                     <div class="row">
                         <div class="col-xl-6 col-md-6 mb-4 col-sm-6">
                             <div class="card border-left-primary shadow h-100 py-2">
@@ -173,30 +184,34 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-3">
+                                    <div class="col-2">
                                         <div class="form-group">
                                             <label for="torax">Torax:</label>
                                             <input type="text" name="torax" placeholder="torax" th:field="*{torax}" th:required="required"
                                                 class="number form form-control border" />
                                         </div>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-2">
                                         <label for="bracoDireito">Braço Direito</label>
                                         <input id="bracoDireito" type="text" name="bracoDireito" th:field="*{bracoDireito}" th:required="required"
                                             placeholder="braço direito" class="number form form-control border" />
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-2">
                                         <label for="bracoEsquerdo">Braço Esquerdo:</label>
                                         <input type="text" name="bracoEsquerdo" id="bracoEsquerdo" th:field="*{bracoEsquerdo}" th:required="required"
                                             class=" number form form-control border" placeholder="braço esquerdo" />
                                     </div>
 
-                                    <div class="col-3 justify-content-md-center">
+                                    <div class="col-2 justify-content-md-center">
                                         <label for="antebracoEsquerdo">Antebraço Esquerdo:</label>
                                         <input type="text" name="antebracoEsquerdo" placeholder="antebraço esquerdo" th:field="*{antebracoEsquerdo}" th:required="required"
                                             class="number form form-control border" />
                                     </div>
-
+                                    <div class="col-2 justify-content-md-center">
+                                            <label for="antebracoDireito">Antebraço Direito:</label>
+                                            <input type="text" name="antebracoDireito" placeholder="antebraço esquerdo" th:field="*{antebracoDireito}" th:required="required"
+                                                class="number form form-control border" />
+                                        </div>
                                 </div>
                                 <hr />
                                 <div class="row">
