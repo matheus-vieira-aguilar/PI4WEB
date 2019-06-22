@@ -1,6 +1,10 @@
 package GerenciadorDeAcademiWeb.Models;
 
-import GerenciadorDeAcademiWeb.Enums.SexoEnum;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.List;
+import java.util.UUID;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -89,7 +93,14 @@ public class AvaliacaoRequest {
     }
 
     public void setSexo(int sexo) {
-        this.sexo = sexo;
+        switch (sexo) {
+            case 1:
+            this.sexo = 0;       
+                break;
+            case 2: 
+            this.sexo = 1;            
+                break;
+        }        
     }
 
     public double getMassa() {
@@ -279,5 +290,47 @@ public class AvaliacaoRequest {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+    }
+
+    public void obterPropriedadesDeUmaListaDeDto(List<AvaliacaoDTO> avaliacoesDTO, UUID idAvaliacao){
+        AvaliacaoDTO avaliacaoDto = obterAvaliacaoDtoAPartirdeLista(avaliacoesDTO, idAvaliacao);
+
+        this.id = idAvaliacao.toString();
+        this.idAluno = avaliacaoDto.getIdAluno();        
+        this.massa = avaliacaoDto.getMassa();
+        this.estatura = avaliacaoDto.getEstatura();
+        this.peitoral = avaliacaoDto.getPeitoral();
+        this.mediaAuxiliar = avaliacaoDto.getMediaAuxiliar();
+        this.subEscapular = avaliacaoDto.getSubEscapular();
+        this.tricipital = avaliacaoDto.getTricipital();
+        this.biciptal = avaliacaoDto.getBiciptal();
+        this.supraIliaca = avaliacaoDto.getSupraIliaca();
+        this.abdominalDobra = avaliacaoDto.getAbdominalDobra();
+        this.coxa = avaliacaoDto.getCoxa();
+        this.panturrilha = avaliacaoDto.getPanturrilha();
+        this.torax = avaliacaoDto.getTorax();
+        this.bracoDireito = avaliacaoDto.getBracoDireito();
+        this.bracoEsquerdo = avaliacaoDto.getBracoEsquerdo();
+        this.antebracoDireito = avaliacaoDto.getAntebracoDireito();
+        this.antebracoEsquerdo = avaliacaoDto.getAntebracoEsquerdo();
+        this.abdominalPerimetro = avaliacaoDto.getAbdominal();
+        this.cintura = avaliacaoDto.getCintura();
+        this.quadril = avaliacaoDto.getQuadril();
+        this.coxaDireita = avaliacaoDto.getCoxaDireita();
+        this.coxaEsquerda = avaliacaoDto.getCoxaEsquerda();
+        this.pernaDireita = avaliacaoDto.getPernaDireita();
+        this.pernaEsquerda = avaliacaoDto.getPernaEsquerda();        
+    }
+
+    public void atribuirIdadeAPartirDaDataDeNascimento(LocalDate dataDeNascimento){
+        Period periodo = Period.between(dataDeNascimento, LocalDate.now());
+        this.idade = periodo.getYears();            
+    }
+
+    public AvaliacaoDTO obterAvaliacaoDtoAPartirdeLista(List<AvaliacaoDTO> avaliacoesDTO, UUID idAvaliacao){
+        return avaliacoesDTO
+            .stream()
+            .filter(x -> x.getiD().equals(idAvaliacao.toString()))
+            .findAny().orElse(new AvaliacaoDTO());
     }
 }

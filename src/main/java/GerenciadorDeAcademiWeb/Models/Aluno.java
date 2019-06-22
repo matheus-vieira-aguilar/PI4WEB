@@ -160,4 +160,8 @@ public class Aluno {
     public void setHistoricoDeAvaliacao(List<Avaliacao> historicoDeAvaliacao) {
         this.historicoDeAvaliacao = historicoDeAvaliacao;
     }
+
+    public static Aluno obterAlunoDeUmaLista(List<Aluno> alunos){
+        return alunos.stream().findFirst().get();
+    }
 }

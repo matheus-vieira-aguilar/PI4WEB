@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
@@ -10,7 +10,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
-
   <title>Login</title>
 
   <!-- Custom fonts for this template-->
@@ -43,16 +42,10 @@
                   </div>
                   <form id="formLogin" method="POST" role="form" data-toggle="validator" th:action="@{/login}" novalidate="true">
                     <div class="form-group">
-                        <input class="form-control form-control-user" id="username" style="margin-top:4%" name="username" type="text" placeholder="Digite seu login..." required="true"/>
+                        <input class="form-control form-control-user" id="username" style="margin-top:4%" name="username" type="text" placeholder="Digite seu login..." th:required="required"/>
                     </div>
                     <div class="form-group">
-                      <input class="form-control form-control-user" type="password" placeholder="Digite sua senha..." id="password" name="password" required="true"/>
-                    </div>
-                    <div class="form-group">
-                      <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck"/>
-                        <label class="custom-control-label" for="customCheck">Remember Me</label>
-                      </div>
+                      <input class="form-control form-control-user" type="password" placeholder="Digite sua senha..." id="password" name="password" th:required="required" />
                     </div>
                     
                     <input type="submit" class="btn btn-primary form-submit__width " value="Entrar"  />
