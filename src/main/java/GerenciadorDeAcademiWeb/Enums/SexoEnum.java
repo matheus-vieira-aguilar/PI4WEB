@@ -16,7 +16,5 @@ public enum SexoEnum{
     }
     public int getInt(){
         return valorSexo;
-    }
-    
-
+    }    
 }

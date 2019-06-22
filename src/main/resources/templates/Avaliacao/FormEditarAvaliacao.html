@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
-<title>Realizar Avaliação</title>
+<title>Editar Avaliação</title>
 
 <head th:replace="Fragments/header :: header"></head>
 <style>
@@ -29,7 +29,7 @@
                     <div th:if="@{error == true}" class="row">
 
                         <div class="col alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>Erro</strong> ao inserir avaliação.
+                            <strong>Erro</strong> ao aditar a avaliação.
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -81,8 +81,7 @@
                                                 Sexo</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
 
-                                                <span th:if="${aluno.sexo =='1'}">MASCULINO</span>
-                                                <span th:unless="${aluno.sexo == '2'}">FEMININO</span>
+                                                <span th:text="${avaliacao.sexo == 0} ? 'MASCULINO' : 'FEMININO'"></span>                                                
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -95,8 +94,9 @@
                     </div>
 
 
-                    <form th:action="@{/salvar-avaliacao}" th:object="${avaliacao}" method="POST">
+                    <form th:action="@{/atualizar-avaliacao}" th:object="${avaliacao}" method="POST">
                         <div style="display: none">
+                            <input type="text" name="id" id="id" th:field="*{id}" />
                             <input type="text" name="idAluno" id="idAluno" th:field="*{idAluno}" />
                             <input type="number" name="idade" id="idade" th:field="*{idade}" />
                             <input type="text" name="sexo" id="sexo" th:field="*{sexo}" />
@@ -293,12 +293,6 @@
 <footer th:replace="Fragments/footer :: footer"></footer>
 <script>
     (function () {
-        $(document).ready(function () {
-            $('.number').mask('000.00', { reverse: true });
-        });
-
-        $('.number').val('');
-
     })(jQuery)
 </script>
 
