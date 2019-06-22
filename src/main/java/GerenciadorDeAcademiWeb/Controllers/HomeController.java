@@ -3,9 +3,9 @@ package GerenciadorDeAcademiWeb.Controllers;
 import ControleDeAcesso.LoginApi.LoginApi;
 import GerenciadorDeAcademiWeb.Models.Aluno;
 import GerenciadorDeAcademiWeb.Models.Dados;
+import GerenciadorDeAcademiWeb.Models.MediaPorcentagemGordura;
 import GerenciadorDeAcademiWeb.Models.ResponseModels.ApiRetorno;
 import Helper.GsonHelper;
-import Helper.IndexHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,11 +43,14 @@ public class HomeController {
             }
 
             ApiRetorno<List<Aluno>> alunosApi = getAlunos(token);
-            IndexHelper helper = new IndexHelper();
-            Dados dados = helper.coletaDados(alunosApi.getData());
-            modelAndView.addObject("dados", dados);
+            ApiRetorno<List<MediaPorcentagemGordura>> mediaGordura = getMediaGorduras(token);
+            
+            modelAndView.addObject("media", mediaGordura);
+            // modelAndView.addObject("dados", dados);
             modelAndView.addObject("alunos", alunosApi.getData());
+
             return modelAndView;
+
         } catch (Exception ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
             return new ModelAndView("redirect:/logout");
@@ -73,14 +76,43 @@ public class HomeController {
 
             Response responseApi = client.newCall(request).execute();
             String retornoJson = responseApi.body().string();
-            System.out.println(responseApi.code());
+
             ApiRetorno<List<Aluno>> response = gson.fromJson(retornoJson, new TypeToken<ApiRetorno<List<Aluno>>>() {
             }.getType());
-            
+
             return response;
 
         } catch (Exception ex) {
             ApiRetorno<List<Aluno>> retorno = new ApiRetorno<List<Aluno>>();
+
+            List<String> erros = new ArrayList<String>();
+            erros.add(ex.getMessage());
+            retorno.setErrorMessages(erros);
+            retorno.setSucess(false);
+            return retorno;
+        }
+    }
+
+    private ApiRetorno<List<MediaPorcentagemGordura>> getMediaGorduras(String token) {
+        Gson gson = GsonHelper.getGson();
+        String urlDados = "Api/MediaPorcentagem";
+
+        try {
+            OkHttpClient client = new OkHttpClient();
+
+            Request request = new Request.Builder().url(baseUrl + urlDados).get()
+                    .addHeader("Authorization", "Bearer" + token).build();
+
+            Response responseApi = client.newCall(request).execute();
+            String retornoJson = responseApi.body().string();
+            
+            ApiRetorno<List<MediaPorcentagemGordura>> response = gson.fromJson(retornoJson, new TypeToken<ApiRetorno<List<MediaPorcentagemGordura>>>() {
+            }.getType());
+
+            return response;
+
+        } catch (Exception ex) {
+            ApiRetorno<List<MediaPorcentagemGordura>> retorno = new ApiRetorno<List<MediaPorcentagemGordura>>();
 
             List<String> erros = new ArrayList<String>();
             erros.add(ex.getMessage());

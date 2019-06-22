@@ -1,123 +1,74 @@
-// Primeiro Gráfico. De pizza:
-var ctx = document.getElementById("chart1");
-ctx.height = 180;
-var myChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        labels: ["Índice de massa", "Índice de gordura"],
-        datasets: [{
-                label: 'IMC',
-                data: [12, 18],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(255, 159, 64, 1)'
-                ]
-            }]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-        }
-    }
-});
 
-// Segundo Gráfico. De Linha:
-var ctx = document.getElementById("chart2");
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ["01/2019", "02/2019", "03/2019", "04/2019", "05/2019", "06/2019"],
-        datasets: [{
-                label: 'IMC',
-                data: [35, 32, 36, 30, 22, 26],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-        }
-    }
-});
+media = media.data
 
-// Terceiro Gráfico. De Barras:
-var ctx = document.getElementById("chart3");
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["Rosca Inversa", "Remada Unilateral", "Crucifixo", "Puxada na Frente", "Puxada Alta", "Pulley", "Rosca Inversa", "Remada Unilateral", "Crucifixo", "Puxada na Frente", "Puxada Alta", "Pulley"],
-        datasets: [{
-                label: 'Frequência exercicios',
-                data: [7, 4, 3, 5, 2, 3, 7, 4, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-        }
+mediaFeminina = []
+mediaMasculina = []
+
+debugger
+for (let index = 0; index < media.length; index++) {
+
+    var autor = media[index].autor.$name
+
+    switch (autor) {
+        case "POLLOCK7D":
+            if (media[index].sexo.$name == "MASCULINO") { mediaMasculina[0] = parseFloat(media[index].media.toFixed(2)) }
+            if (media[index].sexo.$name == "FEMININO") { mediaFeminina[0] = parseFloat(media[index].media.toFixed(2)) }
+            break;
+        case "POLLOCK3D":
+            if (media[index].sexo.$name == "MASCULINO") { mediaMasculina[1] = parseFloat(media[index].media.toFixed(2)) }
+            if (media[index].sexo.$name == "FEMININO") { mediaFeminina[1] = parseFloat(media[index].media.toFixed(2)) }
+            break;
+        case "GUEDES":
+            if (media[index].sexo.$name == "MASCULINO") { mediaMasculina[2] = parseFloat(media[index].media.toFixed(2)) }
+            if (media[index].sexo.$name == "FEMININO") { mediaFeminina[2] = parseFloat(media[index].media.toFixed(2)) }
+            break;
+        case "PETROSKY":
+            if (media[index].sexo.$name == "MASCULINO") { mediaMasculina[3] = parseFloat(media[index].media.toFixed(2)) }
+            if (media[index].sexo.$name == "FEMININO") { mediaFeminina[3] = parseFloat(media[index].media.toFixed(2)) }
+            break;
+        case "THORLAND7D":
+            if (media[index].sexo.$name == "MASCULINO") { mediaMasculina[4] = parseFloat(media[index].media.toFixed(2)) }
+            if (media[index].sexo.$name == "FEMININO") { mediaFeminina[4] = parseFloat(media[index].media.toFixed(2)) }
+            break;
+        case "THORLAND3D":
+            if (media[index].sexo.$name == "MASCULINO") { mediaMasculina[5] = parseFloat(media[index].media.toFixed(2)) }
+            if (media[index].sexo.$name == "FEMININO") { mediaFeminina[5] = parseFloat(media[index].media.toFixed(2)) }
+            break;
     }
+
+}
+
+console.log(mediaFeminina)
+console.log(mediaMasculina)
+
+Highcharts.chart('lineChart', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: ''
+    },
+    xAxis: {
+        categories: ['POLLOCK7D', 'POLLOCK3D', 'GUEDES', 'PETROSKY', 'THORLAND7D', 'THORLAND3D']
+    },
+    yAxis: {
+        title: {
+            text: 'Porcentagem (%)'
+        }
+    },
+    plotOptions: {
+        line: {
+            dataLabels: {
+                enabled: true
+            },
+            enableMouseTracking: false
+        }
+    },
+    series: [{
+        name: 'MASCULINO',
+        data: mediaMasculina
+    }, {
+        name: 'FEMININO',
+        data: mediaFeminina
+    }]
 });

@@ -1,67 +1,66 @@
 
 package GerenciadorDeAcademiWeb.Models;
 
+import java.util.List;
+
 /**
  *
  * @author matheusvieira
  */
 public class Dados {
     
-    private int qtdNaoAvaliados;
-    private double porcentagemNaoAvaliados;
-    private int numMulherres;
-    private int numHomens;
-    private int inativados;
-    private int ativos;
-    
-    public int getQtdNaoAvaliados() {
-        return qtdNaoAvaliados;
+    private int qtdMasculino;
+    private int qtdFeminino;
+    private int qtdAtivados;
+    private int qtdInativados;
+    private double porcentagemDeAvaliados;
+    private List<MediaImc> mediaImc;
+
+    public int getQtdMasculino() {
+        return qtdMasculino;
     }
 
-    public void setQtdNaoAvaliados(int qtdNaoAvaliados) {
-        this.qtdNaoAvaliados = qtdNaoAvaliados;
+    public void setQtdMasculino(int qtdMasculino) {
+        this.qtdMasculino = qtdMasculino;
     }
 
-    public double getPorcentagemNaoAvaliados() {
-        return porcentagemNaoAvaliados;
+    public int getQtdFeminino() {
+        return qtdFeminino;
     }
 
-    public void setPorcentagemNaoAvaliados(double porcentagemNaoAvaliados) {
-        this.porcentagemNaoAvaliados = porcentagemNaoAvaliados;
+    public void setQtdFeminino(int qtdFeminino) {
+        this.qtdFeminino = qtdFeminino;
     }
 
-
-    public int getNumMulherres() {
-        return numMulherres;
+    public int getQtdAtivados() {
+        return qtdAtivados;
     }
 
-    public void setNumMulherres(int numMulherres) {
-        this.numMulherres = numMulherres;
+    public void setQtdAtivados(int qtdAtivados) {
+        this.qtdAtivados = qtdAtivados;
     }
 
-    public int getNumHomens() {
-        return numHomens;
+    public int getQtdInativados() {
+        return qtdInativados;
     }
 
-    public void setNumHomens(int numHomens) {
-        this.numHomens = numHomens;
+    public void setQtdInativados(int qtdInativados) {
+        this.qtdInativados = qtdInativados;
     }
 
-    public int getInativados() {
-        return inativados;
+    public double getPorcentagemDeAvaliados() {
+        return porcentagemDeAvaliados;
     }
 
-    public void setInativados(int inativados) {
-        this.inativados = inativados;
+    public void setPorcentagemDeAvaliados(double porcentagemDeAvaliados) {
+        this.porcentagemDeAvaliados = porcentagemDeAvaliados;
     }
 
-    public int getAtivos() {
-        return ativos;
+    public List<MediaImc> getMediaImc() {
+        return mediaImc;
     }
 
-    public void setAtivos(int ativos) {
-        this.ativos = ativos;
-    }
-    
-    
+    public void setMediaImc(List<MediaImc> mediaImc) {
+        this.mediaImc = mediaImc;
+    }    
 }
