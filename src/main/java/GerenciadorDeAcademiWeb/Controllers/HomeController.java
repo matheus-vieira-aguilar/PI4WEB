@@ -1,15 +1,17 @@
 package GerenciadorDeAcademiWeb.Controllers;
 
 import ControleDeAcesso.LoginApi.LoginApi;
+import GerenciadorDeAcademiWeb.Enums.AutorEnum;
 import GerenciadorDeAcademiWeb.Models.Aluno;
-import GerenciadorDeAcademiWeb.Models.Dados;
 import GerenciadorDeAcademiWeb.Models.MediaPorcentagemGordura;
+import GerenciadorDeAcademiWeb.Models.ObterTotalAvaliacoes;
+import GerenciadorDeAcademiWeb.Models.PorcentagemDeGordura;
 import GerenciadorDeAcademiWeb.Models.ResponseModels.ApiRetorno;
+import static java.util.stream.Collectors.toList;
 import Helper.GsonHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,7 +22,6 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -47,6 +48,7 @@ public class HomeController {
             
             modelAndView.addObject("media", mediaGordura);
             // modelAndView.addObject("dados", dados);
+            ApiRetorno<List<ObterTotalAvaliacoes>> avaliacoes = obterTotalAvaliacoes(token);
             modelAndView.addObject("alunos", alunosApi.getData());
 
             return modelAndView;
@@ -62,6 +64,36 @@ public class HomeController {
     public String login() {
         return "Home/Login";
     }
+
+    private ApiRetorno<List<ObterTotalAvaliacoes>> obterTotalAvaliacoes(String token){
+        Gson gson = GsonHelper.getGson();
+        String urlTotalAvalicoes = "Api/Dados/TotalAvalicoes";
+
+        try {
+            OkHttpClient client = new OkHttpClient();
+
+            Request request = new Request.Builder().url(baseUrl + urlTotalAvalicoes).get()
+                    .addHeader("Authorization", "Bearer" + token).build();
+
+            Response responseApi = client.newCall(request).execute();
+            String retornoJson = responseApi.body().string();
+            
+            ApiRetorno<List<ObterTotalAvaliacoes>> response = gson.fromJson(retornoJson, new TypeToken<ApiRetorno<List<ObterTotalAvaliacoes>>>() {
+            }.getType());
+
+            return response;
+
+        } catch (Exception ex) {
+            ApiRetorno<List<ObterTotalAvaliacoes>> retorno = new ApiRetorno<List<ObterTotalAvaliacoes>>();
+
+            List<String> erros = new ArrayList<String>();
+            erros.add(ex.getMessage());
+            retorno.setErrorMessages(erros);
+            retorno.setSucess(false);
+            return retorno;
+        }
+    }
+
 
     private ApiRetorno<List<Aluno>> getAlunos(String token) {
         Gson gson = GsonHelper.getGson();
