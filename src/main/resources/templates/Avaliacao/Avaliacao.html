@@ -59,7 +59,7 @@
 
                     <th:block th:each="aluno : ${aluno}">
                         <div class="row">
-                            <div class="col-xl-3 col-md-6 mb-4 col-sm-8">
+                            <div class="col-xl-6 col-md-6 mb-4 col-sm-8">
                                 <div class="card border-left-primary shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
@@ -117,6 +117,44 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6 mb-4 col-sm-8">
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Estatura</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><span
+                                                        th:text="${avaliacoes[0].estatura}"></span></div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-ruler fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                    IMC</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><span id="data"
+                                                        th:text="${avaliacoes[0].imc}"></span></div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-balance-scale fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-success shadow h-100 py-2">
@@ -125,11 +163,28 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Ultima Avaliação</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><span class="data"
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><span
+                                                        id="dataUltimaAvaliacao" class="data"
                                                         th:text="${aluno.ultimaAvaliacao}"></span></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-user-plus fa-2x text-gray-300"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -377,16 +432,16 @@
 <script th:src="@{/js/Tabelas/TableDashboardAluno.js}"></script>
 <script>
 
-    debugger
     $(document).ready(function () {
-        $('#data').val(function (data) {
-            var day = data.dayOfMonth + 1;
-            var month = data.monthValue - 1;
-            var year = data.year;
+        var data = $('#data').text();
+        data = data.split('-');
+        var date = new Date(Date.UTC(parseInt(data[0]), parseInt(data[1]) - 1, parseInt(data[2]) + 1)).toLocaleDateString();
+        $('#data').text(date);
 
-            var date = new Date(Date.UTC(year, month, day)).toLocaleDateString();
-            $(this).text(date);
-        });
+        var data = $('#dataUltimaAvaliacao').text();
+        data = data.split('-');
+        var date = new Date(Date.UTC(parseInt(data[0]), parseInt(data[1]) - 1, parseInt(data[2]) + 1)).toLocaleDateString();
+        $('#dataUltimaAvaliacao').text(date);
     });
 
 </script>

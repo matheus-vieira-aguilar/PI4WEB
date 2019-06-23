@@ -74,7 +74,7 @@
                                     </thead>
                                     <tbody>
                                         <tr th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao != null and alunos.ativo == true}">
-                                            <td cclass="column1"><span th:text="${alunos.nome}"> </span></td>
+                                            <td class="column1"><span th:text="${alunos.nome}"> </span></td>
                                             <td class="column2"><span th:text="${alunos.dataNascimento}"> </span></td>
                                             <td th:switch="${alunos.sexo}">
                                                 <span th:case="'1'">MASCULINO</span>

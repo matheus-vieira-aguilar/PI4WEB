@@ -5,6 +5,20 @@
 
     $('.table').DataTable({
         data: data,
+        language: {
+            emptyTable: "Nenhum registro encontrado",
+            sInfo: "",
+            sInfoEmpty: "Mostrando 0 até 0 de 0 registros",
+            sProcessing: "Processando...",
+            sLengthMenu: "_MENU_",
+            sSearch: "Pesquisar",
+            oPaginate: {
+                sNext: "Próximo",
+                sPrevious: "Anterior",
+                sFirst: "Primeiro",
+                sLast: "Último"
+            }
+        },
         columns: [
             {
                 data: "avaliacao",
