@@ -236,6 +236,41 @@ public class AlunoController {
         }
     }
 
+    @RequestMapping(value = {"ativarAluno/{id}"}, method = RequestMethod.GET)
+    public ModelAndView ativarAluno(@PathVariable String id) {
+        Gson gson = GsonHelper.getGson();
+        ModelAndView modelAndView = new ModelAndView("Aluno/ListAluno");
+        LoginApi loginApi = new LoginApi();
+        String urlAluno = "Api/Aluno";
+
+        try {
+            String token = loginApi.logar();
+
+            if (token == null) {
+                return new ModelAndView("redirect:/logout");
+            }
+
+            MediaType media = MediaType.parse("application/json");
+
+            RequestBody body = RequestBody.create(media, gson.toJson(""));
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url(baseUrl + urlAluno)
+                    .patch(body)
+                    .addHeader("Authorization", "Bearer" + token)
+                    .addHeader("id", id)
+                    .build();
+
+            Response responseApi = client.newCall(request).execute();
+
+            return modelAndView.addObject("reponse", gson.toJson(responseApi.body().toString()));
+
+        } catch (Exception ex) {
+            Logger.getLogger(AlunoController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ModelAndView("redirect:/alunos");
+        }
+    }
+
     @RequestMapping(value = {"delete/{id}"}, method = RequestMethod.GET)
     public ModelAndView deleteAluno(@PathVariable String id) {
         Gson gson = GsonHelper.getGson();

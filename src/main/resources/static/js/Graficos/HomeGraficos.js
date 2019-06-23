@@ -4,7 +4,6 @@
 mediaFeminina = []
 mediaMasculina = []
 
-debugger
 for (let index = 0; index < media.length; index++) {
 
     var autor = media[index].autor.$name
