@@ -19,6 +19,7 @@
     }
 
     #dataTable2_filter label input,
+    #dataTable3_filter label input,
     #dataTable_filter label input {
         border: 1px solid rgba(0, 0, 0, .125) !important;
         border-radius: .25rem;
@@ -49,6 +50,9 @@
                             </li>
                             <li class="nav-item">
                                 <a href="#naoAvaliados" class="nav-link" data-toggle="tab">Não Avaliados</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#inativos" class="nav-link" data-toggle="tab">Inativos</a>
                             </li>
                         </ul>
                     </div>
@@ -105,7 +109,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao == null and alunos.ativo != false}">
+                                        <tr th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao == null and alunos.ativo == true}">
                                             <td cclass="column1"><span th:text="${alunos.nome}"> </span></td>
                                             <td class="column2"><span th:text="${alunos.dataNascimento}"> </span></td>
                                             <td th:switch="${alunos.sexo}">
@@ -123,7 +127,39 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
 
+                        <div class="tab-pane fade" id="inativos">
+
+                            <div class="table-responsive table-hover">
+                                <table class="table table-bordered" id="dataTable3" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Data de Nascimento</th>
+                                            <th style="width: 100px">Sexo</th>
+                                            <th>Email</th>
+                                            <th>CPF</th>
+                                            <th style="width: 150px">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao == null and alunos.ativo == false}">
+                                            <td cclass="column1"><span th:text="${alunos.nome}"> </span></td>
+                                            <td class="column2"><span th:text="${alunos.dataNascimento}"> </span></td>
+                                            <td th:switch="${alunos.sexo}">
+                                                <span th:case="'1'">MASCULINO</span>
+                                                <span th:case="'2'">FEMININO</span>
+                                            </td>
+                                            <td class="column4"><span th:text="${alunos.email}"> </span></td>
+                                            <td class="column5"><span th:text="${alunos.cpf}"> </span></td>
+                                            <td>
+                                                <button type="button" data-toggle="modal" data-target="#confirmAtivar" class="btn btn-outline-primary fas fa-edit Button abreModal" th:value="${alunos.id}"></button>                                    
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -139,8 +175,24 @@
                     <p> VOCÊ REALMENTE DESEJA EXCLUIR ALUNO? </p>
                 </div>
                 <div class="modal-footer">
-                    <button id="deleteModal" type="button" data-dismiss="modal" class="btn btn-danger delete">EXCLUIR</button>
+                    <button id="deleteModal" type="button" class="btn btn-danger delete">EXCLUIR</button>
                     <button type="button" data-dismiss="modal" class="btn btn-primary">VOLTAR</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="confirmAtivar" role="dialog">
+        <div class="modal-dialog modal-md">
+
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p> VOCÊ REALMENTE ATIVAR ESSE ALUNO? </p>
+                </div>
+                <div class="modal-footer">
+                    <button id="AtivarModal" type="button" class="btn btn-primary">ATIVAR</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">VOLTAR</button>
                 </div>
             </div>
 

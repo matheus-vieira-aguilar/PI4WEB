@@ -2,8 +2,6 @@ package GerenciadorDeAcademiWeb.Models;
 
 import java.util.List;
 
-import GerenciadorDeAcademiWeb.Enums.AutorEnum;
-
 public class ObterTotalAvaliacoes{
 
     private String iD;

@@ -151,19 +151,18 @@ public class AvaliacaoController {
                     .build();
         
             Response responseApi = client.newCall(request).execute();
-
             if (!responseApi.isSuccessful()) {
                 
                 redirectAttributes.addFlashAttribute("error", true);
-                return new ModelAndView("redirect:/editarAvaliacao/" + avaliacao.getIdAluno() + "/" + avaliacao.getId());
+                return new ModelAndView("redirect:/avaliar/" + avaliacao.getIdAluno());
             }
 
             redirectAttributes.addFlashAttribute("success", true);
-            return new ModelAndView("redirect:/editarAvaliacao/{id}/{idAvaliacao}/" + avaliacao.getIdAluno() + "?avaliacao=1");
+            return new ModelAndView("redirect:/avaliacao/" + avaliacao.getIdAluno() + "?avaliacao=1");
         } catch (Exception ex) {
             Logger.getLogger(AlunoController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ModelAndView("redirect:/editarAvaliacao/" + avaliacao.getIdAluno() + "/" + avaliacao.getId()).addObject("error", true);
-        }                    
+            return new ModelAndView("redirect:/avaliar/" + avaliacao.getIdAluno()).addObject("error", true);
+        }                
     }
 
     @RequestMapping(value = {"/atualizar-avaliacao"}, method = RequestMethod.POST)
@@ -188,20 +187,21 @@ public class AvaliacaoController {
                     .build();
         
             Response responseApi = client.newCall(request).execute();
-
             if (!responseApi.isSuccessful()) {
                 
                 redirectAttributes.addFlashAttribute("error", true);
-                return new ModelAndView("redirect:/avaliar/" + avaliacao.getIdAluno());
+                return new ModelAndView("redirect:/editarAvaliacao/" + avaliacao.getIdAluno() + "/" + avaliacao.getId());
             }
 
             redirectAttributes.addFlashAttribute("success", true);
             return new ModelAndView("redirect:/avaliacao/" + avaliacao.getIdAluno() + "?avaliacao=1");
         } catch (Exception ex) {
             Logger.getLogger(AlunoController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ModelAndView("redirect:/avaliar/" + avaliacao.getIdAluno()).addObject("error", true);
-        }                    
+            return new ModelAndView("redirect:/editarAvaliacao/" + avaliacao.getIdAluno() + "/" + avaliacao.getId()).addObject("error", true);
+        }                               
     }
+
+     
 
     private ApiRetorno<List<Aluno>> getAlunos(String token, UUID id) {
         Gson gson = GsonHelper.getGson();
