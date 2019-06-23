@@ -1,7 +1,4 @@
 (function($) {
-    
-
-
 
     $('table.table').DataTable({
         scrollY:        200,
