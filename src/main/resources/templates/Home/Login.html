@@ -10,18 +10,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
+
   <title>Login</title>
 
   <!-- Custom fonts for this template-->
   <link th:href="@{vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css"/>
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" type="text/css"/>
-
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <!-- Custom styles for this template-->
   <link th:href="@{css/sb-admin-2.min.css}" rel="stylesheet"/>
+  <style>
+      
+      body {
+	width: 100wh;
+	height: 90vh;
+	color: #fff;
+	background: linear-gradient(-45deg, #e8f0ff, #aabee2, #6d80a5, #384b70, #0b1c3d);
+	background-size: 400% 400%;
+	-webkit-animation: Gradient 15s ease infinite;
+	-moz-animation: Gradient 15s ease infinite;
+	animation: Gradient 15s ease infinite;
+}
 
+@-webkit-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@-moz-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+</style>
 </head>
 
-<body class="bg-gradient-primary">
+<body class="body-gradientt"> 
 
   <div class="container">
 
@@ -30,26 +79,29 @@
 
       <div class="col-xl-10 col-lg-12 col-md-9">
 
-        <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card o-hidden border-0 shadow-lg my-5" style="height: 85vh !important">
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+              <div class="col-lg-6 d-none d-lg-block bg-login-image" style="height: 85vh !important"></div>
               <div class="col-lg-6">
                 <div class="p-5">
-                  <div class="text-center">
+                  <div class="text-center" style="margin-top:11vh">
                     <h1 class="h4 text-gray-900 mb-4">Gym Experience</h1>
                   </div>
-                  <form id="formLogin" method="POST" role="form" data-toggle="validator" th:action="@{/login}" novalidate="true">
+                  <form id="formLogin" method="POST" role="form" th:action="@{/login}" >
                     <div class="form-group">
-                        <input class="form-control form-control-user" id="username" style="margin-top:4%" name="username" type="text" placeholder="Digite seu login..." th:required="required"/>
+                        <input class="form-control form-control-user" id="username" style="margin-top:4%" name="username" type="text" placeholder="Digite seu login..." required="required"/>
                     </div>
                     <div class="form-group">
-                      <input class="form-control form-control-user" type="password" placeholder="Digite sua senha..." id="password" name="password" th:required="required" />
+                      <input class="form-control form-control-user" required="required" type="password" placeholder="Digite sua senha..." id="password" name="password"/>
                     </div>
                     
-                    <input type="submit" class="btn btn-primary form-submit__width " value="Entrar"  />
-                 <hr/>     
+                    <input type="submit" class="btn btn-primary  form-control form-control-user" value="Entrar"  />
+                 <hr/>  
+                <div th:if="${param.error}" id="error_fade" class="alert alert-danger">    
+                    Usuário ou senha incorretos.
+                </div>
                  <br/>    
                  <br/>   
                  <br/>        
@@ -73,13 +125,18 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
-  <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{vendor/jquery/jquery.min.js}"></script>
+  <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
   <!-- Core plugin JavaScript-->
-  <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+  <script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
   <!-- Custom scripts for all pages-->
-  <script th:src="@{/js/sb-admin-2.min.js}"></script>
+  <script th:src="@{js/sb-admin-2.min.js}"></script>
 
 </body>
 
 </html>
+<script>
+     $('#error_fade').fadeIn('slow', function() {
+            setTimeout("$('#error_fade').fadeOut('slow');", 2500);
+    });
+</script>
