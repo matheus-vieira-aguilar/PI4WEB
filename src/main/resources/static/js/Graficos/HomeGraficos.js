@@ -1,5 +1,5 @@
 
-media = media.data
+
 
 mediaFeminina = []
 mediaMasculina = []
@@ -37,9 +37,6 @@ for (let index = 0; index < media.length; index++) {
     }
 
 }
-
-console.log(mediaFeminina)
-console.log(mediaMasculina)
 
 Highcharts.chart('lineChart', {
     chart: {

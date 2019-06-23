@@ -3,6 +3,7 @@ package GerenciadorDeAcademiWeb.Controllers;
 import ControleDeAcesso.LoginApi.LoginApi;
 import GerenciadorDeAcademiWeb.Enums.AutorEnum;
 import GerenciadorDeAcademiWeb.Models.Aluno;
+import GerenciadorDeAcademiWeb.Models.Dados;
 import GerenciadorDeAcademiWeb.Models.MediaPorcentagemGordura;
 import GerenciadorDeAcademiWeb.Models.ObterTotalAvaliacoes;
 import GerenciadorDeAcademiWeb.Models.PorcentagemDeGordura;
@@ -45,9 +46,10 @@ public class HomeController {
 
             ApiRetorno<List<Aluno>> alunosApi = getAlunos(token);
             ApiRetorno<List<MediaPorcentagemGordura>> mediaGordura = getMediaGorduras(token);
-            
-            modelAndView.addObject("media", mediaGordura);
-            // modelAndView.addObject("dados", dados);
+            ApiRetorno<Dados> dados = getDados(token);
+
+            modelAndView.addObject("media", mediaGordura.getData());
+            modelAndView.addObject("dados", dados.getData());
             ApiRetorno<List<ObterTotalAvaliacoes>> avaliacoes = obterTotalAvaliacoes(token);
             modelAndView.addObject("alunos", alunosApi.getData());
 
@@ -145,6 +147,35 @@ public class HomeController {
 
         } catch (Exception ex) {
             ApiRetorno<List<MediaPorcentagemGordura>> retorno = new ApiRetorno<List<MediaPorcentagemGordura>>();
+
+            List<String> erros = new ArrayList<String>();
+            erros.add(ex.getMessage());
+            retorno.setErrorMessages(erros);
+            retorno.setSucess(false);
+            return retorno;
+        }
+    }
+
+    private ApiRetorno<Dados> getDados(String token) {
+        Gson gson = GsonHelper.getGson();
+        String urlDados = "Api/Dados";
+
+        try {
+            OkHttpClient client = new OkHttpClient();
+
+            Request request = new Request.Builder().url(baseUrl + urlDados).get()
+                    .addHeader("Authorization", "Bearer" + token).build();
+
+            Response responseApi = client.newCall(request).execute();
+            String retornoJson = responseApi.body().string();
+            
+            ApiRetorno<Dados> response = gson.fromJson(retornoJson, new TypeToken<ApiRetorno<Dados>>() {
+            }.getType());
+
+            return response;
+
+        } catch (Exception ex) {
+            ApiRetorno<Dados> retorno = new ApiRetorno<Dados>();
 
             List<String> erros = new ArrayList<String>();
             erros.add(ex.getMessage());
