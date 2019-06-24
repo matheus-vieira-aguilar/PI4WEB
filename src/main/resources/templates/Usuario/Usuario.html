@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<title>Usuario</title>
+
+<head th:replace="Fragments/header :: header"></head>
+<style>
+    .card {
+        margin: 10px;
+    }
+
+    .alert {
+        margin: 10px;
+    }
+</style>
+
+<body>
+    <div id="wrapper">
+        <ul th:replace="Fragments/sideBar :: sidebar"></ul>
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!--INCLUI -->
+
+            <div id="content">
+                <nav th:replace="Fragments/topnav :: topnav"></nav>
+
+                <div class="container-fluid">
+                    <div th:if="@{error == true}" class="row">
+
+                        <div class="col alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Erro</strong> ao inserir avaliação.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-9 col-md-9 mb-4 col-sm-9">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Aluno</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><span
+                                                    th:text="${username}"></span></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-user fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-gray-800 mb-1">
+                                                <a class=""></a>
+                                                <button type="button" data-toggle="modal" data-target="#alterarSenha"
+                                                    class="btn btn-success abreModal">Alterar senha</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-passport fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="alterarSenha" role="dialog">
+        <div class="modal-dialog modal-md">
+
+            <div class="modal-content">
+                <form th:action="@{/alterar-senha}" method="GET">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend" style="width: 40px;">
+                                    <span class="input-group-text" style="width: 100%" id="basic-addon1"><i
+                                            class="fas fa-passport"></i></span>
+                                </div>
+                                <input type="text" class="form-control border" name="senha" id="senha"
+                                    placeholder="Digite a nova senha" th:required="required" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="AtivarModal" type="submit" class="btn btn-primary">ALTERAR SENHA</button>
+                        <button type="button" data-dismiss="modal" class="btn btn-secondary">VOLTAR</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</body>
+<footer th:replace="Fragments/footer :: footer"></footer>
+
+</html>

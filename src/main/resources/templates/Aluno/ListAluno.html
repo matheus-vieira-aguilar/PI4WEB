@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head th:replace="Fragments/header :: header">
 </head>
@@ -8,12 +9,12 @@
     .tableTabs {
         margin-bottom: 10px;
     }
-    
-    
+
+
     .dataTables_length {
         margin-left: 10px;
     }
-    
+
     .dataTables_info {
         margin-left: 10px;
     }
@@ -73,9 +74,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao != null and alunos.ativo == true}">
+                                        <tr th:each="alunos:${alunos}"
+                                            th:if="${alunos.ultimaAvaliacao != null and alunos.ativo == true}">
                                             <td class="column1"><span th:text="${alunos.nome}"> </span></td>
-                                            <td class="column2"><span th:text="${alunos.dataNascimento}"> </span></td>
+                                            <td class="column2 data"><span th:text="${alunos.dataNascimento}"> </span>
+                                            </td>
                                             <td th:switch="${alunos.sexo}">
                                                 <span th:case="'1'">MASCULINO</span>
                                                 <span th:case="'2'">FEMININO</span>
@@ -83,9 +86,14 @@
                                             <td class="column4"><span th:text="${alunos.email}"> </span></td>
                                             <td class="column5"><span th:text="${alunos.cpf}"> </span></td>
                                             <td>
-                                                <a class="btn btn-outline-primary fas fas fa-address-book" th:href="@{|/avaliacao/${alunos.id}?avaliacao=1|}" role="button"></a>
-                                                <a class="btn btn-outline-secondary fas fa-edit" th:href="@{|/edita/${alunos.id}|}"></a>
-                                                <button type="button" data-toggle="modal" data-target="#confirm" class="btn btn-outline-danger Button abreModal fas fa-trash-alt" th:attr="value=${alunos.id}"></button>
+                                                <a class="btn btn-outline-primary fas fas fa-address-book"
+                                                    th:href="@{|/avaliacao/${alunos.id}?avaliacao=1|}"
+                                                    role="button"></a>
+                                                <a class="btn btn-outline-secondary fas fa-edit"
+                                                    th:href="@{|/edita/${alunos.id}|}"></a>
+                                                <button type="button" data-toggle="modal" data-target="#confirm"
+                                                    class="btn btn-outline-danger Button abreModal fas fa-trash-alt"
+                                                    th:attr="value=${alunos.id}"></button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -109,9 +117,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao == null and alunos.ativo == true}">
+                                        <tr th:each="alunos:${alunos}"
+                                            th:if="${alunos.ultimaAvaliacao == null and alunos.ativo == true}">
                                             <td cclass="column1"><span th:text="${alunos.nome}"> </span></td>
-                                            <td class="column2"><span th:text="${alunos.dataNascimento}"> </span></td>
+                                            <td class="column2 data"><span th:text="${alunos.dataNascimento}"> </span>
+                                            </td>
                                             <td th:switch="${alunos.sexo}">
                                                 <span th:case="'1'">MASCULINO</span>
                                                 <span th:case="'2'">FEMININO</span>
@@ -119,9 +129,13 @@
                                             <td class="column4"><span th:text="${alunos.email}"> </span></td>
                                             <td class="column5"><span th:text="${alunos.cpf}"> </span></td>
                                             <td>
-                                                <a class="btn btn-outline-primary fas fa-address-book" th:href="@{|/avaliar/${alunos.id}|}" role="button"></a>
-                                                <a class="btn btn-outline-secondary fas fa-edit" th:href="@{|/edita/${alunos.id}|}"></a>
-                                                <button type="button" data-toggle="modal" data-target="#confirm" class="btn btn-outline-danger Button abreModal fas fa-trash-alt" th:attr="value=${alunos.id}"></button>
+                                                <a class="btn btn-outline-primary fas fa-address-book"
+                                                    th:href="@{|/avaliar/${alunos.id}|}" role="button"></a>
+                                                <a class="btn btn-outline-secondary fas fa-edit"
+                                                    th:href="@{|/edita/${alunos.id}|}"></a>
+                                                <button type="button" data-toggle="modal" data-target="#confirm"
+                                                    class="btn btn-outline-danger Button abreModal fas fa-trash-alt"
+                                                    th:attr="value=${alunos.id}"></button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -144,9 +158,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="alunos:${alunos}" th:if="${alunos.ultimaAvaliacao == null and alunos.ativo == false}">
+                                        <tr th:each="alunos:${alunos}"
+                                            th:if="${alunos.ultimaAvaliacao == null and alunos.ativo == false}">
                                             <td cclass="column1"><span th:text="${alunos.nome}"> </span></td>
-                                            <td class="column2"><span th:text="${alunos.dataNascimento}"> </span></td>
+                                            <td class="column2 data"><span th:text="${alunos.dataNascimento}"> </span>
+                                            </td>
                                             <td th:switch="${alunos.sexo}">
                                                 <span th:case="'1'">MASCULINO</span>
                                                 <span th:case="'2'">FEMININO</span>
@@ -154,7 +170,9 @@
                                             <td class="column4"><span th:text="${alunos.email}"> </span></td>
                                             <td class="column5"><span th:text="${alunos.cpf}"> </span></td>
                                             <td>
-                                                <button type="button" data-toggle="modal" data-target="#confirmAtivar" class="btn btn-outline-primary fas fa-edit Button abreModal" th:value="${alunos.id}"></button>                                    
+                                                <button type="button" data-toggle="modal" data-target="#confirmAtivar"
+                                                    class="btn btn-outline-primary fas fa-edit Button abreModal"
+                                                    th:value="${alunos.id}"></button>
                                             </td>
                                         </tr>
                                     </tbody>

@@ -121,11 +121,11 @@
 
                         <div class="row">
                             <div class="col-xl-3 col-md-6 mb-4 col-sm-8">
-                                <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card border-left-success shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Estatura</div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800"><span
                                                         th:text="${avaliacoes[0].estatura}"></span></div>
@@ -176,11 +176,12 @@
                             </div>
 
                             <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card border-left-primary shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                <div class="text-xs font-weight-bold text-primary mb-1">
+                                                    <a class="btn btn-primary" th:href="@{|/avaliar/${aluno.id}|}" >Inserir nova avaliação</a>
                                                 </div>
                                             </div>
                                             <div class="col-auto">
@@ -231,46 +232,25 @@
                                 <div class="collapse" id="collapseCardExample">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col card bg-info text-white shadow">
-                                                <div class="card-body">
-                                                    <div class="text-white-50 small">IMC</div>
-                                                    <span class="big" th:text="${avaliacoes[0].imc}"></span>
-                                                </div>
-                                            </div>
-                                            <div class="col card bg-info text-white shadow">
-                                                <div class="card-body">
-                                                    <div class="text-white-50 small">PCCG</div>
-                                                    <span class="big" th:text="${avaliacoes[0].pccg}"></span>
-                                                </div>
-                                            </div>
-                                            <div class="col card bg-info text-white shadow">
-                                                <div class="card-body">
-                                                    <div class="text-white-50 small">ESTATURA</div>
-                                                    <span class="big" th:text="${avaliacoes[0].estatura}"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr />
-                                        <div class="row">
-                                            <div class="col card bg-secondary text-white">
+                                            <div class="col card bg-info text-white">
                                                 <div class="card-body">
                                                     <div class="text-white-50 small">PEITORAL</div>
                                                     <span class="big" th:text="${avaliacoes[0].peitoral}"></span>
                                                 </div>
                                             </div>
-                                            <div class="col card bg-secondary text-white">
+                                            <div class="col card bg-info text-white">
                                                 <div class="card-body">
                                                     <div class="text-white-50 small">AUXILIAR MÉDIA</div>
                                                     <span class="big" th:text="${avaliacoes[0].mediaAuxiliar}"></span>
                                                 </div>
                                             </div>
-                                            <div class="col card bg-secondary text-white">
+                                            <div class="col card bg-info text-white">
                                                 <div class="card-body">
                                                     <div class="text-white-50 small">SUB ESCAPULAR</div>
                                                     <span class="big" th:text="${avaliacoes[0].subEscapular}"></span>
                                                 </div>
                                             </div>
-                                            <div class="col card bg-secondary text-white">
+                                            <div class="col card bg-info text-white">
                                                 <div class="card-body">
                                                     <div class="text-white-50 small">TRICIPITAL</div>
                                                     <span class="big" th:text="${avaliacoes[0].tricipital}"></span>
@@ -278,31 +258,31 @@
                                             </div>
                                             </div>
                                             <div class="row">
-                                            <div class="col card bg-secondary text-white">
+                                            <div class="col card bg-info text-white">
                                                 <div class="card-body">
                                                     <div class="text-white-50 small">BICIPTAL</div>
                                                     <span class="big" th:text="${avaliacoes[0].biciptal}"></span>
                                                 </div>
                                             </div>
-                                            <div class="col card bg-secondary text-white">
+                                            <div class="col card bg-info text-white">
                                                 <div class="card-body">
                                                     <div class="text-white-50 small">SUPRA ILIACA</div>
                                                     <span class="big" th:text="${avaliacoes[0].supraIliaca}"></span>
                                                 </div>
                                             </div>
-                                            <div class="col card bg-secondary text-white">
+                                            <div class="col card bg-info text-white">
                                                 <div class="card-body">
                                                     <div class="text-white-50 small">DOBRA ABDOMINAL</div>
                                                     <span class="big" th:text="${avaliacoes[0].abdominalDobra}"></span>
                                                 </div>
                                             </div>
-                                            <div class="col card bg-secondary text-white">
+                                            <div class="col card bg-info text-white">
                                                 <div class="card-body">
                                                     <div class="text-white-50 small">COXA</div>
                                                     <span class="big" th:text="${avaliacoes[0].coxa}"></span>
                                                 </div>
                                             </div>
-                                            <div class="col card bg-secondary text-white">
+                                            <div class="col card bg-info text-white">
                                                 <div class="card-body">
                                                     <div class="text-white-50 small">PANTURRILHA</div>
                                                     <span class="big" th:text="${avaliacoes[0].panturrilha}"></span>
@@ -410,7 +390,7 @@
                                             <th style="width: 12.5%;">MASSA DE GORDURA</th>
                                             <th style="width: 12%;">MASSA MAGRA</th>
                                             <th style="width: 12%;">IMC</th>
-                                            <th style="width: 12%;">PGGG</th>
+                                            <th style="width: 12%;">PCCG</th>
                                             <th style="width: 12%;">Ações</th>
                                         </tr>
                                     </thead>
@@ -434,20 +414,5 @@
     var data = JSON.parse(objeto)
 </script>
 <script th:src="@{/js/Tabelas/TableDashboardAluno.js}"></script>
-<script>
-
-    $(document).ready(function () {
-        var data = $('#data').text();
-        data = data.split('-');
-        var date = new Date(Date.UTC(parseInt(data[0]), parseInt(data[1]) - 1, parseInt(data[2]) + 1)).toLocaleDateString();
-        $('#data').text(date);
-
-        var data = $('#dataUltimaAvaliacao').text();
-        data = data.split('-');
-        var date = new Date(Date.UTC(parseInt(data[0]), parseInt(data[1]) - 1, parseInt(data[2]) + 1)).toLocaleDateString();
-        $('#dataUltimaAvaliacao').text(date);
-    });
-
-</script>
 
 </html>
