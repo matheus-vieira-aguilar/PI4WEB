@@ -1,6 +1,6 @@
 
 
-
+mediaIMC = dados.mediaImc
 mediaFeminina = []
 mediaMasculina = []
 
@@ -70,44 +70,42 @@ Highcharts.chart('lineChart', {
 });
 
 
-
 Highcharts.chart('lineIMC', {
     chart: {
         zoomType: 'xy'
     },
     title: {
-        text: 'Average Monthly Temperature and Rainfall in Tokyo'
+        text: ''
     },
     subtitle: {
-        text: 'Source: WorldClimate.com'
+        text: ''
     },
     xAxis: [{
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        categories: ['15 - 20', '20 - 30', '30 - 40', '40 - 50',  '50 - 60', '60 - 70', '70 - 80'],
         crosshair: true
     }],
     yAxis: [{ // Primary yAxis
         labels: {
-            format: '{value}°C',
+            format: '{value}',
             style: {
                 color: Highcharts.getOptions().colors[1]
             }
         },
         title: {
-            text: 'Temperature',
+            text: 'Media',
             style: {
                 color: Highcharts.getOptions().colors[1]
             }
         }
     }, { // Secondary yAxis
         title: {
-            text: 'Rainfall',
+            text: 'Quantidade',
             style: {
                 color: Highcharts.getOptions().colors[0]
             }
         },
         labels: {
-            format: '{value} mm',
+            format: '{value}',
             style: {
                 color: Highcharts.getOptions().colors[0]
             }
@@ -129,20 +127,14 @@ Highcharts.chart('lineIMC', {
             'rgba(255,255,255,0.25)'
     },
     series: [{
-        name: 'Rainfall',
+        name: 'Quantidade',
         type: 'column',
         yAxis: 1,
-        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
-        tooltip: {
-            valueSuffix: ' mm'
-        }
+        data: [mediaIMC[0].qtd, mediaIMC[1].qtd, mediaIMC[2].qtd,mediaIMC[3].qtd,mediaIMC[4].qtd,mediaIMC[5].qtd, mediaIMC[6].qtd]
 
     }, {
-        name: 'Temperature',
+        name: 'Media de IMC',
         type: 'spline',
-        data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
-        tooltip: {
-            valueSuffix: '°C'
-        }
+        data: [mediaIMC[0].media, mediaIMC[1].media, mediaIMC[2].media,mediaIMC[3].media,mediaIMC[4].media,mediaIMC[5].media, mediaIMC[6].media]
     }]
 });

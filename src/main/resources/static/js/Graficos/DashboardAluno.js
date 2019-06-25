@@ -155,7 +155,7 @@
             type: 'pie'
         },
         title: {
-            text: 'Massa atual ' + ultimaAvaliacao.massa + 'Kg'
+            text: 'Composição da massa atual: ' + ultimaAvaliacao.massa + 'Kg'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'

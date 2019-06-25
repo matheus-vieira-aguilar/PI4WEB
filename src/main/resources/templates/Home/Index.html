@@ -9,7 +9,11 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/drilldown.js"></script>
-
+<style>
+    .card {
+        margin: 10px;
+    }
+</style>
 <body>
     <div id="wrapper">
         <ul th:replace="Fragments/sideBar :: sidebar"></ul>
@@ -37,7 +41,7 @@
                                                             <div class="progress progress-sm mr-2"
                                                                 style="height: 30px;">
                                                                 <div class="avaliados progress-bar bg-info"
-                                                                    role="progressbar" th:aria-valuenow="@{dados.}"
+                                                                    role="progressbar" th:aria-valuenow="@{dados.}" data-toggle="tooltip" data-placement="bottom" title="Avaliados"
                                                                     aria-valuemin="0" aria-valuemax="100"></div>
                                                             </div>
                                                         </div>
@@ -63,11 +67,11 @@
                                                         <div class="col">
                                                             <div class="progress progress-sm mr-2"
                                                                 style="height: 30px;">
-                                                                <div class="homens progress-bar bg-primary"
+                                                                <div class="homens progress-bar bg-primary" data-toggle="tooltip" data-placement="bottom" title="Homens"
                                                                     role="progressbar" style="width: 15%"
                                                                     aria-valuenow="15" aria-valuemin="0"
                                                                     aria-valuemax="100"></div>
-                                                                <div class="mulheres progress-bar bg-warning"
+                                                                <div class="mulheres progress-bar bg-warning" data-toggle="tooltip" data-placement="bottom" title="Mulheres"
                                                                     role="progressbar" style="width: 30%"
                                                                     aria-valuenow="30" aria-valuemin="0"
                                                                     aria-valuemax="100"></div>
@@ -94,11 +98,11 @@
                                                         <div class="col">
                                                             <div class="progress progress-sm mr-2"
                                                                 style="height: 30px;">
-                                                                <div class="ativados progress-bar bg-success"
+                                                                <div class="ativados progress-bar bg-success" data-toggle="tooltip" data-placement="bottom" title="Ativados"
                                                                     role="progressbar" style="width: 15%"
                                                                     aria-valuenow="15" aria-valuemin="0"
                                                                     aria-valuemax="100"></div>
-                                                                <div class="inativados progress-bar bg-danger"
+                                                                <div class="inativados progress-bar bg-danger" data-toggle="tooltip" data-placement="bottom" title="Inativos"
                                                                     role="progressbar" style="width: 30%"
                                                                     aria-valuenow="30" aria-valuemin="0"
                                                                     aria-valuemax="100"></div>
@@ -120,32 +124,32 @@
 
                         <div class="row">
                             <div class="col">
-                                <div class="card shadow mb-4 col">
 
-                                    <div class="container-fluid">
-                                        <div class="card-header">
-                                            <center>MÉDIA DE PORCENTAGEM DE GORDURA POR GÊNERO</center>
+                                <div class="card ">
+                                        <h5 class="card-header">MÉDIA DE GORDURA POR GÊNERO</h5>
+                                        <div class="card-body">
+                                                <div id="lineChart" style="min-width: 310px; height: 400px; margin: 0 auto">
                                         </div>
-                                        <div id="lineChart" style="min-width: 310px; height: 400px; margin: 0 auto">
-                                        </div>
-                                    </div>
+                                      </div>
+
                                 </div>
                             </div>
+                            
                         </div>
-
                         <div class="row">
-                            <div class="col">
-                                <div class="card shadow mb-4 col">
-                                    <div class="container-fluid">
-                                        <div class="card-header">
-                                            <center>MÉDIA DE IMC POR FAIXA HETÁRIA</center>
-                                        </div>
-                                        <div id="lineIMC" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                                <div class="col">
+    
+                                    <div class="card ">
+                                            <h5 class="card-header">MÉDIA DE IMC POR FAIXA ETÁRIA</h5>
+                                            <div class="card-body">
+                                                <div id="lineIMC" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                                            </div>
+                                          </div>
+    
                                     </div>
                                 </div>
+                                
                             </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -163,35 +167,11 @@
     /*]]>*/
 </script>
 <script>
-    console.log(dados)
-    $(".avaliados").text(dados.porcentagemDeAvaliados + '%')
-    $(".avaliados").css("width", dados.porcentagemDeAvaliados + '%')
-
-    var totalGenero = dados.qtdMasculino + dados.qtdFeminino;
-
-    var homensPorcentagem = parseFloat((dados.qtdMasculino / totalGenero) * 100).toFixed(2)
-    $(".homens").text(homensPorcentagem + '%')
-    $(".homens").css("width", homensPorcentagem + '%')
-
-    var mulheresPorcentagem = parseFloat((dados.qtdFeminino / totalGenero) * 100).toFixed(2)
-    $(".mulheres").text(mulheresPorcentagem + '%')
-    $(".mulheres").css("width", mulheresPorcentagem + '%')
-
-    var totalStatus = dados.qtdAtivados + dados.qtdInativados
-
-    var ativadosPorcentagem = parseFloat((dados.qtdAtivados / totalStatus) * 100).toFixed(2)
-    $(".ativados").text(ativadosPorcentagem + '%')
-    $(".ativados").css("width", ativadosPorcentagem + '%')
-
-    var inativadosPorcentagem = parseFloat((dados.qtdInativados / totalStatus) * 100).toFixed(2)
-    $(".inativados").text(inativadosPorcentagem + '%')
-    $(".inativados").css("width", inativadosPorcentagem + '%')
-
-    $('#myModal').on('shown.bs.modal', function () {
-        $('#myInput').trigger('focus')
-    })
-
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+            $("[data-tt=tooltip]").tooltip()
+        })
 </script>
+<script th:src="@{/js/index.js}"></script>
 <script th:src="@{/js/Graficos/HomeGraficos.js}"></script>
-
 </html>

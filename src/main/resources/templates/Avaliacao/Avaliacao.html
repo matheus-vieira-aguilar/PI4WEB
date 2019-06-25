@@ -414,5 +414,10 @@
     var data = JSON.parse(objeto)
 </script>
 <script th:src="@{/js/Tabelas/TableDashboardAluno.js}"></script>
-
+<script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+            $("[data-tt=tooltip]").tooltip()
+        })
+</script>
 </html>

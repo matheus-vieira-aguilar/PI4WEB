@@ -65,7 +65,7 @@
                                 <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
+                                            <th>Nome</th>
                                             <th>Data de Nascimento</th>
                                             <th>Sexo</th>
                                             <th>Email</th>
@@ -86,12 +86,12 @@
                                             <td class="column4"><span th:text="${alunos.email}"> </span></td>
                                             <td class="column5"><span th:text="${alunos.cpf}"> </span></td>
                                             <td>
-                                                <a class="btn btn-outline-primary fas fas fa-address-book"
+                                                <a class="btn btn-outline-primary fas fas fa-address-book" data-toggle="tooltip" data-placement="top" title="Avalição"
                                                     th:href="@{|/avaliacao/${alunos.id}?avaliacao=1|}"
                                                     role="button"></a>
-                                                <a class="btn btn-outline-secondary fas fa-edit"
+                                                <a class="btn btn-outline-secondary fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"
                                                     th:href="@{|/edita/${alunos.id}|}"></a>
-                                                <button type="button" data-toggle="modal" data-target="#confirm"
+                                                <button type="button" data-toggle="modal" data-target="#confirm" data-tt="tooltip" title="Excluir"
                                                     class="btn btn-outline-danger Button abreModal fas fa-trash-alt"
                                                     th:attr="value=${alunos.id}"></button>
                                             </td>
@@ -108,7 +108,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
+                                            <th>Nome</th>
                                             <th>Data de Nascimento</th>
                                             <th style="width: 100px">Sexo</th>
                                             <th>Email</th>
@@ -129,11 +129,11 @@
                                             <td class="column4"><span th:text="${alunos.email}"> </span></td>
                                             <td class="column5"><span th:text="${alunos.cpf}"> </span></td>
                                             <td>
-                                                <a class="btn btn-outline-primary fas fa-address-book"
+                                                <a class="btn btn-outline-primary fas fa-address-book" data-toggle="tooltip" data-placement="top" title="Avaliar"
                                                     th:href="@{|/avaliar/${alunos.id}|}" role="button"></a>
-                                                <a class="btn btn-outline-secondary fas fa-edit"
+                                                <a class="btn btn-outline-secondary fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"
                                                     th:href="@{|/edita/${alunos.id}|}"></a>
-                                                <button type="button" data-toggle="modal" data-target="#confirm"
+                                                <button type="button" data-toggle="modal" data-target="#confirm" data-tt="tooltip" title="Excluir"
                                                     class="btn btn-outline-danger Button abreModal fas fa-trash-alt"
                                                     th:attr="value=${alunos.id}"></button>
                                             </td>
@@ -149,7 +149,7 @@
                                 <table class="table table-bordered" id="dataTable3" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
+                                            <th>Nome</th>
                                             <th>Data de Nascimento</th>
                                             <th style="width: 100px">Sexo</th>
                                             <th>Email</th>
@@ -170,7 +170,7 @@
                                             <td class="column4"><span th:text="${alunos.email}"> </span></td>
                                             <td class="column5"><span th:text="${alunos.cpf}"> </span></td>
                                             <td>
-                                                <button type="button" data-toggle="modal" data-target="#confirmAtivar"
+                                                <button type="button" data-toggle="modal" data-target="#confirmAtivar" data-tt="tooltip" title="Ativar"
                                                     class="btn btn-outline-primary fas fa-edit Button abreModal"
                                                     th:value="${alunos.id}"></button>
                                             </td>
@@ -220,6 +220,12 @@
 </body>
 
 <footer th:replace="Fragments/footer :: footer"></footer>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+        $("[data-tt=tooltip]").tooltip()
+    })
+</script>
 <script th:src="@{/js/Tabelas/TableListAlunos.js}"></script>
 
 </html>
