@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<title>Cadastro</title>
+<title>Cadastrar Aluno</title>
 
 <head th:replace="Fragments/header :: header">
 </head>
@@ -72,7 +72,7 @@
                         <div class="form-group btn-group btn-group-toggle" data-toggle="buttons"
                             style="margin-bottom: 0;">
                             <label class="btn btn-outline-secondary active">
-                                <input type="radio" name="sexo" id="masculino" th:value="1" autocomplete="off" />
+                                <input type="radio" name="sexo" id="masculino" checked="true" th:value="1" autocomplete="off" />
                                 Masculino
                             </label>
                             <label class="btn btn-outline-secondary">

@@ -164,4 +164,12 @@ public class Aluno {
     public static Aluno obterAlunoDeUmaLista(List<Aluno> alunos){
         return alunos.stream().findFirst().get();
     }
+    
+    public String getDataNascimentotoString(){
+        return dataNascimento.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    }
+
+    public  String getUltimaAvaliacaotoString(){
+        return ultimaAvaliacao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    }
 }

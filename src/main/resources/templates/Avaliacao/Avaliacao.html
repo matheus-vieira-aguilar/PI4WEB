@@ -84,8 +84,8 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Data de Nascimento</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><span id="data"
-                                                        th:text="${aluno.dataNascimento}"></span></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><span
+                                                        th:text="${aluno.getDataNascimentotoString()}"></span></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-birthday-cake fa-2x text-gray-300"></i>
@@ -164,8 +164,8 @@
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Ultima Avaliação</div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800"><span
-                                                        id="dataUltimaAvaliacao" class="data"
-                                                        th:text="${aluno.ultimaAvaliacao}"></span></div>
+                                                        class="data"
+                                                        th:text="${aluno.getUltimaAvaliacaotoString()}"></span></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>

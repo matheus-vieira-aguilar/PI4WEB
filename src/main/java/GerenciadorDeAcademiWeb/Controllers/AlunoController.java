@@ -194,7 +194,7 @@ public class AlunoController {
 
     }
 
-    @RequestMapping(value = {"/salva_edicao"}, method = RequestMethod.PUT)
+    @RequestMapping(value = {"/salva_edicao"}, method = RequestMethod.GET)
     public ModelAndView salvaEdicao(@ModelAttribute("aluno") Aluno aluno, @RequestParam("sexo") Integer sexo, RedirectAttributes redirectAttributes) {
         Gson gson = GsonHelper.getGson();
         ModelAndView modelAndView = new ModelAndView("Aluno/FormAluno");

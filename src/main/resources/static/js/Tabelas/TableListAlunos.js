@@ -1,5 +1,5 @@
 (function($){
-
+    
     $('#dataTable').DataTable( {
         language: {
             emptyTable: "Nenhum registro encontrado",
