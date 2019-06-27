@@ -63,43 +63,42 @@
                             <div class="table-responsive table-hover">
 
                                 <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Nome</th>
-                                            <th>Data de Nascimento</th>
-                                            <th>Sexo</th>
-                                            <th>Email</th>
-                                            <th>CPF</th>
-                                            <th>Ações</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr th:each="alunos:${alunos}"
-                                            th:if="${alunos.ultimaAvaliacao != null and alunos.ativo == true}">
-                                            <td class="column1"><span th:text="${alunos.nome}"> </span></td>
-                                            <td class="column2 data"><span th:text="${alunos.getDataNascimentotoString()}"> </span>
-                                            </td>
-                                            <td th:switch="${alunos.sexo}">
-                                                <span th:case="'1'">MASCULINO</span>
-                                                <span th:case="'2'">FEMININO</span>
-                                            </td>
-                                            <td class="column4"><span th:text="${alunos.email}"> </span></td>
-                                            <td class="column5"><span th:text="${alunos.cpf}"> </span></td>
-                                            <td>
-                                                <a class="btn btn-outline-primary fas fas fa-address-book"
-                                                    data-toggle="tooltip" data-placement="top" title="Avalição"
-                                                    th:href="@{|/avaliacao/${alunos.id}?avaliacao=1|}"
-                                                    role="button"></a>
-                                                <a class="btn btn-outline-secondary fas fa-edit" data-toggle="tooltip"
-                                                    data-placement="top" title="Editar"
-                                                    th:href="@{|/edita/${alunos.id}|}"></a>
-                                                <button type="button" data-toggle="modal" data-target="#confirm"
-                                                    data-tt="tooltip" title="Excluir"
-                                                    class="btn btn-outline-danger Button abreModal fas fa-trash-alt"
-                                                    th:attr="value=${alunos.id}"></button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                        <thead>
+                                                <tr>
+                                                    <th>Nome</th>
+                                                    <th>Data de Nascimento</th>
+                                                    <th style="width: 100px">Sexo</th>
+                                                    <th>Email</th>
+                                                    <th>CPF</th>
+                                                    <th style="width: 150px">Ações</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr th:each="alunos:${alunos}"
+                                                    th:if="${alunos.ultimaAvaliacao != null and alunos.ativo == true}">
+                                                    <td cclass="column1"><span th:text="${alunos.nome}"> </span></td>
+                                                    <td class="column2"><span th:text="${ alunos.getDataNascimentotoString() }"> </span>
+                                                    </td>
+                                                    <td th:switch="${alunos.sexo}">
+                                                        <span th:case="'1'">MASCULINO</span>
+                                                        <span th:case="'2'">FEMININO</span>
+                                                    </td>
+                                                    <td class="column4"><span th:text="${alunos.email}"> </span></td>
+                                                    <td class="column5"><span th:text="${alunos.cpf}"> </span></td>
+                                                    <td>
+                                                        <a class="btn btn-outline-primary fas fa-address-book"
+                                                            data-toggle="tooltip" data-placement="top" title="Avaliacao"
+                                                            th:href="@{|/avaliacao/${alunos.id}?avaliacao=1|}" role="button"></a>
+                                                        <a class="btn btn-outline-secondary fas fa-edit" data-toggle="tooltip"
+                                                            data-placement="top" title="Editar"
+                                                            th:href="@{|/edita/${alunos.id}|}"></a>
+                                                        <button type="button" data-toggle="modal" data-target="#confirm"
+                                                            data-tt="tooltip" title="Excluir"
+                                                            class="btn btn-outline-danger Button abreModal fas fa-trash-alt"
+                                                            th:attr="value=${alunos.id}"></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
                                 </table>
 
                             </div>

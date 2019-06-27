@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-
+<title>Avaliação</title>
 <head th:replace="Fragments/header :: header"></head>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -181,7 +181,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary mb-1">
-                                                    <a class="btn btn-primary" th:href="@{|/avaliar/${aluno.id}|}" >Inserir nova avaliação</a>
+                                                    <a class="btn btn-primary" th:href="@{|/avaliar/${aluno.id}|}" >Nova avaliação</a>
                                                 </div>
                                             </div>
                                             <div class="col-auto">

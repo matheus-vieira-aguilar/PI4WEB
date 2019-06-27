@@ -36,7 +36,7 @@ for (let index = 0; index < media.length; index++) {
     }
 
 }
-
+/*
 Highcharts.chart('lineChart', {
     chart: {
         type: 'line'
@@ -68,6 +68,62 @@ Highcharts.chart('lineChart', {
         data: mediaFeminina
     }]
 });
+
+*/
+Highcharts.chart('lineChart', {
+
+    chart: {
+        type: 'column'
+    },
+
+    title: {
+        text: ''
+    },
+
+    xAxis: {
+        categories: [
+            'POLLOCK3D',
+            'POLLOCK7D',
+            'GUEDES',
+            'PETROSKY',
+            'THROLAND7D',
+            'THROLAND3D'
+        ]
+    },
+
+    yAxis: {
+        allowDecimals: false,
+        min: 0,
+        title: {
+            text: 'porcentagem (%)'
+        }
+    },
+
+    tooltip: {
+        formatter: function () {
+            return '<b>' + this.x + '</b><br/>' +
+                this.series.name + ': ' + this.y + '%' +'<br/>' 
+                
+        }
+    },
+
+    plotOptions: {
+        column: {
+            stacking: 'normal'
+        }
+    },
+
+    series: [{
+        name: 'Masculino',
+        data: [mediaMasculina[0], mediaMasculina[1], mediaMasculina[2], mediaMasculina[3], mediaMasculina[4], mediaMasculina[5]],
+        stack: 'male'
+    }, {
+        name: 'Feminino',
+        data: [mediaFeminina[0], mediaFeminina[1], mediaFeminina[2], mediaFeminina[3], mediaFeminina[4], mediaFeminina[5]],
+        stack: 'female'
+    }]
+});
+
 
 
 Highcharts.chart('lineIMC', {
