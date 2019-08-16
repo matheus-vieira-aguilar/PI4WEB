@@ -44,7 +44,7 @@ public class LoginApi {
         String loginSenha = clientLogin + ":" + clientPassword;
         String tokenAuthorization = Base64.getEncoder().encodeToString(loginSenha.getBytes());
 
-        try {
+        try {   
             OkHttpClient client = new OkHttpClient();
 
             MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
@@ -54,7 +54,7 @@ public class LoginApi {
               .post(body)
               .addHeader("Authorization", "Basic " + tokenAuthorization)
               .build();
-
+            System.out.println(baseUrl + url);
             Response response = client.newCall(request).execute();
             
             ResponseToken responseToken = gson.fromJson(response.body().string(), ResponseToken.class);
