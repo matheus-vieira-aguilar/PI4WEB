@@ -25,11 +25,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth
             .eraseCredentials(false)
             .jdbcAuthentication().dataSource(dataSource)
-            .usersByUsernameQuery("SELECT Username, Password, true AS Enable FROM User WHERE Username=?")
+            .usersByUsernameQuery("SELECT username, password, true AS Enable FROM acesso.usuario WHERE username=?")
             .passwordEncoder(new BCryptPasswordEncoder())
-            .authoritiesByUsernameQuery("SELECT U.Username, R.Role FROM User_Role AS UR \n" +
-                                                "INNER JOIN User AS U ON U.ID_User = UR.ID_user\n" +
-                                                "INNER JOIN Role AS R ON R.Role_ID = UR.Role_ID WHERE U.Username=?");
+            .authoritiesByUsernameQuery("SELECT U.username, R.role FROM acesso.usuario_role AS UR \n" +
+                                                "INNER JOIN acesso.usuario AS U ON U.id_usuario = UR.id_usuario\n" +
+                                                "INNER JOIN acesso.role AS R ON R.id_role = UR.id_role WHERE U.username=?");
     }
 
     @Override
