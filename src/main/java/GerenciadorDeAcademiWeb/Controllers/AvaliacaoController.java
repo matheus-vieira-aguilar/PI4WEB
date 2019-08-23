@@ -97,7 +97,7 @@ public class AvaliacaoController {
         ApiRetorno<List<Aluno>> alunosApi = getAlunos(token, idAluno);
         Aluno aluno = Aluno.obterAlunoDeUmaLista(alunosApi.getData());
            
-        AvaliacaoRequest avaliacao = new AvaliacaoRequest();    
+        AvaliacaoRequest avaliacao =    new AvaliacaoRequest();    
         avaliacao.atribuirIdadeAPartirDaDataDeNascimento(aluno.getDataNascimento());
         avaliacao.setIdAluno(aluno.getId().toString());
         avaliacao.setSexo(aluno.getSexo());
